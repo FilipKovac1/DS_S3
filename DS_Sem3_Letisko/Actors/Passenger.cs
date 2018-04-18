@@ -9,10 +9,10 @@ namespace Actors
     class Passenger : IComparable
     {
 
-        public double ArrivalTime { get; set; }
-        public double ArrivalTimeCR { get; set; }
-        public double GetInMiniTime { get; set; }
-        public bool ArrivedAtT1 { get; set; }
+        public double ArrivalTime { get; set; } // when the passanger/s arrived to terminal
+        public double ArrivalTimeCR { get; set; } // when the passanger/s arrived to CR
+        public bool ArrivedAtT1 { get; set; } // on which terminal passanger/s arrived
+        public int NumberOfGroup { get; set; } // how much people came together as group
 
         public int CompareTo (object o)
         {

@@ -1,4 +1,4 @@
-﻿using DS_Sem2_Letisko;
+﻿using DS_Sem3_Letisko;
 using Generator;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,8 @@ namespace Actors
 {
     class Minibus
     {
-        public readonly int capacity = 12;
+        public int capacity { get; set; } = 0;
+        private readonly int capacity1 = 12, capacity2 = 18, capacity3 = 22;
         public readonly double speed = 35; // average speed of minibus in km/h
         public int Index;
         /// <summary>
@@ -22,8 +23,9 @@ namespace Actors
         public Random GetIn = new Random(Seed.GetSeed());
         public Random GetOut = new Random(Seed.GetSeed());
 
-        public Minibus (int state, int index)
+        public Minibus (int state, int cap, int index)
         {
+            capacity = cap > 2 ? capacity3 : cap > 1 ? capacity2 : capacity1;
             Index = index;
             LastStop = 0;
             State = state;
@@ -59,7 +61,9 @@ namespace Actors
             // copmute where minibus is now
             double pl = speed * ((time - LastStop) / 60 / 60);
             // compute difference from destination
-            return -pl + (State > 2 ? Simulation.cr_t1 : (State > 1 ? Simulation.t2_cr : Simulation.t1_t2));
+            /// TODO don't forget
+            return 0;
+            //return -pl + (State > 2 ? Simulation.cr_t1 : (State > 1 ? Simulation.t2_cr : Simulation.t1_t2));
         }
 
         private string ComputePlace (double time)

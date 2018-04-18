@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ABACore">
+      <HintPath>..\..\..\AgentCore\ABACore.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,14 +48,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actors\Employee.cs" />
+    <Compile Include="Actors\Minibus.cs" />
+    <Compile Include="Actors\Passenger.cs" />
+    <Compile Include="agents\AAirport.cs" />
+    <Compile Include="agents\ACR.cs" />
+    <Compile Include="agents\AEmployee.cs" />
+    <Compile Include="agents\AEnv.cs" />
+    <Compile Include="agents\AMinibus.cs" />
+    <Compile Include="agents\ASIM.cs" />
+    <Compile Include="agents\AT1.cs" />
+    <Compile Include="agents\AT2.cs" />
+    <Compile Include="agents\AT3.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generator\Distributions.cs" />
+    <Compile Include="Generator\Seed.cs" />
+    <Compile Include="managers\AAirportManager.cs" />
+    <Compile Include="managers\ACRManager.cs" />
+    <Compile Include="managers\AEmployeeManager.cs" />
+    <Compile Include="managers\AEnvManager.cs" />
+    <Compile Include="managers\AMinibusManager.cs" />
+    <Compile Include="managers\ASIMManager.cs" />
+    <Compile Include="managers\AT1Manager.cs" />
+    <Compile Include="managers\AT2Manager.cs" />
+    <Compile Include="managers\AT3Manager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="simulation\Mc.cs" />
+    <Compile Include="simulation\MyMessage.cs" />
+    <Compile Include="simulation\MySimulation.cs" />
+    <Compile Include="simulation\SimId.cs" />
+    <Compile Include="Statistics\SIntervalOfConfidence.cs" />
+    <Compile Include="Statistics\StatLength.cs" />
+    <Compile Include="Statistics\StatTime.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
