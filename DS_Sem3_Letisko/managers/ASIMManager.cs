@@ -1,12 +1,15 @@
 using OSPABA;
 using simulation;
 using agents;
+using Actors;
+using continualAssistants;
+using instantAssistants;
 namespace managers
 {
 	//meta! id="1"
-	public class ASIMManager : Manager
+	public class ASimManager : Manager
 	{
-		public ASIMManager(int id, Simulation mySim, Agent myAgent) :
+		public ASimManager(int id, Simulation mySim, Agent myAgent) :
 			base(id, mySim, myAgent)
 		{
 			Init();
@@ -23,24 +26,23 @@ namespace managers
 			}
 		}
 
-		/*!
-		 * Enter of customer into simulation on Terminal 1
-		 */
 		//meta! sender="AEnv", id="13", type="Notice"
 		public void ProcessEnterT1(MessageForm message)
 		{
 		}
 
-		/*!
-		 * Enter of customer into simulation on Terminal 2
-		 */
 		//meta! sender="AEnv", id="12", type="Notice"
+		public void ProcessEnterCR(MessageForm message)
+		{
+		}
+
+		//meta! sender="AEnv", id="11", type="Notice"
 		public void ProcessEnterT2(MessageForm message)
 		{
 		}
 
-		//meta! sender="AAirport", id="26", type="Response"
-		public void ProcessPassanger(MessageForm message)
+		//meta! sender="AAirport", id="19", type="Response"
+		public void ProcessServePassenger(MessageForm message)
 		{
 		}
 
@@ -61,16 +63,20 @@ namespace managers
 		{
 			switch (message.Code)
 			{
-			case Mc.EnterT2:
-				ProcessEnterT2(message);
-			break;
-
-			case Mc.Passanger:
-				ProcessPassanger(message);
+			case Mc.ServePassenger:
+				ProcessServePassenger(message);
 			break;
 
 			case Mc.EnterT1:
 				ProcessEnterT1(message);
+			break;
+
+			case Mc.EnterCR:
+				ProcessEnterCR(message);
+			break;
+
+			case Mc.EnterT2:
+				ProcessEnterT2(message);
 			break;
 
 			default:
@@ -79,11 +85,11 @@ namespace managers
 			}
 		}
 		//meta! tag="end"
-		public new ASIM MyAgent
+		public new ASim MyAgent
 		{
 			get
 			{
-				return (ASIM)base.MyAgent;
+				return (ASim)base.MyAgent;
 			}
 		}
 	}

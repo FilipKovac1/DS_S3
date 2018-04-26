@@ -1,9 +1,11 @@
 using OSPABA;
 using simulation;
 using agents;
+using continualAssistants;
+using instantAssistants;
 namespace managers
 {
-	//meta! id="32"
+	//meta! id="5"
 	public class AEmployeeManager : Manager
 	{
 		public AEmployeeManager(int id, Simulation mySim, Agent myAgent) :
@@ -23,8 +25,18 @@ namespace managers
 			}
 		}
 
-		//meta! sender="AAirport", id="34", type="Request"
-		public void ProcessServePassanger(MessageForm message)
+		//meta! sender="AAirport", id="26", type="Notice"
+		public void ProcessResetStat(MessageForm message)
+		{
+		}
+
+		//meta! sender="AAirport", id="23", type="Request"
+		public void ProcessServePassenger(MessageForm message)
+		{
+		}
+
+		//meta! sender="ServicePassenger", id="52", type="Finish"
+		public void ProcessFinish(MessageForm message)
 		{
 		}
 
@@ -45,8 +57,16 @@ namespace managers
 		{
 			switch (message.Code)
 			{
-			case Mc.ServePassanger:
-				ProcessServePassanger(message);
+			case Mc.ResetStat:
+				ProcessResetStat(message);
+			break;
+
+			case Mc.Finish:
+				ProcessFinish(message);
+			break;
+
+			case Mc.ServePassenger:
+				ProcessServePassenger(message);
 			break;
 
 			default:

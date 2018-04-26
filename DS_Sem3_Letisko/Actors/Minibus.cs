@@ -1,14 +1,16 @@
 ﻿using DS_Sem3_Letisko;
 using Generator;
+using OSPABA;
+using simulation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Actors
 {
-    class Minibus
+    class Minibus : Entity
     {
-        public int capacity { get; set; } = 0;
+        public int Capacity { get; set; } = 0;
         private readonly int capacity1 = 12, capacity2 = 18, capacity3 = 22;
         public readonly double speed = 35; // average speed of minibus in km/h
         public int Index;
@@ -23,13 +25,13 @@ namespace Actors
         public Random GetIn = new Random(Seed.GetSeed());
         public Random GetOut = new Random(Seed.GetSeed());
 
-        public Minibus (int state, int cap, int index)
+        public Minibus (MySimulation sim, int state, int cap, int index) : base (sim)
         {
-            capacity = cap > 2 ? capacity3 : cap > 1 ? capacity2 : capacity1;
+            Capacity = cap > 2 ? capacity3 : cap > 1 ? capacity2 : capacity1;
             Index = index;
             LastStop = 0;
             State = state;
-            OnBoard = new List<Passenger>(capacity);
+            OnBoard = new List<Passenger>(Capacity);
         }
 
         public void Reinit (int state)
@@ -48,7 +50,7 @@ namespace Actors
 
         public bool IsFull ()
         {
-            return OnBoard.Count == capacity;
+            return OnBoard.Count == Capacity;
         }
 
         /// <summary>

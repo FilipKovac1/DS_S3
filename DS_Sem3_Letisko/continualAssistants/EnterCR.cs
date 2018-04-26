@@ -1,35 +1,24 @@
 using OSPABA;
 using simulation;
 using agents;
-namespace managers
+namespace continualAssistants
 {
-	//meta! id="24"
-	public class AT3Manager : Manager
+	//meta! id="82"
+	public class EnterCR : Scheduler
 	{
-		public AT3Manager(int id, Simulation mySim, Agent myAgent) :
+		public EnterCR(int id, Simulation mySim, CommonAgent myAgent) :
 			base(id, mySim, myAgent)
 		{
-			Init();
 		}
 
 		override public void PrepareReplication()
 		{
 			base.PrepareReplication();
 			// Setup component for the next replication
-
-			if (PetriNet != null)
-			{
-				PetriNet.Clear();
-			}
 		}
 
-		//meta! sender="AAirport", id="51", type="Request"
-		public void ProcessEnterPassanger(MessageForm message)
-		{
-		}
-
-		//meta! sender="AAirport", id="29", type="Request"
-		public void ProcessEnterMinibus(MessageForm message)
+		//meta! sender="AEnv", id="83", type="Start"
+		public void ProcessStart(MessageForm message)
 		{
 		}
 
@@ -42,20 +31,12 @@ namespace managers
 		}
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"
-		public void Init()
-		{
-		}
-
 		override public void ProcessMessage(MessageForm message)
 		{
 			switch (message.Code)
 			{
-			case Mc.EnterMinibus:
-				ProcessEnterMinibus(message);
-			break;
-
-			case Mc.EnterPassanger:
-				ProcessEnterPassanger(message);
+			case Mc.Start:
+				ProcessStart(message);
 			break;
 
 			default:
@@ -64,11 +45,11 @@ namespace managers
 			}
 		}
 		//meta! tag="end"
-		public new AT3 MyAgent
+		public new AEnv MyAgent
 		{
 			get
 			{
-				return (AT3)base.MyAgent;
+				return (AEnv)base.MyAgent;
 			}
 		}
 	}

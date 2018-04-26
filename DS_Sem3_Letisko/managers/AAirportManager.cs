@@ -1,6 +1,8 @@
 using OSPABA;
 using simulation;
 using agents;
+using continualAssistants;
+using instantAssistants;
 namespace managers
 {
 	//meta! id="3"
@@ -23,71 +25,40 @@ namespace managers
 			}
 		}
 
-		//meta! sender="ASIM", id="16", type="Notice"
+		//meta! sender="ASim", id="17", type="Notice"
+		public void ProcessResetStat(MessageForm message)
+		{
+		}
+
+		//meta! sender="ASim", id="18", type="Notice"
 		public void ProcessInit(MessageForm message)
 		{
 		}
 
-		//meta! sender="AT3", id="51", type="Response"
-		public void ProcessEnterPassanger(MessageForm message)
+		//meta! sender="AEmployee", id="23", type="Response"
+		public void ProcessServePassengerAEmployee(MessageForm message)
 		{
 		}
 
-		//meta! sender="AEmployee", id="34", type="Response"
-		public void ProcessServePassanger(MessageForm message)
+		//meta! sender="ASim", id="19", type="Request"
+		public void ProcessServePassengerASim(MessageForm message)
 		{
 		}
 
 		/*!
-		 * When passanger come to take a car
+		 * move of bus
 		 */
-		//meta! sender="ACR", id="33", type="Response"
-		public void ProcessEnterToServe(MessageForm message)
+		//meta! sender="AMinibus", id="21", type="Response"
+		public void ProcessMove(MessageForm message)
 		{
 		}
 
-		//meta! sender="AMinibus", id="39", type="Response"
-		public void ProcessMoveFromT2(MessageForm message)
-		{
-		}
-
-		//meta! sender="AMinibus", id="41", type="Response"
-		public void ProcessMoveFromT1(MessageForm message)
-		{
-		}
-
-		//meta! sender="AMinibus", id="42", type="Response"
-		public void ProcessMoveFromCR(MessageForm message)
-		{
-		}
-
-		//meta! sender="ACR", id="56", type="Response"
-		public void ProcessRequestResponse(MessageForm message)
-		{
-		}
-
+		/*!
+		 * Request - Enter to front to wait for a bus
+		 * Response - leave a bus
+		 */
 		//meta! sender="AMinibus", id="58", type="Response"
-		public void ProcessMoveFromT3(MessageForm message)
-		{
-		}
-
-		//meta! sender="AT1", id="35", type="Response"
-		public void ProcessEnterMinibusAT1(MessageForm message)
-		{
-		}
-
-		//meta! sender="AT2", id="37", type="Response"
-		public void ProcessEnterMinibusAT2(MessageForm message)
-		{
-		}
-
-		//meta! sender="AT3", id="29", type="Response"
-		public void ProcessEnterMinibusAT3(MessageForm message)
-		{
-		}
-
-		//meta! sender="ASIM", id="26", type="Request"
-		public void ProcessPassanger(MessageForm message)
+		public void ProcessProcessPassenger(MessageForm message)
 		{
 		}
 
@@ -108,61 +79,33 @@ namespace managers
 		{
 			switch (message.Code)
 			{
-			case Mc.EnterMinibus:
+			case Mc.Init:
+				ProcessInit(message);
+			break;
+
+			case Mc.ServePassenger:
 				switch (message.Sender.Id)
 				{
-				case SimId.AT1:
-					ProcessEnterMinibusAT1(message);
+				case SimId.ASim:
+					ProcessServePassengerASim(message);
 				break;
 
-				case SimId.AT2:
-					ProcessEnterMinibusAT2(message);
-				break;
-
-				case SimId.AT3:
-					ProcessEnterMinibusAT3(message);
+				case SimId.AEmployee:
+					ProcessServePassengerAEmployee(message);
 				break;
 				}
 			break;
 
-			case Mc.EnterPassanger:
-				ProcessEnterPassanger(message);
+			case Mc.Move:
+				ProcessMove(message);
 			break;
 
-			case Mc.Passanger:
-				ProcessPassanger(message);
+			case Mc.ProcessPassenger:
+				ProcessProcessPassenger(message);
 			break;
 
-			case Mc.MoveFromCR:
-				ProcessMoveFromCR(message);
-			break;
-
-			case Mc.RequestResponse:
-				ProcessRequestResponse(message);
-			break;
-
-			case Mc.MoveFromT2:
-				ProcessMoveFromT2(message);
-			break;
-
-			case Mc.MoveFromT3:
-				ProcessMoveFromT3(message);
-			break;
-
-			case Mc.ServePassanger:
-				ProcessServePassanger(message);
-			break;
-
-			case Mc.MoveFromT1:
-				ProcessMoveFromT1(message);
-			break;
-
-			case Mc.EnterToServe:
-				ProcessEnterToServe(message);
-			break;
-
-			case Mc.Init:
-				ProcessInit(message);
+			case Mc.ResetStat:
+				ProcessResetStat(message);
 			break;
 
 			default:

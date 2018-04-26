@@ -1,9 +1,11 @@
 using OSPABA;
 using simulation;
 using managers;
+using continualAssistants;
+using instantAssistants;
 namespace agents
 {
-	//meta! id="31"
+	//meta! id="4"
 	public class AMinibus : Agent
 	{
 		public AMinibus(int id, Simulation mySim, Agent parent) :
@@ -22,10 +24,14 @@ namespace agents
 		private void Init()
 		{
 			new AMinibusManager(SimId.AMinibusManager, MySim, this);
-			AddOwnMessage(Mc.MoveFromT2);
-			AddOwnMessage(Mc.MoveFromT1);
-			AddOwnMessage(Mc.MoveFromT3);
-			AddOwnMessage(Mc.MoveFromCR);
+			new GetOut(SimId.GetOut, MySim, this);
+			new GetIn(SimId.GetIn, MySim, this);
+			new AddToFront(SimId.AddToFront, MySim, this);
+			new SetActualPosition(SimId.SetActualPosition, MySim, this);
+			new GetStats(SimId.GetStats, MySim, this);
+			AddOwnMessage(Mc.ResetStat);
+			AddOwnMessage(Mc.Move);
+			AddOwnMessage(Mc.ProcessPassenger);
 		}
 		//meta! tag="end"
 	}

@@ -1,4 +1,6 @@
 ﻿using Generator;
+using OSPABA;
+using simulation;
 using System;
 
 namespace Actors
@@ -6,13 +8,13 @@ namespace Actors
     /// <summary>
     /// This class represents actor employee in simulation
     /// </summary>
-    class Employee
+    class Employee : Entity
     {
         public Random random = new Random(Seed.GetSeed());
         public bool Free = true;
         public int Index { get; }
 
-        public Employee(int id) => Index = id;
+        public Employee(MySimulation sim, int id) : base (sim) => Index = id;
 
         public override string ToString()
         {

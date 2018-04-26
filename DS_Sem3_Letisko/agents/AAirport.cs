@@ -1,6 +1,8 @@
 using OSPABA;
 using simulation;
 using managers;
+using continualAssistants;
+using instantAssistants;
 namespace agents
 {
 	//meta! id="3"
@@ -12,7 +14,7 @@ namespace agents
 			Init();
 		}
 
-		override public void PrepareReplication()
+        public override void PrepareReplication()
 		{
 			base.PrepareReplication();
 			// Setup component for the next replication
@@ -22,17 +24,11 @@ namespace agents
 		private void Init()
 		{
 			new AAirportManager(SimId.AAirportManager, MySim, this);
+			AddOwnMessage(Mc.ServePassenger);
+			AddOwnMessage(Mc.ResetStat);
 			AddOwnMessage(Mc.Init);
-			AddOwnMessage(Mc.EnterPassanger);
-			AddOwnMessage(Mc.ServePassanger);
-			AddOwnMessage(Mc.EnterToServe);
-			AddOwnMessage(Mc.MoveFromT2);
-			AddOwnMessage(Mc.MoveFromT1);
-			AddOwnMessage(Mc.MoveFromCR);
-			AddOwnMessage(Mc.RequestResponse);
-			AddOwnMessage(Mc.MoveFromT3);
-			AddOwnMessage(Mc.EnterMinibus);
-			AddOwnMessage(Mc.Passanger);
+			AddOwnMessage(Mc.Move);
+			AddOwnMessage(Mc.ProcessPassenger);
 		}
 		//meta! tag="end"
 	}

@@ -18,6 +18,11 @@ namespace Generator
             return (-e) * Math.Log(1 - rand.NextDouble());
         }
 
+        public static double GetTriangular(Random rand)
+        {
+            return 0.0;
+        }
+
         /// <summary>
         /// Norm(e, +-)
         /// </summary>

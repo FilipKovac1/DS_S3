@@ -1,9 +1,11 @@
 using OSPABA;
 using simulation;
 using agents;
+using continualAssistants;
+using instantAssistants;
 namespace managers
 {
-	//meta! id="31"
+	//meta! id="4"
 	public class AMinibusManager : Manager
 	{
 		public AMinibusManager(int id, Simulation mySim, Agent myAgent) :
@@ -23,23 +25,35 @@ namespace managers
 			}
 		}
 
-		//meta! sender="AAirport", id="39", type="Request"
-		public void ProcessMoveFromT2(MessageForm message)
+		//meta! sender="AAirport", id="25", type="Notice"
+		public void ProcessResetStat(MessageForm message)
 		{
 		}
 
-		//meta! sender="AAirport", id="41", type="Request"
-		public void ProcessMoveFromT1(MessageForm message)
+		/*!
+		 * move of bus
+		 */
+		//meta! sender="AAirport", id="21", type="Request"
+		public void ProcessMove(MessageForm message)
 		{
 		}
 
+		//meta! sender="GetIn", id="39", type="Finish"
+		public void ProcessFinishGetIn(MessageForm message)
+		{
+		}
+
+		//meta! sender="GetOut", id="41", type="Finish"
+		public void ProcessFinishGetOut(MessageForm message)
+		{
+		}
+
+		/*!
+		 * Request - Enter to front to wait for a bus
+		 * Response - leave a bus
+		 */
 		//meta! sender="AAirport", id="58", type="Request"
-		public void ProcessMoveFromT3(MessageForm message)
-		{
-		}
-
-		//meta! sender="AAirport", id="42", type="Request"
-		public void ProcessMoveFromCR(MessageForm message)
+		public void ProcessProcessPassenger(MessageForm message)
 		{
 		}
 
@@ -60,20 +74,29 @@ namespace managers
 		{
 			switch (message.Code)
 			{
-			case Mc.MoveFromT2:
-				ProcessMoveFromT2(message);
+			case Mc.Finish:
+				switch (message.Sender.Id)
+				{
+				case SimId.GetOut:
+					ProcessFinishGetOut(message);
+				break;
+
+				case SimId.GetIn:
+					ProcessFinishGetIn(message);
+				break;
+				}
 			break;
 
-			case Mc.MoveFromT3:
-				ProcessMoveFromT3(message);
+			case Mc.Move:
+				ProcessMove(message);
 			break;
 
-			case Mc.MoveFromCR:
-				ProcessMoveFromCR(message);
+			case Mc.ProcessPassenger:
+				ProcessProcessPassenger(message);
 			break;
 
-			case Mc.MoveFromT1:
-				ProcessMoveFromT1(message);
+			case Mc.ResetStat:
+				ProcessResetStat(message);
 			break;
 
 			default:

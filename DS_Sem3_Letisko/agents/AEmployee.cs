@@ -1,11 +1,22 @@
 using OSPABA;
 using simulation;
 using managers;
+using continualAssistants;
+using instantAssistants;
+using System.Collections.Generic;
+using Actors;
+using Statistics;
+
 namespace agents
 {
-	//meta! id="32"
+	//meta! id="5"
 	public class AEmployee : Agent
 	{
+        private List<Employee> Employees { get; set; }
+
+        private StatLength FrontLength { get; set; }
+        private StatTime FronTime { get; set; }
+
 		public AEmployee(int id, Simulation mySim, Agent parent) :
 			base(id, mySim, parent)
 		{
@@ -22,7 +33,11 @@ namespace agents
 		private void Init()
 		{
 			new AEmployeeManager(SimId.AEmployeeManager, MySim, this);
-			AddOwnMessage(Mc.ServePassanger);
+			new GetStats(SimId.GetStats, MySim, this);
+			new AddToQ(SimId.AddToQ, MySim, this);
+			new ServicePassenger(SimId.ServicePassenger, MySim, this);
+			AddOwnMessage(Mc.ServePassenger);
+			AddOwnMessage(Mc.ResetStat);
 		}
 		//meta! tag="end"
 	}

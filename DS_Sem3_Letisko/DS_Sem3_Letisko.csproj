@@ -52,14 +52,16 @@
     <Compile Include="Actors\Minibus.cs" />
     <Compile Include="Actors\Passenger.cs" />
     <Compile Include="agents\AAirport.cs" />
-    <Compile Include="agents\ACR.cs" />
     <Compile Include="agents\AEmployee.cs" />
     <Compile Include="agents\AEnv.cs" />
     <Compile Include="agents\AMinibus.cs" />
-    <Compile Include="agents\ASIM.cs" />
-    <Compile Include="agents\AT1.cs" />
-    <Compile Include="agents\AT2.cs" />
-    <Compile Include="agents\AT3.cs" />
+    <Compile Include="agents\ASim.cs" />
+    <Compile Include="continualAssistants\EnterCR.cs" />
+    <Compile Include="continualAssistants\EnterT1.cs" />
+    <Compile Include="continualAssistants\EnterT2.cs" />
+    <Compile Include="continualAssistants\GetIn.cs" />
+    <Compile Include="continualAssistants\GetOut.cs" />
+    <Compile Include="continualAssistants\ServicePassenger.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,15 +70,17 @@
     </Compile>
     <Compile Include="Generator\Distributions.cs" />
     <Compile Include="Generator\Seed.cs" />
+    <Compile Include="instantAssistants\AddToFront.cs" />
+    <Compile Include="instantAssistants\AddToQ.cs" />
+    <Compile Include="instantAssistants\GetStats.cs" />
+    <Compile Include="instantAssistants\SetActualPosition.cs" />
+    <Compile Include="instantAssistants\StatLeaveAfterCR.cs" />
+    <Compile Include="instantAssistants\StatLeaveAfterTerminal.cs" />
     <Compile Include="managers\AAirportManager.cs" />
-    <Compile Include="managers\ACRManager.cs" />
     <Compile Include="managers\AEmployeeManager.cs" />
     <Compile Include="managers\AEnvManager.cs" />
     <Compile Include="managers\AMinibusManager.cs" />
-    <Compile Include="managers\ASIMManager.cs" />
-    <Compile Include="managers\AT1Manager.cs" />
-    <Compile Include="managers\AT2Manager.cs" />
-    <Compile Include="managers\AT3Manager.cs" />
+    <Compile Include="managers\ASimManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulation\Mc.cs" />
