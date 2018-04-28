@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Actors
 {
-    class Minibus : Entity
+    public class Minibus : Entity
     {
         public int Capacity { get; set; } = 0;
         private readonly int capacity1 = 12, capacity2 = 18, capacity3 = 22;

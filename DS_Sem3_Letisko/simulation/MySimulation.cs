@@ -12,14 +12,16 @@ namespace simulation
 		protected override void PrepareSimulation()
 		{
 			base.PrepareSimulation();
-			// Create global statistcis
+            // Create global statistcis
 		}
 
         protected override void PrepareReplication()
 		{
 			base.PrepareReplication();
-			// Reset entities, queues, local statistics, etc...
-		}
+            // Reset entities, queues, local statistics, etc...
+
+            ASim.StartSim();
+        }
 
         protected override void ReplicationFinished()
 		{

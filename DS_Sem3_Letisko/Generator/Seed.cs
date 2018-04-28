@@ -2,13 +2,11 @@
 
 namespace Generator
 {
-    class Seed
+    public static class Seed
     {
-        private static Random random = new Random();
-
         public static int GetSeed()
         {
-            return random.Next();
+            return Guid.NewGuid().GetHashCode();
         }
     }
 }

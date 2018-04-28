@@ -9,7 +9,7 @@ namespace continualAssistants
 	//meta! id="78"
 	public class EnterT1 : Scheduler
 	{
-        private Random Rand = new Random();
+        private Random Rand = new Random(Generator.Seed.GetSeed());
         private double Lambda;
 
 		public EnterT1(int id, Simulation mySim, CommonAgent myAgent) :
@@ -27,15 +27,26 @@ namespace continualAssistants
 		//meta! sender="AEnv", id="79", type="Start"
 		public void ProcessStart(MessageForm message)
 		{
-            double nextEnter = Distributions.GetExp(Rand, Lambda);
-            Hold(nextEnter, message);
+            message.Code = Mc.ProcessPassenger;
+            Hold(GenerateEnter(), message);
 		}
+
+        private double GenerateEnter()
+        {
+            return Distributions.GetExp(Rand, Lambda);
+        }
 
 		//meta! userInfo="Process messages defined in code", id="0"
 		public void ProcessDefault(MessageForm message)
 		{
 			switch (message.Code)
 			{
+                case Mc.ProcessPassenger:
+                    MessageForm m = message.CreateCopy();
+                    Hold(GenerateEnter(), m);
+                    message.Code = Mc.Finish;
+                    AssistantFinished(message);
+                    break;
 			}
 		}
 

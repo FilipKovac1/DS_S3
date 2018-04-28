@@ -5,9 +5,9 @@ namespace simulation
 {
 	public class MyMessage : MessageForm
 	{
-        private Passenger Passenger { get; set; }
-        private Minibus Minibus { get; set; }
-        private Employee Employee { get; set; }
+        public Passenger Passenger { get; set; }
+        public Minibus Minibus { get; set; }
+        public Employee Employee { get; set; }
 
 		public MyMessage(Simulation sim) :
 			base(sim)

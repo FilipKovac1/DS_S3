@@ -5,26 +5,27 @@ using Actors;
 using Statistics;
 using continualAssistants;
 using instantAssistants;
+using System;
+
 namespace agents
 {
 	//meta! id="2"
 	public class AEnv : Agent
     {
-        private StatLength T1_length { get; set; }
-        private StatTime T1_time { get; set; }
-        private StatLength T2_length { get; set; }
-        private StatTime T2_time { get; set; }
-        private StatLength CR_length { get; set; }
-        private StatTime CR_time { get; set; }
-
         private int NumberOfEntersTerminals { get; set; }
         private int NumberOfLeavesTerminals { get; set; }
         private int NumberOfEntersCR { get; set; }
         private int NumberOfLeavesCR { get; set; }
 
+        private StatTime TimeInSystemRental { get; set; }
+        private StatTime TimeInSystemReturn { get; set; }
+
         public AEnv(int id, Simulation mySim, Agent parent) :
 			base(id, mySim, parent)
 		{
+            TimeInSystemRental = new StatTime();
+            TimeInSystemReturn = new StatTime();
+
 			Init();
 		}
 
@@ -38,12 +39,8 @@ namespace agents
 
         private void InitStats()
         {
-            T1_length = new StatLength();
-            T2_length = new StatLength();
-            CR_length = new StatLength();
-            T1_time = new StatTime();
-            T2_time = new StatTime();
-            CR_time = new StatTime();
+            this.TimeInSystemReturn.Reset();
+            this.TimeInSystemRental.Reset();
 
             this.NumberOfEntersCR = 0;
             this.NumberOfLeavesCR = 0;
@@ -51,8 +48,47 @@ namespace agents
             this.NumberOfLeavesTerminals = 0;
         }
 
-		//meta! userInfo="Generated code: do not modify", tag="begin"
-		private void Init()
+        public void AddToStat(int type, MyMessage message)
+        {
+            switch (type)
+            {
+                case 1:
+                    TimeInSystemRental.AddStat(MySim.CurrentTime - message.Passenger.ArrivalTime);
+                    break;
+                case 2:
+                    TimeInSystemReturn.AddStat(MySim.CurrentTime - message.Passenger.ArrivalTime);
+                    break;
+            }
+        }
+
+        public void IncrementEnter(int enter_place)
+        {
+            switch (enter_place)
+            {
+                case 1:
+                    NumberOfEntersTerminals++;
+                    break;
+                case 3:
+                    NumberOfEntersCR++;
+                    break;
+            }
+        }
+
+        public void IncrementLeave(int enter_place)
+        {
+            switch (enter_place)
+            {
+                case 1:
+                    NumberOfLeavesTerminals++;
+                    break;
+                case 3:
+                    NumberOfLeavesCR++;
+                    break;
+            }
+        }
+
+        //meta! userInfo="Generated code: do not modify", tag="begin"
+        private void Init()
 		{
 			new AEnvManager(SimId.AEnvManager, MySim, this);
 			new StatLeaveAfterCR(SimId.StatLeaveAfterCR, MySim, this);
@@ -64,6 +100,7 @@ namespace agents
 			AddOwnMessage(Mc.Init);
 			AddOwnMessage(Mc.LeaveT3);
 			AddOwnMessage(Mc.LeaveCR);
+            AddOwnMessage(Mc.ProcessPassenger);
 		}
 		//meta! tag="end"
 	}

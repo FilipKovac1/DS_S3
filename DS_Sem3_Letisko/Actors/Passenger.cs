@@ -8,18 +8,19 @@ namespace Actors
     /// THis class represents passenger actor in simulation
     /// Inherits IComparable interface because of CompareTo method for sort purposes
     /// </summary>
-    class Passenger : Entity, IComparable 
+    public class Passenger : Entity, IComparable 
     {
 
         public double ArrivalTime { get; set; } // when the passanger/s arrived to terminal or cr to return car
         public double ArrivalTimeCR { get; set; } // when the passanger/s arrived to CR
         public int ArrivedAt { get; set; } // on which terminal passanger/s arrived
-        public int NumberOfGroup { get; set; } // how much people came together as group
+        public int SizeOfGroup { get; set; } // how much people came together as group
 
-        public Passenger (MySimulation sim, int ArrivedAt) : base (sim)
+        public Passenger (MySimulation sim, int ArrivedAt, int SizeOfGroup) : base (sim)
         {
             this.ArrivedAt = ArrivedAt;
             ArrivalTime = sim.CurrentTime;
+            this.SizeOfGroup = SizeOfGroup;
         }
 
         public int CompareTo (object o)

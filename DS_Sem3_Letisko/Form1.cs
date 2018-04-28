@@ -20,6 +20,7 @@ namespace DS_Sem3_Letisko
             InitializeComponent();
 
             Simulation = new MySimulation();
+            Simulation.Simulate(20, 40000);
         }
     }
 }

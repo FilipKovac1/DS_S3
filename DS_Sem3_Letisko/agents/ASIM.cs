@@ -3,6 +3,8 @@ using simulation;
 using managers;
 using continualAssistants;
 using instantAssistants;
+using System;
+
 namespace agents
 {
 	//meta! id="1"
@@ -13,6 +15,14 @@ namespace agents
 		{
 			Init();
 		}
+
+        public void StartSim ()
+        {
+            MyMessage m = new MyMessage(MySim);
+            m.Code = Mc.Init;
+            m.Addressee = this;
+            MyManager.Notice(m);
+        }
 
 		override public void PrepareReplication()
 		{

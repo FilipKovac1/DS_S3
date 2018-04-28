@@ -8,7 +8,7 @@ namespace Actors
     /// <summary>
     /// This class represents actor employee in simulation
     /// </summary>
-    class Employee : Entity
+    public class Employee : Entity
     {
         public Random random = new Random(Seed.GetSeed());
         public bool Free = true;

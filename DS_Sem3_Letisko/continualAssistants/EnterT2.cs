@@ -1,12 +1,18 @@
 using OSPABA;
 using simulation;
 using agents;
+using System;
+using Generator;
+
 namespace continualAssistants
 {
 	//meta! id="80"
 	public class EnterT2 : Scheduler
-	{
-		public EnterT2(int id, Simulation mySim, CommonAgent myAgent) :
+    {
+        private Random Rand = new Random(Generator.Seed.GetSeed());
+        private double Lambda;
+
+        public EnterT2(int id, Simulation mySim, CommonAgent myAgent) :
 			base(id, mySim, myAgent)
 		{
 		}
@@ -14,20 +20,34 @@ namespace continualAssistants
 		override public void PrepareReplication()
 		{
 			base.PrepareReplication();
-			// Setup component for the next replication
-		}
+            // Setup component for the next replication
+            Lambda = 240;
+        }
 
 		//meta! sender="AEnv", id="81", type="Start"
 		public void ProcessStart(MessageForm message)
-		{
-		}
+        {
+            message.Code = Mc.ProcessPassenger;
+            Hold(GenerateEnter(), message);
+        }
 
-		//meta! userInfo="Process messages defined in code", id="0"
-		public void ProcessDefault(MessageForm message)
+        private double GenerateEnter()
+        {
+            return Distributions.GetExp(Rand, Lambda);
+        }
+
+        //meta! userInfo="Process messages defined in code", id="0"
+        public void ProcessDefault(MessageForm message)
 		{
 			switch (message.Code)
-			{
-			}
+            {
+                case Mc.ProcessPassenger:
+                    MessageForm m = message.CreateCopy();
+                    Hold(GenerateEnter(), m);
+                    message.Code = Mc.Finish;
+                    AssistantFinished(message);
+                    break;
+            }
 		}
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"

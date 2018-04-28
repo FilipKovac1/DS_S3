@@ -51,6 +51,15 @@ namespace managers
 		{
 			switch (message.Code)
 			{
+                case Mc.Init:
+                    // start planning enters
+                    message.Addressee = MySim.FindAgent(SimId.AEnv);
+                    Notice(message);
+
+                    MessageForm m = message.CreateCopy();
+                    m.Addressee = MySim.FindAgent(SimId.AAirport);
+                    Notice(m);
+                    break;
 			}
 		}
 
