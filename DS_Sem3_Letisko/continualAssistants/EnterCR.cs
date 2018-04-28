@@ -36,8 +36,8 @@ namespace continualAssistants
             return Distributions.GetExp(Rand, Lambda);
         }
 
-        //meta! userInfo="Process messages defined in code", id="0"
-        public void ProcessDefault(MessageForm message)
+		//meta! userInfo="Process messages defined in code", id="0"
+		public void ProcessDefault(MessageForm message)
 		{
 			switch (message.Code)
 			{

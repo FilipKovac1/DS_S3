@@ -1,9 +1,6 @@
 using OSPABA;
 using simulation;
 using managers;
-using continualAssistants;
-using instantAssistants;
-using System;
 
 namespace agents
 {
@@ -34,8 +31,9 @@ namespace agents
 		private void Init()
 		{
 			new ASimManager(SimId.ASimManager, MySim, this);
-			AddOwnMessage(Mc.ServePassenger);
 			AddOwnMessage(Mc.EnterT1);
+			AddOwnMessage(Mc.ServePassenger);
+			AddOwnMessage(Mc.ResetStat);
 			AddOwnMessage(Mc.EnterCR);
 			AddOwnMessage(Mc.EnterT2);
 		}

@@ -6,14 +6,13 @@ namespace instantAssistants
 	//meta! id="45"
 	public class AddToFront : Action
 	{
-		public AddToFront(int id, Simulation mySim, CommonAgent myAgent) :
-			base(id, mySim, myAgent)
-		{
-		}
+        public AddToFront(int id, Simulation mySim, CommonAgent myAgent) : base(id, mySim, myAgent) { }
 
 		override public void Execute(MessageForm message)
 		{
+            MyAgent.AddToQueue(((MyMessage)message).Passenger);
 		}
+
 		public new AMinibus MyAgent
 		{
 			get

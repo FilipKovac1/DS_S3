@@ -1,18 +1,14 @@
 using OSPABA;
 using simulation;
 using agents;
-using System;
-using Generator;
-
 namespace continualAssistants
 {
-	//meta! id="80"
-	public class EnterT2 : Scheduler
-    {
-        private Random Rand = new Random(Generator.Seed.GetSeed());
-        private double Lambda;
+	//meta! id="99"
+	public class EndDay : Scheduler
+	{
+        public int WorkDay { get; set; }
 
-        public EnterT2(int id, Simulation mySim, CommonAgent myAgent) :
+		public EndDay(int id, Simulation mySim, CommonAgent myAgent) :
 			base(id, mySim, myAgent)
 		{
 		}
@@ -20,34 +16,28 @@ namespace continualAssistants
 		override public void PrepareReplication()
 		{
 			base.PrepareReplication();
-            // Setup component for the next replication
-            Lambda = 240;
-        }
+			// Setup component for the next replication
+		}
 
-		//meta! sender="AEnv", id="81", type="Start"
+		//meta! sender="AAirport", id="100", type="Start"
 		public void ProcessStart(MessageForm message)
-        {
-            message.Code = Mc.ProcessPassenger;
-            Hold(GenerateEnter(), message);
-        }
-
-        private double GenerateEnter()
-        {
-            return Distributions.GetExp(Rand, Lambda);
-        }
+		{
+            message.Code = Mc.Done;
+            Hold(WorkDay, message);
+		}
 
 		//meta! userInfo="Process messages defined in code", id="0"
 		public void ProcessDefault(MessageForm message)
 		{
 			switch (message.Code)
-            {
-                case Mc.ProcessPassenger:
+			{
+                case Mc.Done:
                     MessageForm m = message.CreateCopy();
-                    Hold(GenerateEnter(), m);
+                    Hold(WorkDay, m);
                     message.Code = Mc.Finish;
                     AssistantFinished(message);
                     break;
-            }
+			}
 		}
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"
@@ -65,11 +55,11 @@ namespace continualAssistants
 			}
 		}
 		//meta! tag="end"
-		public new AEnv MyAgent
+		public new AAirport MyAgent
 		{
 			get
 			{
-				return (AEnv)base.MyAgent;
+				return (AAirport)base.MyAgent;
 			}
 		}
 	}

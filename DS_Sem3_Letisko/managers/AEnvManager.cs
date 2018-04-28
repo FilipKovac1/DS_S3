@@ -1,10 +1,7 @@
 using OSPABA;
 using Actors;
-using Statistics;
 using simulation;
 using agents;
-using continualAssistants;
-using instantAssistants;
 using System;
 
 namespace managers
@@ -31,6 +28,7 @@ namespace managers
 		//meta! sender="ASim", id="29", type="Notice"
 		public void ProcessResetStat(MessageForm message)
 		{
+            MyAgent.InitStats();
 		}
 
 		//meta! sender="ASim", id="15", type="Notice"
@@ -104,22 +102,13 @@ namespace managers
         {
             int ret = 1;
             double prob = random.NextDouble();
-            if (prob <= 0.4)
-            {
-                if (prob <= 0.2)
-                {
-                    if (prob <= 0.05)
-                        ret++;
-                    ret++;
-                }
-                ret++;
-            }
-            ret++;
+            foreach (double p in Const.GroupSizeCumProb)
+                if (prob <= p) ret++; else break;
             return ret;
         }
 
-        //meta! userInfo="Generated code: do not modify", tag="begin"
-        public void Init()
+		//meta! userInfo="Generated code: do not modify", tag="begin"
+		public void Init()
 		{
 		}
 
@@ -127,37 +116,37 @@ namespace managers
 		{
 			switch (message.Code)
 			{
-			case Mc.LeaveT3:
-				ProcessLeaveT3(message);
-			break;
-
-			case Mc.Init:
-				ProcessInit(message);
-			break;
-
-			case Mc.LeaveCR:
-				ProcessLeaveCR(message);
-			break;
-
 			case Mc.Finish:
 				switch (message.Sender.Id)
 				{
-				case SimId.EnterT2:
-					ProcessFinishEnterT2(message);
+				case SimId.EnterCR:
+					ProcessFinishEnterCR(message);
 				break;
 
 				case SimId.EnterT1:
 					ProcessFinishEnterT1(message);
 				break;
 
-				case SimId.EnterCR:
-					ProcessFinishEnterCR(message);
+				case SimId.EnterT2:
+					ProcessFinishEnterT2(message);
 				break;
 				}
 			break;
 
+			case Mc.Init:
+				ProcessInit(message);
+			break;
+
+			case Mc.LeaveT3:
+				ProcessLeaveT3(message);
+			break;
+
 			case Mc.ResetStat:
 				ProcessResetStat(message);
+			break;
+
+			case Mc.LeaveCR:
+				ProcessLeaveCR(message);
 			break;
 
 			default:

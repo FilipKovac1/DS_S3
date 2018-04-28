@@ -1,11 +1,8 @@
 using OSPABA;
 using simulation;
 using managers;
-using Actors;
 using Statistics;
 using continualAssistants;
-using instantAssistants;
-using System;
 
 namespace agents
 {
@@ -37,7 +34,7 @@ namespace agents
             // Setup component for the next replication
         }
 
-        private void InitStats()
+        public void InitStats()
         {
             this.TimeInSystemReturn.Reset();
             this.TimeInSystemRental.Reset();
@@ -87,21 +84,19 @@ namespace agents
             }
         }
 
-        //meta! userInfo="Generated code: do not modify", tag="begin"
-        private void Init()
+		//meta! userInfo="Generated code: do not modify", tag="begin"
+		private void Init()
 		{
 			new AEnvManager(SimId.AEnvManager, MySim, this);
-			new StatLeaveAfterCR(SimId.StatLeaveAfterCR, MySim, this);
-			new EnterT2(SimId.EnterT2, MySim, this);
 			new EnterCR(SimId.EnterCR, MySim, this);
 			new EnterT1(SimId.EnterT1, MySim, this);
-			new StatLeaveAfterTerminal(SimId.StatLeaveAfterTerminal, MySim, this);
+			new EnterT2(SimId.EnterT2, MySim, this);
 			AddOwnMessage(Mc.ResetStat);
 			AddOwnMessage(Mc.Init);
 			AddOwnMessage(Mc.LeaveT3);
 			AddOwnMessage(Mc.LeaveCR);
             AddOwnMessage(Mc.ProcessPassenger);
-		}
+        }
 		//meta! tag="end"
-	}
+    }
 }

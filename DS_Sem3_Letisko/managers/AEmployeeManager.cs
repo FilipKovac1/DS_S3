@@ -61,12 +61,12 @@ namespace managers
 				ProcessResetStat(message);
 			break;
 
-			case Mc.Finish:
-				ProcessFinish(message);
-			break;
-
 			case Mc.ServePassenger:
 				ProcessServePassenger(message);
+			break;
+
+			case Mc.Finish:
+				ProcessFinish(message);
 			break;
 
 			default:

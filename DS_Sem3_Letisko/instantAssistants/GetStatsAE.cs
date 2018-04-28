@@ -3,10 +3,10 @@ using simulation;
 using agents;
 namespace instantAssistants
 {
-	//meta! id="36"
-	public class SetActualPosition : Action
+	//meta! id="66"
+	public class GetStatsAE : Query
 	{
-		public SetActualPosition(int id, Simulation mySim, CommonAgent myAgent) :
+		public GetStatsAE(int id, Simulation mySim, CommonAgent myAgent) :
 			base(id, mySim, myAgent)
 		{
 		}
@@ -14,11 +14,11 @@ namespace instantAssistants
 		override public void Execute(MessageForm message)
 		{
 		}
-		public new AMinibus MyAgent
+		public new AEmployee MyAgent
 		{
 			get
 			{
-				return (AMinibus)base.MyAgent;
+				return (AEmployee)base.MyAgent;
 			}
 		}
 	}

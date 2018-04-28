@@ -1,9 +1,6 @@
 using OSPABA;
 using simulation;
 using agents;
-using Actors;
-using continualAssistants;
-using instantAssistants;
 namespace managers
 {
 	//meta! id="1"
@@ -26,24 +23,37 @@ namespace managers
 			}
 		}
 
+        private void ProcessEnter(MessageForm message)
+        {
+            message.Code = Mc.ServePassenger;
+            message.Addressee = MySim.FindAgent(SimId.AAirport);
+            Request(message);
+        }
+
 		//meta! sender="AEnv", id="13", type="Notice"
 		public void ProcessEnterT1(MessageForm message)
 		{
+            ProcessEnter(message);
 		}
 
 		//meta! sender="AEnv", id="12", type="Notice"
 		public void ProcessEnterCR(MessageForm message)
-		{
-		}
+        {
+            ProcessEnter(message);
+        }
 
 		//meta! sender="AEnv", id="11", type="Notice"
 		public void ProcessEnterT2(MessageForm message)
-		{
-		}
+        {
+            ProcessEnter(message);
+        }
 
 		//meta! sender="AAirport", id="19", type="Response"
 		public void ProcessServePassenger(MessageForm message)
 		{
+            message.Code = ((MyMessage)message).Passenger.ArrivedAt < 3 ? Mc.LeaveCR : Mc.LeaveT3;
+            message.Addressee = MySim.FindAgent(SimId.AEnv);
+            Notice(message);
 		}
 
 		//meta! userInfo="Process messages defined in code", id="0"
@@ -63,6 +73,13 @@ namespace managers
 			}
 		}
 
+		//meta! sender="AAirport", id="17", type="Notice"
+		public void ProcessResetStat(MessageForm message)
+		{
+            message.Addressee = MySim.FindAgent(SimId.AEnv);
+            Notice(message);
+		}
+
 		//meta! userInfo="Generated code: do not modify", tag="begin"
 		public void Init()
 		{
@@ -72,20 +89,24 @@ namespace managers
 		{
 			switch (message.Code)
 			{
-			case Mc.ServePassenger:
-				ProcessServePassenger(message);
-			break;
-
 			case Mc.EnterT1:
 				ProcessEnterT1(message);
+			break;
+
+			case Mc.EnterT2:
+				ProcessEnterT2(message);
+			break;
+
+			case Mc.ResetStat:
+				ProcessResetStat(message);
 			break;
 
 			case Mc.EnterCR:
 				ProcessEnterCR(message);
 			break;
 
-			case Mc.EnterT2:
-				ProcessEnterT2(message);
+			case Mc.ServePassenger:
+				ProcessServePassenger(message);
 			break;
 
 			default:

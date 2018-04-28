@@ -33,9 +33,8 @@ namespace agents
 		private void Init()
 		{
 			new AEmployeeManager(SimId.AEmployeeManager, MySim, this);
-			new GetStats(SimId.GetStats, MySim, this);
-			new AddToQ(SimId.AddToQ, MySim, this);
 			new ServicePassenger(SimId.ServicePassenger, MySim, this);
+			new AddToQ(SimId.AddToQ, MySim, this);
 			AddOwnMessage(Mc.ServePassenger);
 			AddOwnMessage(Mc.ResetStat);
 		}

@@ -13,6 +13,7 @@ namespace instantAssistants
 
 		override public void Execute(MessageForm message)
 		{
+
 		}
 		public new AEmployee MyAgent
 		{
