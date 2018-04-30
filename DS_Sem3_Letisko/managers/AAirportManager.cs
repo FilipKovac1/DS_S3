@@ -1,8 +1,6 @@
 using OSPABA;
 using simulation;
 using agents;
-using continualAssistants;
-using instantAssistants;
 using Actors;
 
 namespace managers
@@ -10,12 +8,9 @@ namespace managers
 	//meta! id="3"
 	public class AAirportManager : Manager
 	{
-		public AAirportManager(int id, Simulation mySim, Agent myAgent) : base(id, mySim, myAgent)
-		{
-			Init();
-		}
+        public AAirportManager(int id, Simulation mySim, Agent myAgent) : base(id, mySim, myAgent) => Init();
 
-		override public void PrepareReplication()
+        public override void PrepareReplication()
 		{
 			base.PrepareReplication();
 			// Setup component for the next replication
@@ -32,13 +27,11 @@ namespace managers
             if (MyAgent.HeatUp.HeatUp > 0)
             { // plan heat up
                 MessageForm m = message.CreateCopy();
-                m.Code = Mc.Start;
                 m.Addressee = MyAgent.FindAssistant(SimId.EndHeatUp);
                 StartContinualAssistant(m);
             }
             // day end
             message.Addressee = MyAgent.FindAssistant(SimId.EndDay);
-            message.Code = Mc.Start;
             StartContinualAssistant(message);
 
             double time = MySim.CurrentTime;
@@ -61,7 +54,7 @@ namespace managers
             { // go to hell
                 message.Code = Mc.ServePassenger;
                 message.Addressee = MySim.FindAgent(SimId.ASim);
-                Response(message);
+                Notice(message);
             } else
             { // go to wait bus on CR to go to T3
                 message.Code = Mc.ProcessPassenger;
@@ -114,7 +107,7 @@ namespace managers
             { // end in the simulation for this passenger
                 message.Code = Mc.ServePassenger;
                 message.Addressee = MySim.FindAgent(SimId.ASim);
-                Response(message);
+                Notice(message);
             }
         }
 
@@ -123,13 +116,17 @@ namespace managers
 		{
 			switch (message.Code)
 			{
+                default:
+                    break;
 			}
 		}
 
 		//meta! sender="EndDay", id="100", type="Finish"
 		public void ProcessFinishEndDay(MessageForm message)
 		{ // Cooling
-		}
+            /// TODO
+            MyAgent.ActualDay++;
+   		}
 
 		//meta! sender="EndHeatUp", id="102", type="Finish"
 		public void ProcessFinishEndHeatUp(MessageForm message)
@@ -148,7 +145,7 @@ namespace managers
 		{
 		}
 
-		override public void ProcessMessage(MessageForm message)
+		public override void ProcessMessage(MessageForm message)
 		{
 			switch (message.Code)
 			{

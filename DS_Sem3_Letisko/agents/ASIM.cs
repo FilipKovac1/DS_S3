@@ -7,25 +7,22 @@ namespace agents
 	//meta! id="1"
 	public class ASim : Agent
 	{
-		public ASim(int id, Simulation mySim, Agent parent) :
-			base(id, mySim, parent)
-		{
-			Init();
-		}
+        public ASim(int id, Simulation mySim, Agent parent) : base(id, mySim, parent) => Init();
 
-        public void StartSim ()
+        public override void PrepareReplication()
+		{
+			base.PrepareReplication();
+            // Setup component for the next replication
+        }
+
+        public void InitReplication()
         {
-            MyMessage m = new MyMessage(MySim);
+            // create message to notify simulation about start generating arrivals and moving of minis
+            MessageForm m = new MyMessage(MySim);
             m.Code = Mc.Init;
             m.Addressee = this;
             MyManager.Notice(m);
         }
-
-		override public void PrepareReplication()
-		{
-			base.PrepareReplication();
-			// Setup component for the next replication
-		}
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"
 		private void Init()
@@ -36,7 +33,8 @@ namespace agents
 			AddOwnMessage(Mc.ResetStat);
 			AddOwnMessage(Mc.EnterCR);
 			AddOwnMessage(Mc.EnterT2);
-		}
+            AddOwnMessage(Mc.Init);
+        }
 		//meta! tag="end"
 	}
 }

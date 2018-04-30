@@ -9,7 +9,8 @@ namespace agents
 	//meta! id="2"
 	public class AEnv : Agent
     {
-        private int NumberOfEntersTerminals { get; set; }
+        private int NumberOfEntersTerminal1 { get; set; }
+        private int NumberOfEntersTerminal2 { get; set; }
         private int NumberOfLeavesTerminals { get; set; }
         private int NumberOfEntersCR { get; set; }
         private int NumberOfLeavesCR { get; set; }
@@ -26,7 +27,7 @@ namespace agents
 			Init();
 		}
 
-		override public void PrepareReplication()
+		public override void PrepareReplication()
 		{
 			base.PrepareReplication();
 
@@ -41,7 +42,8 @@ namespace agents
 
             this.NumberOfEntersCR = 0;
             this.NumberOfLeavesCR = 0;
-            this.NumberOfEntersTerminals = 0;
+            this.NumberOfEntersTerminal1 = 0;
+            this.NumberOfEntersTerminal2 = 0;
             this.NumberOfLeavesTerminals = 0;
         }
 
@@ -50,9 +52,11 @@ namespace agents
             switch (type)
             {
                 case 1:
+                    NumberOfLeavesTerminals++;
                     TimeInSystemRental.AddStat(MySim.CurrentTime - message.Passenger.ArrivalTime);
                     break;
                 case 2:
+                    NumberOfLeavesCR++;
                     TimeInSystemReturn.AddStat(MySim.CurrentTime - message.Passenger.ArrivalTime);
                     break;
             }
@@ -63,7 +67,10 @@ namespace agents
             switch (enter_place)
             {
                 case 1:
-                    NumberOfEntersTerminals++;
+                    NumberOfEntersTerminal1++;
+                    break;
+                case 2:
+                    NumberOfEntersTerminal2++;
                     break;
                 case 3:
                     NumberOfEntersCR++;

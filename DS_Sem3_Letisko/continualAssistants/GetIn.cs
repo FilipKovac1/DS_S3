@@ -9,12 +9,11 @@ namespace continualAssistants
 	//meta! id="38"
 	public class GetIn : Process
 	{
-		public GetIn(int id, Simulation mySim, CommonAgent myAgent) :
-			base(id, mySim, myAgent)
+		public GetIn(int id, Simulation mySim, CommonAgent myAgent) : base(id, mySim, myAgent)
 		{
 		}
 
-		override public void PrepareReplication()
+		public override void PrepareReplication()
 		{
 			base.PrepareReplication();
 			// Setup component for the next replication
@@ -23,17 +22,36 @@ namespace continualAssistants
         //meta! sender="AMinibus", id="39", type="Start"
         public void ProcessStart(MessageForm message)
         {
-            /// TODO enter of group check passengers if fit into bus
-            if (true)
+            Minibus m = ((MyMessage)message).Minibus;
+            if (m.IsFull())
             {
                 message.Code = Mc.Done;
                 Hold(0, message);
             }
             else
             {
-                Passenger p = null;
-                message.Code = Mc.Start;
-                Hold(Distributions.GetNormWithInterval(((MyMessage)message).Minibus.GetIn, Const.GetInTime[0], Const.GetInTime[1]) * p.SizeOfGroup, message);
+                Passenger pass = null;
+                bool Go = true;
+                foreach (Passenger p in MyAgent.GetQueue(m.State))
+                {
+                    if (m.GetIn(p))
+                    {
+                        pass = p;
+                        MyAgent.RemoveFromQueue(m.State, p);
+                        Go = false;
+                        break;
+                    }
+                }
+                if (Go)
+                {
+                    message.Code = Mc.Done;
+                    Hold(0, message);
+                }
+                else
+                {
+                    message.Code = Mc.Start;
+                    Hold(Distributions.GetNormWithInterval(m.GetInRandom, Const.GetInTime[0], Const.GetInTime[1]) * pass.SizeOfGroup, message);
+                }
             }
 		}
 
@@ -43,14 +61,13 @@ namespace continualAssistants
 			switch (message.Code)
 			{
                 case Mc.Done:
-                    message.Code = Mc.Finish;
                     AssistantFinished(message);
                     break;
 			}
 		}
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"
-		override public void ProcessMessage(MessageForm message)
+		public override void ProcessMessage(MessageForm message)
 		{
 			switch (message.Code)
 			{

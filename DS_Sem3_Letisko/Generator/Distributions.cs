@@ -13,14 +13,13 @@ namespace Generator
         /// <param name="rand"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public static double GetExp(Random rand, double e)
-        {
-            return (-e) * Math.Log(1 - rand.NextDouble());
-        }
+        public static double GetExp(Random rand, double e) => (-e) * Math.Log(1 - rand.NextDouble());
 
-        public static double GetTriangular(Random rand)
+        public static double GetTriangular(Random rand, int[] values) // values = {min, max, modus}
         {
-            return 0.0;
+            double mid = (values[2] - values[0]) / (values[1] - values[0]);
+            double r = rand.NextDouble();
+            return r < mid ? values[0] + Math.Sqrt(r * (values[1] - values[0]) * (values[2] - values[0])) : values[1] - Math.Sqrt((1 - r) * (values[1] - values[0]) * (values[1] - values[2]));
         }
 
         /// <summary>
@@ -30,9 +29,6 @@ namespace Generator
         /// <param name="e"></param>
         /// <param name="pm"></param>
         /// <returns></returns>
-        public static int GetNormWithInterval(Random rand, int e, int pm)
-        {
-            return rand.Next(2 * pm + 1) + (e - pm);
-        }
+        public static int GetNormWithInterval(Random rand, int e, int pm) => rand.Next(2 * pm + 1) + (e - pm);
     }
 }

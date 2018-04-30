@@ -4,10 +4,28 @@ namespace simulation
 {
 	public class MySimulation : Simulation
 	{
+        private int Repl_C;
+        public int Repl_Days_C;
+
 		public MySimulation()
 		{
 			Init();
 		}
+
+        public void SetParams(int Minis_C, int Minis_T, int Empl_C, int Days_C, double Days_S, double Days_E, double HeatUp_L, int Repl_C)
+        {
+            AMinibus.SetMinis(Minis_C, Minis_T);
+            AEmployee.SetEmpl(Empl_C);
+            AAirport.DayStart = Days_S;
+            AAirport.SetWorkDay(Days_E - Days_S);
+            AAirport.SetHeatUp(HeatUp_L);
+
+            this.Repl_C = Repl_C;
+            this.Repl_Days_C = Days_C;
+
+        }
+
+        public void Start() => SimulateAsync(Repl_C, Repl_Days_C * Const.DayToSecond);
 
 		protected override void PrepareSimulation()
 		{
@@ -20,13 +38,15 @@ namespace simulation
 			base.PrepareReplication();
             // Reset entities, queues, local statistics, etc...
 
-            ASim.StartSim();
+            ASim.InitReplication();
         }
 
         protected override void ReplicationFinished()
 		{
 			// Collect local statistics into global, update UI, etc...
 			base.ReplicationFinished();
+
+
 		}
 
         protected override void SimulationFinished()

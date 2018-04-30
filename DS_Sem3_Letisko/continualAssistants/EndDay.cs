@@ -6,14 +6,13 @@ namespace continualAssistants
 	//meta! id="99"
 	public class EndDay : Scheduler
 	{
-        public int WorkDay { get; set; }
+        public double WorkDay { get; set; }
 
-		public EndDay(int id, Simulation mySim, CommonAgent myAgent) :
-			base(id, mySim, myAgent)
+		public EndDay(int id, Simulation mySim, CommonAgent myAgent) : base(id, mySim, myAgent)
 		{
 		}
 
-		override public void PrepareReplication()
+		public override void PrepareReplication()
 		{
 			base.PrepareReplication();
 			// Setup component for the next replication
@@ -34,14 +33,13 @@ namespace continualAssistants
                 case Mc.Done:
                     MessageForm m = message.CreateCopy();
                     Hold(WorkDay, m);
-                    message.Code = Mc.Finish;
                     AssistantFinished(message);
                     break;
 			}
 		}
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"
-		override public void ProcessMessage(MessageForm message)
+		public override void ProcessMessage(MessageForm message)
 		{
 			switch (message.Code)
 			{

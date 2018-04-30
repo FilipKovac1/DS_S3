@@ -6,13 +6,12 @@ namespace continualAssistants
 	//meta! id="101"
 	public class EndHeatUp : Scheduler
 	{
-        public int HeatUp { get; set; }
-		public EndHeatUp(int id, Simulation mySim, CommonAgent myAgent) :
-			base(id, mySim, myAgent)
+        public double HeatUp { get; set; }
+		public EndHeatUp(int id, Simulation mySim, CommonAgent myAgent) : base(id, mySim, myAgent)
 		{
 		}
 
-		override public void PrepareReplication()
+		public override void PrepareReplication()
 		{
 			base.PrepareReplication();
 			// Setup component for the next replication
@@ -31,14 +30,13 @@ namespace continualAssistants
 			switch (message.Code)
 			{
                 case Mc.Done:
-                    message.Code = Mc.Finish;
                     AssistantFinished(message);
                     break;
 			}
 		}
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"
-		override public void ProcessMessage(MessageForm message)
+		public override void ProcessMessage(MessageForm message)
 		{
 			switch (message.Code)
 			{

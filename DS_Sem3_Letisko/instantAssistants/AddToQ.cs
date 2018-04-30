@@ -6,16 +6,12 @@ namespace instantAssistants
 	//meta! id="68"
 	public class AddToQ : Action
 	{
-		public AddToQ(int id, Simulation mySim, CommonAgent myAgent) :
-			base(id, mySim, myAgent)
+		public AddToQ(int id, Simulation mySim, CommonAgent myAgent) : base(id, mySim, myAgent)
 		{
 		}
 
-		override public void Execute(MessageForm message)
-		{
-
-		}
-		public new AEmployee MyAgent
+        public override void Execute(MessageForm message) => MyAgent.AddToQueue(((MyMessage)message).Passenger);
+        public new AEmployee MyAgent
 		{
 			get
 			{

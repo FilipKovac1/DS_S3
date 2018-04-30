@@ -6,13 +6,9 @@ namespace managers
 	//meta! id="1"
 	public class ASimManager : Manager
 	{
-		public ASimManager(int id, Simulation mySim, Agent myAgent) :
-			base(id, mySim, myAgent)
-		{
-			Init();
-		}
+        public ASimManager(int id, Simulation mySim, Agent myAgent) : base(id, mySim, myAgent) => Init();
 
-		override public void PrepareReplication()
+        public override void PrepareReplication()
 		{
 			base.PrepareReplication();
 			// Setup component for the next replication
@@ -65,7 +61,7 @@ namespace managers
                     // start planning enters
                     message.Addressee = MySim.FindAgent(SimId.AEnv);
                     Notice(message);
-
+                    // run minis
                     MessageForm m = message.CreateCopy();
                     m.Addressee = MySim.FindAgent(SimId.AAirport);
                     Notice(m);
@@ -85,7 +81,7 @@ namespace managers
 		{
 		}
 
-		override public void ProcessMessage(MessageForm message)
+		public override void ProcessMessage(MessageForm message)
 		{
 			switch (message.Code)
 			{

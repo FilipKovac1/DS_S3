@@ -18,5 +18,13 @@
         public static readonly double ServiceSalary = 11.5;
         public static readonly int[] GetInTime = new int[] { 12, 2 };
         public static readonly int[] GetOutTime = new int[] { 6, 4 };
+        public static readonly double TriangularRatio = 0.6; // ratio between Triang1 : Triang2, with which probability i pick from first triangle
+        public static readonly int[] Triangular1 = new int[] { 0, 4, 2 }; // min, max, modus
+        public static readonly int[] Triangular2 = new int[] { 8, 16, 10 }; // min, max, modus
+
+
+
+        public static int HourToSecond = 3600;
+        public static int DayToSecond = 24 * HourToSecond;
     }
 }

@@ -11,11 +11,7 @@ namespace managers
 	{
         private Random random = new Random(Generator.Seed.GetSeed());
 
-        public AEnvManager(int id, Simulation mySim, Agent myAgent) :
-			base(id, mySim, myAgent)
-		{
-			Init();
-        }
+        public AEnvManager(int id, Simulation mySim, Agent myAgent) : base(id, mySim, myAgent) => Init();
 
         public override void PrepareReplication()
 		{
@@ -25,14 +21,11 @@ namespace managers
 			}
 		}
 
-		//meta! sender="ASim", id="29", type="Notice"
-		public void ProcessResetStat(MessageForm message)
-		{
-            MyAgent.InitStats();
-		}
+        //meta! sender="ASim", id="29", type="Notice"
+        public void ProcessResetStat(MessageForm message) => MyAgent.InitStats();
 
-		//meta! sender="ASim", id="15", type="Notice"
-		public void ProcessInit(MessageForm message)
+        //meta! sender="ASim", id="15", type="Notice"
+        public void ProcessInit(MessageForm message)
 		{
             MyMessage m1 = (MyMessage)message.CreateCopy();
             m1.Addressee = MyAgent.FindAssistant(SimId.EnterT1);
@@ -45,58 +38,40 @@ namespace managers
             StartContinualAssistant(m3);
         }
 
-		//meta! sender="ASim", id="14", type="Notice"
-		public void ProcessLeaveT3(MessageForm message)
-        {
-            MyAgent.AddToStat(2, (MyMessage)message);
-        }
+        //meta! sender="ASim", id="14", type="Notice"
+        public void ProcessLeaveT3(MessageForm message) => MyAgent.AddToStat(2, (MyMessage)message);
 
-		//meta! sender="ASim", id="16", type="Notice"
-		public void ProcessLeaveCR(MessageForm message)
-		{
-            MyAgent.AddToStat(1, (MyMessage)message);
-		}
+        //meta! sender="ASim", id="16", type="Notice"
+        public void ProcessLeaveCR(MessageForm message) => MyAgent.AddToStat(1, (MyMessage)message);
 
-		//meta! userInfo="Process messages defined in code", id="0"
-		public void ProcessDefault(MessageForm message)
+        //meta! userInfo="Process messages defined in code", id="0"
+        public void ProcessDefault(MessageForm message)
 		{
 			switch (message.Code)
 			{
+                default:
+                    break;
 			}
 		}
 
-		//meta! sender="EnterT2", id="81", type="Finish"
-		public void ProcessFinishEnterT2(MessageForm message)
+        private void ProcessFinishEnter(MessageForm message, int type)
         {
-            ((MyMessage)message).Passenger = new Passenger((MySimulation)MySim, 2, GetSizeOfGroup());
-            MyAgent.IncrementEnter(1);
+            ((MyMessage)message).Passenger = new Passenger((MySimulation)MySim, type, GetSizeOfGroup());
+            MyAgent.IncrementEnter(type);
 
-            message.Code = Mc.EnterT2;
+            message.Code = type > 2 ? Mc.EnterCR : (type > 1 ? Mc.EnterT2 : Mc.EnterT1);
             message.Addressee = MySim.FindAgent(SimId.ASim);
             Notice(message);
         }
 
-		//meta! sender="EnterT1", id="79", type="Finish"
-		public void ProcessFinishEnterT1(MessageForm message)
-		{
-            ((MyMessage)message).Passenger = new Passenger((MySimulation)MySim, 1, GetSizeOfGroup());
-            MyAgent.IncrementEnter(1);
+        //meta! sender="EnterT1", id="79", type="Finish"
+        public void ProcessFinishEnterT1(MessageForm message) => ProcessFinishEnter(message, 1);
 
-            message.Code = Mc.EnterT1;
-            message.Addressee = MySim.FindAgent(SimId.ASim);
-            Notice(message);
-        }
+        //meta! sender="EnterT2", id="81", type="Finish"
+        public void ProcessFinishEnterT2(MessageForm message) => ProcessFinishEnter(message, 2);
 
-		//meta! sender="EnterCR", id="83", type="Finish"
-		public void ProcessFinishEnterCR(MessageForm message)
-        {
-            ((MyMessage)message).Passenger = new Passenger((MySimulation)MySim, 3, GetSizeOfGroup());
-            MyAgent.IncrementEnter(3);
-
-            message.Code = Mc.EnterCR;
-            message.Addressee = MySim.FindAgent(SimId.ASim);
-            Notice(message);
-        }
+        //meta! sender="EnterCR", id="83", type="Finish"
+        public void ProcessFinishEnterCR(MessageForm message) => ProcessFinishEnter(message, 3);
 
         private int GetSizeOfGroup()
         {
@@ -112,7 +87,7 @@ namespace managers
 		{
 		}
 
-		override public void ProcessMessage(MessageForm message)
+		public override void ProcessMessage(MessageForm message)
 		{
 			switch (message.Code)
 			{

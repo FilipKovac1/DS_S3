@@ -9,7 +9,7 @@ namespace continualAssistants
 	//meta! id="78"
 	public class EnterT1 : Scheduler
 	{
-        private Random Rand = new Random(Generator.Seed.GetSeed());
+        private Random Rand = new Random(Seed.GetSeed());
         private double Lambda;
 
 		public EnterT1(int id, Simulation mySim, CommonAgent myAgent) :
@@ -17,7 +17,7 @@ namespace continualAssistants
 		{
 		}
 
-		override public void PrepareReplication()
+		public override void PrepareReplication()
 		{
 			base.PrepareReplication();
             // Setup component for the next replication
@@ -33,25 +33,25 @@ namespace continualAssistants
 
         private double GenerateEnter()
         {
+            // TODO intervals of come
             return Distributions.GetExp(Rand, Lambda);
         }
 
-		//meta! userInfo="Process messages defined in code", id="0"
-		public void ProcessDefault(MessageForm message)
+        //meta! userInfo="Process messages defined in code", id="0"
+        public void ProcessDefault(MessageForm message)
 		{
 			switch (message.Code)
 			{
                 case Mc.ProcessPassenger:
                     MessageForm m = message.CreateCopy();
                     Hold(GenerateEnter(), m);
-                    message.Code = Mc.Finish;
                     AssistantFinished(message);
                     break;
 			}
 		}
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"
-		override public void ProcessMessage(MessageForm message)
+		public override void ProcessMessage(MessageForm message)
 		{
 			switch (message.Code)
 			{

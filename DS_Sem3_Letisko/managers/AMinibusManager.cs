@@ -1,11 +1,7 @@
 using OSPABA;
 using simulation;
 using agents;
-using continualAssistants;
-using instantAssistants;
-using System.Collections.Generic;
 using Actors;
-using Statistics;
 
 namespace managers
 {
@@ -13,12 +9,9 @@ namespace managers
 	public class AMinibusManager : Manager
 	{
 
-        public AMinibusManager(int id, Simulation mySim, Agent myAgent) : base(id, mySim, myAgent)
-		{
-			Init();
-        }
+        public AMinibusManager(int id, Simulation mySim, Agent myAgent) : base(id, mySim, myAgent) => Init();
 
-		override public void PrepareReplication()
+        public override void PrepareReplication()
 		{
 			base.PrepareReplication();
             // Setup component for the next replication
@@ -45,7 +38,6 @@ namespace managers
 		public void ProcessMove(MessageForm message)
 		{
             message.Addressee = MyAgent.FindAssistant(SimId.Transport);
-            message.Code = Mc.Start;
             StartContinualAssistant(message);
 		}
 
@@ -64,7 +56,6 @@ namespace managers
 		public void ProcessFinishTransport(MessageForm message)
 		{
             // minibus arrived
-            message.Code = Mc.Start;
             ((MyMessage)message).Minibus.OnWay = false;
             switch (((MyMessage)message).Minibus.State)
             {
@@ -87,17 +78,13 @@ namespace managers
                     StartContinualAssistant(message);
                     break;
                 case 3: // here is stil someone
-                    message.Addressee = MyAgent.FindAssistant(SimId.GetOut);
-                    StartContinualAssistant(message);
+                    StartProcessGetOut(message);
                     break;
                 case 4:
                     if (((MyMessage)message).Minibus.IsEmpty())
-                    {
                         ProcessFinishGetOut(message);
-                        break;
-                    }
-                    message.Addressee = MyAgent.FindAssistant(SimId.GetOut);
-                    StartContinualAssistant(message);
+                    else
+                        StartProcessGetOut(message);
                     break;
             }
         }
@@ -107,17 +94,52 @@ namespace managers
 		{
             message.Code = Mc.Move;
             message.Addressee = MySim.FindAgent(SimId.AAirport);
-            Response(message);
+            Response(message); // response of move
+        }
+
+        private void StartProcessGetOut(MessageForm message)
+        {
+            Minibus m = ((MyMessage)message).Minibus;
+            ((MyMessage)message).Passenger = m.GetFirst();
+            message.Addressee = MyAgent.FindAssistant(SimId.GetOut);
+            StartContinualAssistant(message);
         }
 
         //meta! sender="GetOut", id="41", type="Finish"
-        public void ProcessFinishGetOut(MessageForm message) => ProcessFinishGetIn(message);
+        public void ProcessFinishGetOut(MessageForm message) {
+            switch (((MyMessage) message).Minibus.State)
+            {
+                case 3:
+                    ProcessFinishGetIn(message);
+                    break;
+                case 4:
+                    MessageForm m = message.CreateCopy();
+                    if (((MyMessage)message).Passenger != null)
+                    {
+                        message.Code = Mc.ProcessPassenger;
+                        message.Addressee = MySim.FindAgent(SimId.AAirport);
+                        Response(message);
+                    }
+                    if (MyAgent.IsEmpty(4) && ((MyMessage)m).Minibus.IsEmpty())
+                        ProcessFinishGetIn(m); // move to another stop
+                    else if (!((MyMessage)m).Minibus.IsEmpty()) // start process get out
+                        StartProcessGetOut(m);
+                    else // start get in
+                    {
+                        m.Addressee = MyAgent.FindAssistant(SimId.GetIn);
+                        StartContinualAssistant(m);
+                    }
+                    break;
+            }
+        }
 
         //meta! userInfo="Process messages defined in code", id="0"
         public void ProcessDefault(MessageForm message)
 		{
 			switch (message.Code)
 			{
+                default:
+                    break;
 			}
 		}
 
@@ -126,7 +148,7 @@ namespace managers
 		{
 		}
 
-		override public void ProcessMessage(MessageForm message)
+		public override void ProcessMessage(MessageForm message)
 		{
 			switch (message.Code)
 			{

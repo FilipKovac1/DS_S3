@@ -12,16 +12,15 @@ namespace continualAssistants
         private Random Rand = new Random(Generator.Seed.GetSeed());
         private double Lambda;
 
-        public EnterCR(int id, Simulation mySim, CommonAgent myAgent) :
-			base(id, mySim, myAgent)
+        public EnterCR(int id, Simulation mySim, CommonAgent myAgent) : base(id, mySim, myAgent)
 		{
 		}
 
-		override public void PrepareReplication()
+		public override void PrepareReplication()
 		{
 			base.PrepareReplication();
             // Setup component for the next replication
-            Lambda = 240;
+            Lambda = 180;
 		}
 
 		//meta! sender="AEnv", id="83", type="Start"
@@ -44,14 +43,13 @@ namespace continualAssistants
                 case Mc.ProcessPassenger:
                     MessageForm m = message.CreateCopy();
                     Hold(GenerateEnter(), m);
-                    message.Code = Mc.Finish;
                     AssistantFinished(message);
                     break;
             }
         }
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"
-		override public void ProcessMessage(MessageForm message)
+		public override void ProcessMessage(MessageForm message)
 		{
 			switch (message.Code)
 			{

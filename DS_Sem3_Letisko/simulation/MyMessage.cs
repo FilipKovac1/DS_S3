@@ -22,7 +22,7 @@ namespace simulation
 
         public override MessageForm CreateCopy()
 		{
-			return new MyMessage(this);
+			return new MyMessage(this) { Passenger = Passenger, Minibus = Minibus, Employee = Employee };
 		}
 
         protected override void Copy(MessageForm message)

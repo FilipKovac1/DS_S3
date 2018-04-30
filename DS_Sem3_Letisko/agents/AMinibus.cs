@@ -6,6 +6,9 @@ using instantAssistants;
 using System.Collections.Generic;
 using Actors;
 using Statistics;
+using Generator;
+using System;
+using System.Linq;
 
 namespace agents
 {
@@ -40,10 +43,21 @@ namespace agents
             SFrontT2_Time = new StatTime();
         }
 
-		override public void PrepareReplication()
+        public void SetMinis(int number, int type)
+        {
+            Minis = new List<Minibus>(number);
+            Random r = new Random(Seed.GetSeed());
+            for (int i = 0; i < number; i++)
+                Minis.Add(new Minibus((MySimulation) MySim, r.Next(Const.CapacityOptions.Length), type, i));
+        }
+
+		public override void PrepareReplication()
 		{
 			base.PrepareReplication();
             // Setup component for the next replication
+            Random r = new Random(Seed.GetSeed());
+            foreach (Minibus m in Minis)
+                m.Reinit(r.Next(Const.CapacityOptions.Length) + 1);
             ResetStats();
         }
 
@@ -67,11 +81,28 @@ namespace agents
                 case 2:
                     FrontT2.Enqueue(p);
                     break;
-                case 4:
+                case 3:
                     FrontCR.Enqueue(p);
                     break;
             }
         }
+
+        public void RemoveFromQueue (int type, Passenger p)
+        {
+            switch (type)
+            {
+                case 1:
+                    FrontT1 = new Queue<Passenger>(FrontT1.Where(pass => pass != p));
+                    break;
+                case 2:
+                    FrontT2 = new Queue<Passenger>(FrontT2.Where(pass => pass != p));
+                    break;
+                case 4:
+                    FrontCR = new Queue<Passenger>(FrontCR.Where(pass => pass != p));
+                    break;
+            }
+        }
+
         public bool IsEmpty(int type)
         {
             switch (type)
@@ -92,30 +123,29 @@ namespace agents
             switch (type)
             {
                 case 1:
-                    return FrontT1.Peek();
+                    return FrontT1.Dequeue();
                 case 2:
-                    return FrontT2.Peek();
+                    return FrontT2.Dequeue();
                 case 4:
-                    return FrontCR.Peek();
+                    return FrontCR.Dequeue();
             }
 
             return null;
         }
 
-        public void RemoveFromQueue (int type)
+        public Queue<Passenger> GetQueue (int type)
         {
             switch (type)
             {
                 case 1:
-                    FrontT1.Dequeue();
-                    break;
+                    return FrontT1;
                 case 2:
-                    FrontT1.Dequeue();
-                    break;
+                    return FrontT2;
                 case 4:
-                    FrontT1.Dequeue();
-                    break;
+                    return FrontCR;
             }
+
+            return null;
         }
 
         //meta! userInfo="Generated code: do not modify", tag="begin"

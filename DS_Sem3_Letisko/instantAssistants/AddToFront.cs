@@ -8,12 +8,9 @@ namespace instantAssistants
 	{
         public AddToFront(int id, Simulation mySim, CommonAgent myAgent) : base(id, mySim, myAgent) { }
 
-		override public void Execute(MessageForm message)
-		{
-            MyAgent.AddToQueue(((MyMessage)message).Passenger);
-		}
+        public override void Execute(MessageForm message) => MyAgent.AddToQueue(((MyMessage)message).Passenger);
 
-		public new AMinibus MyAgent
+        public new AMinibus MyAgent
 		{
 			get
 			{

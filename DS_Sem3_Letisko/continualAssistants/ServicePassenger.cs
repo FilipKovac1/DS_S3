@@ -1,17 +1,23 @@
 using OSPABA;
 using simulation;
 using agents;
+using System;
+using Generator;
+
 namespace continualAssistants
 {
 	//meta! id="51"
 	public class ServicePassenger : Process
 	{
-		public ServicePassenger(int id, Simulation mySim, CommonAgent myAgent) :
-			base(id, mySim, myAgent)
+        private Random TriangProb;
+        private double time_to_hold = 0;
+
+        public ServicePassenger(int id, Simulation mySim, CommonAgent myAgent) : base(id, mySim, myAgent)
 		{
+            TriangProb = new Random(Seed.GetSeed());
 		}
 
-		override public void PrepareReplication()
+		public override void PrepareReplication()
 		{
 			base.PrepareReplication();
 			// Setup component for the next replication
@@ -20,6 +26,12 @@ namespace continualAssistants
 		//meta! sender="AEmployee", id="52", type="Start"
 		public void ProcessStart(MessageForm message)
 		{
+            message.Code = Mc.Done;
+            if (TriangProb.NextDouble() <= Const.TriangularRatio)
+                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, Const.Triangular1);
+            else
+                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, Const.Triangular2);
+            Hold(time_to_hold, message);
 		}
 
 		//meta! userInfo="Process messages defined in code", id="0"
@@ -27,11 +39,14 @@ namespace continualAssistants
 		{
 			switch (message.Code)
 			{
+                case Mc.Done:
+                    AssistantFinished(message);
+                    break;
 			}
 		}
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"
-		override public void ProcessMessage(MessageForm message)
+		public override void ProcessMessage(MessageForm message)
 		{
 			switch (message.Code)
 			{
