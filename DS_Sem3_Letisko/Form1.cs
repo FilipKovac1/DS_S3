@@ -4,6 +4,7 @@ using Actors;
 using System.Collections.Generic;
 using System.Drawing;
 using simulation;
+using OSPABA;
 
 namespace DS_Sem3_Letisko
 {
@@ -64,12 +65,12 @@ namespace DS_Sem3_Letisko
             {
                 tables.Controls.Add(
                     new Label
-                {
-                    Location = new Point(x, y),
-                    Text = (i + 1) + ". employee: ",
-                    //Text = "Employees (Working / All): ",
-                    AutoSize = true
-                });
+                    {
+                        Location = new Point(x, y),
+                        Text = (i + 1) + ". employee: ",
+                        //Text = "Employees (Working / All): ",
+                        AutoSize = true
+                    });
                 tables.Controls.Add(
                     new Label
                     {
@@ -81,7 +82,7 @@ namespace DS_Sem3_Letisko
                 y += 15;
             }
         }
-        
+
         /// <summary>
         /// Method fill labels of minibuses and employees with data
         /// </summary>
@@ -118,6 +119,9 @@ namespace DS_Sem3_Letisko
                     int mini_T = _cb_TypeMinis.SelectedIndex;
 
                     Simulation.SetParams(mini_C, mini_T, empl_C, days_C, days_S, days_E, heatUp, repl_C);
+                    //Simulation.OnReplicationDidFinish(sim => RefreshUI(sim));
+                    Simulation.SetSimSpeed(100, 0.00001);
+                    Simulation.OnRefreshUI(new Action<Simulation>((sim) => RefreshUI(sim)));
 
                     Simulation.Start();
                 }
@@ -126,6 +130,37 @@ namespace DS_Sem3_Letisko
                     MessageBox.Show("Inputs were of wrong type. All inputs have to be of type integer.");
                 }
         }
+
+        private void RefreshUI(Simulation simulation)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new System.Action(() =>
+                {
+                    SetLabelText(_l_Simulation_Time, ComputeHours(simulation, ""));
+                    ShowActorsInfo(((MySimulation)simulation).AMinibus.Minis, ((MySimulation)simulation).AEmployee.Employees);
+                }));
+            }
+            else
+            {
+
+            }
+        }
+
+        private string ComputeHours(Simulation simulation, string format)
+        {
+            if (Double.IsNaN(simulation.CurrentTime))
+                return "0";
+            TimeSpan t = TimeSpan.FromSeconds(simulation.CurrentTime);
+            switch (format)
+            {
+                case "HH:mm:ss":
+                    return t.ToString(@"hh\:mm\:ss");
+                default:
+                    return String.Format("Replication: {0} Day: {1} Time: {2}", simulation.CurrentReplication + 1, ((MySimulation)simulation).AAirport.ActualDay, t.ToString(@"hh\:mm\:ss"));
+            }
+        }
+
 
         private void btnStop_Click(object sender, EventArgs e)
         {
@@ -145,9 +180,16 @@ namespace DS_Sem3_Letisko
         private void SetBtnText(Button btn, string text)
         {
             if (btn.InvokeRequired)
-                btn.Invoke(new Action(() => btn.Text = text ));
+                btn.Invoke(new System.Action(() => btn.Text = text));
             else
                 btn.Text = text;
+        }
+        private void SetLabelText(Label label, string text)
+        {
+            if (label.InvokeRequired)
+                label.Invoke(new System.Action(() => label.Text = text));
+            else
+                label.Text = text;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace agents
 	//meta! id="5"
 	public class AEmployee : Agent
 	{
-        private List<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
 
         private Queue<Passenger> Front { get; set; }
         private StatLength SFront_Length { get; set; }

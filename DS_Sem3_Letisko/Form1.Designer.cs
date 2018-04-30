@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            this.simulationTime = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            this._l_Simulation_Time = new System.Windows.Forms.Label();
             this.simulationSpeed = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.simSpeedLabel = new System.Windows.Forms.Label();
@@ -138,14 +138,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.chartReplMini)).BeginInit();
             this.SuspendLayout();
             // 
-            // simulationTime
+            // _l_Simulation_Time
             // 
-            this.simulationTime.AutoSize = true;
-            this.simulationTime.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simulationTime.Location = new System.Drawing.Point(13, 13);
-            this.simulationTime.Name = "simulationTime";
-            this.simulationTime.Size = new System.Drawing.Size(0, 19);
-            this.simulationTime.TabIndex = 0;
+            this._l_Simulation_Time.AutoSize = true;
+            this._l_Simulation_Time.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._l_Simulation_Time.Location = new System.Drawing.Point(13, 13);
+            this._l_Simulation_Time.Name = "_l_Simulation_Time";
+            this._l_Simulation_Time.Size = new System.Drawing.Size(38, 19);
+            this._l_Simulation_Time.TabIndex = 0;
+            this._l_Simulation_Time.Text = "Time";
             // 
             // simulationSpeed
             // 
@@ -274,7 +275,7 @@
             this._tb_Day_Start.Name = "_tb_Day_Start";
             this._tb_Day_Start.Size = new System.Drawing.Size(48, 20);
             this._tb_Day_Start.TabIndex = 16;
-            this._tb_Day_Start.Text = "14.0";
+            this._tb_Day_Start.Text = "16.0";
             // 
             // label35
             // 
@@ -999,25 +1000,25 @@
             // 
             // chartReplEmpl
             // 
-            chartArea1.AxisX.LineColor = System.Drawing.Color.Gray;
-            chartArea1.AxisX.Title = "Number of employees";
-            chartArea1.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea1.AxisY.LineColor = System.Drawing.Color.Gray;
-            chartArea1.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea1.AxisY.Title = "t";
-            chartArea1.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea1.Name = "ChartArea1";
-            this.chartReplEmpl.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chartReplEmpl.Legends.Add(legend1);
+            chartArea3.AxisX.LineColor = System.Drawing.Color.Gray;
+            chartArea3.AxisX.Title = "Number of employees";
+            chartArea3.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea3.AxisY.LineColor = System.Drawing.Color.Gray;
+            chartArea3.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea3.AxisY.Title = "t";
+            chartArea3.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea3.Name = "ChartArea1";
+            this.chartReplEmpl.ChartAreas.Add(chartArea3);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.chartReplEmpl.Legends.Add(legend3);
             this.chartReplEmpl.Location = new System.Drawing.Point(10, 35);
             this.chartReplEmpl.Name = "chartReplEmpl";
-            series1.ChartArea = "ChartArea1";
-            series1.IsValueShownAsLabel = true;
-            series1.Legend = "Legend1";
-            series1.Name = "Values";
-            this.chartReplEmpl.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.IsValueShownAsLabel = true;
+            series3.Legend = "Legend1";
+            series3.Name = "Values";
+            this.chartReplEmpl.Series.Add(series3);
             this.chartReplEmpl.Size = new System.Drawing.Size(742, 451);
             this.chartReplEmpl.TabIndex = 2;
             // 
@@ -1066,31 +1067,31 @@
             // 
             // chartReplMini
             // 
-            chartArea2.AxisX.LineColor = System.Drawing.Color.Gray;
-            chartArea2.AxisX.Title = "Number of minibuses";
-            chartArea2.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea2.AxisY.IsStartedFromZero = false;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.Gray;
-            chartArea2.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea2.AxisY.Title = "t";
-            chartArea2.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea2.Name = "ChartArea1";
-            this.chartReplMini.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartReplMini.Legends.Add(legend2);
+            chartArea4.AxisX.LineColor = System.Drawing.Color.Gray;
+            chartArea4.AxisX.Title = "Number of minibuses";
+            chartArea4.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea4.AxisY.IsStartedFromZero = false;
+            chartArea4.AxisY.LineColor = System.Drawing.Color.Gray;
+            chartArea4.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea4.AxisY.Title = "t";
+            chartArea4.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea4.Name = "ChartArea1";
+            this.chartReplMini.ChartAreas.Add(chartArea4);
+            legend4.Enabled = false;
+            legend4.Name = "Legend1";
+            this.chartReplMini.Legends.Add(legend4);
             this.chartReplMini.Location = new System.Drawing.Point(10, 36);
             this.chartReplMini.Name = "chartReplMini";
-            series2.ChartArea = "ChartArea1";
-            series2.IsValueShownAsLabel = true;
-            series2.Legend = "Legend1";
-            series2.Name = "Values";
-            this.chartReplMini.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.IsValueShownAsLabel = true;
+            series4.Legend = "Legend1";
+            series4.Name = "Values";
+            this.chartReplMini.Series.Add(series4);
             this.chartReplMini.Size = new System.Drawing.Size(742, 451);
             this.chartReplMini.TabIndex = 4;
             this.chartReplMini.Text = "chartReplMini";
-            title1.Name = "Time of passenger in simulation";
-            this.chartReplMini.Titles.Add(title1);
+            title2.Name = "Time of passenger in simulation";
+            this.chartReplMini.Titles.Add(title2);
             // 
             // label19
             // 
@@ -1138,9 +1139,9 @@
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnStop);
-            this.Controls.Add(this.simulationTime);
+            this.Controls.Add(this._l_Simulation_Time);
             this.Name = "Form1";
-            this.Text = "Simulacia S2 Letisko Filip Kovac";
+            this.Text = "Simulacia S3 Letisko Filip Kovac";
             ((System.ComponentModel.ISupportInitialize)(this.simulationSpeed)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.inputs.ResumeLayout(false);
@@ -1165,7 +1166,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label simulationTime;
+        private System.Windows.Forms.Label _l_Simulation_Time;
         private System.Windows.Forms.TrackBar simulationSpeed;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label simSpeedLabel;

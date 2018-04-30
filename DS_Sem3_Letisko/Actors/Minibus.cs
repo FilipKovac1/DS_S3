@@ -143,6 +143,10 @@ namespace Actors
             return State > 3 ? (IsEmpty() ? Const.DistancesTime[0] : Const.DistancesTime[State]) : Const.DistancesTime[State];
         }
 
-        public string ToString(double time) => String.Format("{0,2:##}/{2} passengers. {1} | {3}", OnBoard_Count, ComputePlace(time), GetCapacity(), MileAge);
+        public string ToString(double time)
+        {
+            return String.Format("{0}", MileAge);
+            //return String.Format("{0,2:##}/{2} passengers. {1} | {3}", OnBoard_Count, ComputePlace(time), GetCapacity(), MileAge);
+        }
     }
 }

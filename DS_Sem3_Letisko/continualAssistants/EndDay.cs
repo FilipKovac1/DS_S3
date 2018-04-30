@@ -31,8 +31,6 @@ namespace continualAssistants
 			switch (message.Code)
 			{
                 case Mc.Done:
-                    MessageForm m = message.CreateCopy();
-                    Hold(WorkDay, m);
                     AssistantFinished(message);
                     break;
 			}

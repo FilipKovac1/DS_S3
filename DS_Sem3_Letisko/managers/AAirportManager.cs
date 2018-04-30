@@ -24,14 +24,10 @@ namespace managers
     	//meta! sender="ASim", id="18", type="Notice"
 		public void ProcessInit(MessageForm message)
 		{
-            if (MyAgent.HeatUp.HeatUp > 0)
-            { // plan heat up
-                MessageForm m = message.CreateCopy();
-                m.Addressee = MyAgent.FindAssistant(SimId.EndHeatUp);
-                StartContinualAssistant(m);
-            }
-            // day end
-            message.Addressee = MyAgent.FindAssistant(SimId.EndDay);
+            if (MyAgent.HeatUp.HeatUp > 0) // end heat up
+                message.Addressee = MyAgent.FindAssistant(SimId.EndHeatUp);
+            else // end day
+                message.Addressee = MyAgent.FindAssistant(SimId.EndDay);
             StartContinualAssistant(message);
 
             double time = MySim.CurrentTime;
@@ -125,7 +121,18 @@ namespace managers
 		public void ProcessFinishEndDay(MessageForm message)
 		{ // Cooling
             /// TODO
+            //MySim.CurrentTime = MyAgent.ActualDay * Const.DayToSecond + (MyAgent.DayStart - MyAgent.HeatUp.HeatUp);
             MyAgent.ActualDay++;
+
+            if (MyAgent.ActualDay > ((MySimulation)MySim).Repl_Days_C)
+            {
+                MySim.CurrentTime = int.MaxValue;
+            }
+            else
+            {
+                message.Addressee = MyAgent.FindAssistant(SimId.EndHeatUp);
+                StartContinualAssistant(message);
+            }
    		}
 
 		//meta! sender="EndHeatUp", id="102", type="Finish"
@@ -138,6 +145,10 @@ namespace managers
             m1.Addressee = MySim.FindAgent(SimId.AEmployee);
             m2.Addressee = MySim.FindAgent(SimId.AMinibus);
             Notice(message); Notice(m1); Notice(m2);
+
+            message.Addressee = MyAgent.FindAssistant(SimId.EndDay);
+            message.IsScheduled = false;
+            StartContinualAssistant(message);
         }
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"

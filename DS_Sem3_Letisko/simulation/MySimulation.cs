@@ -1,5 +1,7 @@
 using OSPABA;
 using agents;
+using Statistics;
+
 namespace simulation
 {
 	public class MySimulation : Simulation
@@ -7,7 +9,17 @@ namespace simulation
         private int Repl_C;
         public int Repl_Days_C;
 
-		public MySimulation()
+        private StatTime STimeFromTerminal { get; set; }
+        private StatTime STimeFromAirRental { get; set; }
+
+        private StatTime SWaitCR { get; set; }
+        private StatTime SWaitCR_Length { get; set; }
+        private StatTime SWaitT1 { get; set; }
+        private StatTime SWaitT1_Length { get; set; }
+        private StatTime SWaitT2 { get; set; }
+        private StatTime SWaitT2_Length { get; set; }
+
+        public MySimulation()
 		{
 			Init();
 		}
@@ -22,7 +34,6 @@ namespace simulation
 
             this.Repl_C = Repl_C;
             this.Repl_Days_C = Days_C;
-
         }
 
         public void Start() => SimulateAsync(Repl_C, Repl_Days_C * Const.DayToSecond);
