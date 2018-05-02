@@ -78,7 +78,7 @@ namespace managers
             int ret = 1;
             double prob = random.NextDouble();
             foreach (double p in Const.GroupSizeCumProb)
-                if (prob <= p) ret++; else break;
+                if (prob < p) ret++; else break;
             return ret;
         }
 

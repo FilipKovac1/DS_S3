@@ -3,6 +3,8 @@ using simulation;
 using managers;
 using Statistics;
 using continualAssistants;
+using System;
+using Generator;
 
 namespace agents
 {
@@ -26,6 +28,41 @@ namespace agents
 
 			Init();
 		}
+
+        private int GetActualInterval()
+        {
+            AAirport localA = ((MySimulation)MySim).AAirport;
+            int actDay = (localA.ActualDay - 1) * Const.DayToSecond;
+            if (MySim.CurrentTime < Const.EnterIntervalSize + localA.DayStart + actDay)
+                return 0; // its heating up or just first interval
+            else
+            {
+                int interval = (int)Math.Floor((MySim.CurrentTime - actDay - localA.DayStart) / Const.EnterIntervalSize);
+                // return -1 if it should end up with gen enters
+                return interval >= Const.EnterIntervalCount ? -1 : interval;
+            }
+        }
+
+        public double GetEnter(Random rand, int terminal)
+        {
+            int interval = GetActualInterval();
+            if (interval < 0)
+                return -1; // stop generate
+
+            try
+            {
+                double Lambda = Const.EnterExpLambda[(terminal - 1), interval];
+                double newVal = Distributions.GetExp(rand, Lambda); /// TODO EnterInterval all 0
+                if (MySim.CurrentTime + newVal > Const.EnterIntervalEndTime[interval] + (((MySimulation)MySim).AAirport.ActualDay - 1) * Const.DayToSecond)
+                { // here check if its in another interval
+                    return newVal;
+                } else
+                    return newVal;
+            } catch (IndexOutOfRangeException e)
+            {
+                throw new Exception("Method GetEnter, terminal " + terminal + " is not supported yet");
+            }
+        }
 
 		public override void PrepareReplication()
 		{
@@ -102,7 +139,6 @@ namespace agents
 			AddOwnMessage(Mc.Init);
 			AddOwnMessage(Mc.LeaveT3);
 			AddOwnMessage(Mc.LeaveCR);
-            AddOwnMessage(Mc.ProcessPassenger);
         }
 		//meta! tag="end"
     }

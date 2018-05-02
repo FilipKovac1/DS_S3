@@ -28,9 +28,9 @@ namespace continualAssistants
 		{
             message.Code = Mc.Done;
             if (TriangProb.NextDouble() <= Const.TriangularRatio)
-                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, Const.Triangular1);
+                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, ((MyMessage)message).Passenger.ArrivedAt < 3 ? Const.TriangularIn1 : Const.TriangularOut1);
             else
-                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, Const.Triangular2);
+                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, ((MyMessage)message).Passenger.ArrivedAt < 3 ? Const.TriangularIn2 : Const.TriangularOut2);
             Hold(time_to_hold, message);
 		}
 
