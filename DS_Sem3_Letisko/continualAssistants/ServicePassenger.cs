@@ -27,10 +27,11 @@ namespace continualAssistants
 		public void ProcessStart(MessageForm message)
 		{
             message.Code = Mc.Done;
-            if (TriangProb.NextDouble() <= Const.TriangularRatio)
-                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, ((MyMessage)message).Passenger.ArrivedAt < 3 ? Const.TriangularIn1 : Const.TriangularOut1);
+            bool passCR = ((MyMessage)message).Passenger.ArrivedAt == 3;
+            if (TriangProb.NextDouble() <= (passCR ? Const.TriangularOutRatio : Const.TriangularInRatio))
+                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, !passCR ? Const.TriangularIn1 : Const.TriangularOut1);
             else
-                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, ((MyMessage)message).Passenger.ArrivedAt < 3 ? Const.TriangularIn2 : Const.TriangularOut2);
+                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, !passCR ? Const.TriangularIn2 : Const.TriangularOut2);
             Hold(time_to_hold, message);
 		}
 

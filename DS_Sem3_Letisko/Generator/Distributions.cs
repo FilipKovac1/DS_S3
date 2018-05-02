@@ -15,7 +15,7 @@ namespace Generator
         /// <returns></returns>
         public static double GetExp(Random rand, double e) => (-e) * Math.Log(1 - rand.NextDouble());
 
-        public static double GetTriangular(Random rand, int[] values) // values = {min, max, modus}
+        public static double GetTriangular(Random rand, double[] values) // values = {min, max, modus}
         {
             double mid = (values[2] - values[0]) / (values[1] - values[0]);
             double r = rand.NextDouble();

@@ -52,16 +52,33 @@ namespace agents
             try
             {
                 double Lambda = Const.EnterExpLambda[(terminal - 1), interval];
-                double newVal = Distributions.GetExp(rand, Lambda); /// TODO EnterInterval all 0
-                if (MySim.CurrentTime + newVal > Const.EnterIntervalEndTime[interval] + (((MySimulation)MySim).AAirport.ActualDay - 1) * Const.DayToSecond)
+                double s = Distributions.GetExp(rand, Lambda); /// TODO EnterInterval all 0
+                double actDayInSec = (((MySimulation)MySim).AAirport.ActualDay - 1) * Const.DayToSecond;
+                double endOfInterval = Const.EnterIntervalEndTime[interval] + actDayInSec;
+                if (MySim.CurrentTime + s > endOfInterval)
                 { // here check if its in another interval
-                    return newVal;
+                    return PiecewiseThinning(s, interval, actDayInSec, terminal);
                 } else
-                    return newVal;
-            } catch (IndexOutOfRangeException e)
+                    return s;
+            } catch (IndexOutOfRangeException err)
             {
                 throw new Exception("Method GetEnter, terminal " + terminal + " is not supported yet");
             }
+        }
+
+        private double PiecewiseThinning(double s, int interval, double actDayInSeconds, int terminal)
+        {
+            if (interval + 1 >= Const.EnterIntervalCount) // dont check last interval when overflow
+                return -1;
+
+            while (MySim.CurrentTime + s > actDayInSeconds + Const.EnterIntervalEndTime[interval + 1]) // check for overflow more than one interval
+                s -= Const.EnterIntervalSize;
+
+            // if the s is less than lambda of the next interval
+            while ((MySim.CurrentTime + s - (actDayInSeconds + Const.EnterIntervalEndTime[interval])) > Const.EnterExpLambda[terminal - 1, interval + 1])
+                s -= Const.EnterExpLambda[terminal - 1, interval + 1];
+
+            return s;
         }
 
 		public override void PrepareReplication()

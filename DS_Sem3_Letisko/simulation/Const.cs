@@ -4,7 +4,8 @@ namespace simulation
 {
     public class Const
     {
-        public static int HourToSecond = 3600;
+        public static int MinutesToSecond = 60;
+        public static int HourToSecond = 60 * MinutesToSecond;
         public static int DayToSecond = 24 * HourToSecond;
 
         public static readonly int SpeedOfMini = 35;
@@ -19,17 +20,18 @@ namespace simulation
         public static readonly int[] CapacityOptions = new int[] { 12, 18, 30 };
         public static readonly double[] MiniCostPerKM = new double[] { 0.28, 0.43, 0.54 };
         public static readonly double[] GroupSizeCumProb = new double[] { 0.4, 0.2, 0.05 };
-        public static readonly double RiderSalary = 12.5;
-        public static readonly double ServiceSalary = 11.5;
+        public static readonly double RiderSalary = 12.5; // per hour
+        public static readonly double ServiceSalary = 11.5; // per hour
         public static readonly int[] GetInTime = new int[] { 12, 2 };
         public static readonly int[] GetOutTime = new int[] { 6, 4 };
-        public static readonly double TriangularRatio = 0.6; // ratio between Triang1 : Triang2, with which probability i pick from first triangle
         // for that ones who go to rent a car
-        public static readonly int[] TriangularIn1 = new int[] { 10, 11, 12 }; // min, max, modus
-        public static readonly int[] TriangularIn2 = new int[] { 15, 16, 19 }; // min, max, modus
+        public static readonly double[] TriangularIn1 = new double[] { 1.6 * MinutesToSecond, 3.1 * MinutesToSecond, 2 * MinutesToSecond }; // min, max, modus
+        public static readonly double[] TriangularIn2 = new double[] { 3.2 * MinutesToSecond, 5.1 * MinutesToSecond, 4.6 * MinutesToSecond }; // min, max, modus
+        public static double TriangularInRatio = 0.5;
         // for taht ones who go to return car 
-        public static readonly int[] TriangularOut1 = new int[] { 12, 16, 19 }; // min, max, modus
-        public static readonly int[] TriangularOut2 = new int[] { 20, 21, 22 }; // min, max, modus
+        public static readonly double[] TriangularOut1 = new double[] { 1 * MinutesToSecond, 2.1 * MinutesToSecond, 1.3 * MinutesToSecond }; // min, max, modus
+        public static readonly double[] TriangularOut2 = new double[] { 2.9 * MinutesToSecond, 4.8 * MinutesToSecond, 4.3 * MinutesToSecond }; // min, max, modus
+        public static double TriangularOutRatio = 0.5;
 
         public static readonly int EnterIntervalCount = 18;
         public static readonly int EnterIntervalSize = 15 * 60;

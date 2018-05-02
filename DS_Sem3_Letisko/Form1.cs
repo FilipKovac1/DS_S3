@@ -125,7 +125,7 @@ namespace DS_Sem3_Letisko
 
                     Simulation.Start();
                 }
-                catch (Exception ee)
+                catch (Exception err)
                 {
                     MessageBox.Show("Inputs were of wrong type. All inputs have to be of type integer.");
                 }
