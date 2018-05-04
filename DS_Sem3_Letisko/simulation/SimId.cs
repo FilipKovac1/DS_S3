@@ -5,8 +5,8 @@ namespace simulation
 	{
 		//meta! userInfo="Generated code: do not modify", tag="begin"
 		public const int ASim = 1;
-		public const int AEnv = 2;
-		public const int AAirport = 3;
+		public const int AEnv = 3;
+		public const int AAirport = 2;
 		public const int AMinibus = 4;
 		public const int AEmployee = 5;
 		public const int ASimManager = 101;

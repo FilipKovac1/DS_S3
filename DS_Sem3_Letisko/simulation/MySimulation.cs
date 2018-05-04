@@ -29,14 +29,13 @@ namespace simulation
             AMinibus.SetMinis(Minis_C, Minis_T);
             AEmployee.SetEmpl(Empl_C);
             AAirport.DayStart = Days_S;
-            AAirport.SetWorkDay(Days_E - Days_S);
             AAirport.SetHeatUp(HeatUp_L);
 
             this.Repl_C = Repl_C;
             this.Repl_Days_C = Days_C;
         }
 
-        public void Start() => SimulateAsync(Repl_C, Repl_Days_C * Const.DayToSecond);
+        public void Start() => SimulateAsync(Repl_C);
 
 		protected override void PrepareSimulation()
 		{

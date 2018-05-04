@@ -14,6 +14,7 @@ namespace simulation
 		public const int ServePassenger = 1009;
 		public const int Move = 1011;
 		public const int ProcessPassenger = 1025;
+		public const int EndCooling = 1026;
 		//meta! tag="end"
 
 		// 1..1000 range reserved for user

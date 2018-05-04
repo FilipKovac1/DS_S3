@@ -61,10 +61,6 @@ namespace managers
                     // start planning enters
                     message.Addressee = MySim.FindAgent(SimId.AEnv);
                     Notice(message);
-                    // run minis
-                    MessageForm m = message.CreateCopy();
-                    m.Addressee = MySim.FindAgent(SimId.AAirport);
-                    Notice(m);
                     break;
 			}
 		}
@@ -75,6 +71,13 @@ namespace managers
             message.Addressee = MySim.FindAgent(SimId.AEnv);
             Notice(message);
 		}
+
+        public void ProcessEndCooling(MessageForm message)
+        { // end cool next day
+            message.Code = Mc.Init;
+            message.Addressee = MySim.FindAgent(SimId.AAirport);
+            Request(message);
+        }
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"
 		public void Init()
@@ -104,6 +107,10 @@ namespace managers
 			case Mc.ServePassenger:
 				ProcessServePassenger(message);
 			break;
+
+                case Mc.EndCooling:
+                    ProcessEndCooling(message);
+                    break;
 
 			default:
 				ProcessDefault(message);

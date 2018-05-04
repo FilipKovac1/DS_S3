@@ -22,11 +22,11 @@ namespace managers
 		}
 
         //meta! sender="ASim", id="29", type="Notice"
-        public void ProcessResetStat(MessageForm message) => MyAgent.InitStats();
+        public void ProcessResetStat(MessageForm message) => MyAgent.ResetStats();
 
         //meta! sender="ASim", id="15", type="Notice"
         public void ProcessInit(MessageForm message)
-		{
+        {
             MyMessage m1 = (MyMessage)message.CreateCopy();
             m1.Addressee = MyAgent.FindAssistant(SimId.EnterT1);
             StartContinualAssistant(m1);
@@ -39,10 +39,30 @@ namespace managers
         }
 
         //meta! sender="ASim", id="14", type="Notice"
-        public void ProcessLeaveT3(MessageForm message) => MyAgent.AddToStat(2, (MyMessage)message);
+        public void ProcessLeaveT3(MessageForm message)
+        {
+            MyAgent.AddToStat(2, (MyMessage)message);
+            if (!MyAgent.Generate)
+                EndCooling(message);
+        }
 
         //meta! sender="ASim", id="16", type="Notice"
-        public void ProcessLeaveCR(MessageForm message) => MyAgent.AddToStat(1, (MyMessage)message);
+        public void ProcessLeaveCR(MessageForm message)
+        {
+            MyAgent.AddToStat(1, (MyMessage)message);
+            if (!MyAgent.Generate)
+                EndCooling(message);
+        }
+
+        private void EndCooling(MessageForm message)
+        {
+            if (MyAgent.EqualsEnterLeave())
+            {
+                message.Code = Mc.EndCooling;
+                message.Addressee = MySim.FindAgent(SimId.ASim);
+                Notice(message);
+            }
+        }
 
         //meta! userInfo="Process messages defined in code", id="0"
         public void ProcessDefault(MessageForm message)

@@ -35,5 +35,7 @@ namespace Actors
             }
             return 0;
         }
+
+        public override string ToString() => String.Format("{0} -> T{1}, C({2})", this.Id, this.ArrivedAt, this.SizeOfGroup);
     }
 }

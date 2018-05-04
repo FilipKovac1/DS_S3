@@ -20,8 +20,8 @@ namespace agents
             // create message to notify simulation about start generating arrivals and moving of minis
             MessageForm m = new MyMessage(MySim);
             m.Code = Mc.Init;
-            m.Addressee = this;
-            MyManager.Notice(m);
+            m.Addressee = MySim.FindAgent(SimId.AAirport);
+            MyManager.Request(m);
         }
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"
@@ -34,6 +34,7 @@ namespace agents
 			AddOwnMessage(Mc.EnterCR);
 			AddOwnMessage(Mc.EnterT2);
             AddOwnMessage(Mc.Init);
+            AddOwnMessage(Mc.EndCooling);
         }
 		//meta! tag="end"
 	}

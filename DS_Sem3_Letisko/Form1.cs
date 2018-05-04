@@ -143,7 +143,8 @@ namespace DS_Sem3_Letisko
             }
             else
             {
-
+                SetLabelText(_l_Simulation_Time, ComputeHours(simulation, ""));
+                ShowActorsInfo(((MySimulation)simulation).AMinibus.Minis, ((MySimulation)simulation).AEmployee.Employees);
             }
         }
 

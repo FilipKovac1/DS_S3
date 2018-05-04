@@ -37,7 +37,8 @@ namespace continualAssistants
                     if (l >= 0) {
                         MessageForm m = message.CreateCopy();
                         Hold(l, m);
-                    }
+                    } else
+                        MyAgent.Generate = false;
                     AssistantFinished(message);
                     break;
             }
