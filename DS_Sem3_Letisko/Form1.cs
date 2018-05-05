@@ -120,7 +120,6 @@ namespace DS_Sem3_Letisko
 
                     Simulation.SetParams(mini_C, mini_T, empl_C, days_C, days_S, days_E, heatUp, repl_C);
                     //Simulation.OnReplicationDidFinish(sim => RefreshUI(sim));
-                    Simulation.SetSimSpeed(100, 0.00001);
                     Simulation.OnRefreshUI(new Action<Simulation>((sim) => RefreshUI(sim)));
 
                     Simulation.Start();
@@ -165,12 +164,21 @@ namespace DS_Sem3_Letisko
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-
+            SetBtnText(btnPause, "Pause");
+            Simulation.StopSimulation();
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-
+            if (btnPause.Text == "Pause")
+            {
+                Simulation.PauseSimulation();
+                SetBtnText(btnPause, "Continue");
+            } else
+            {
+                Simulation.ResumeSimulation();
+                SetBtnText(btnPause, "Pause");
+            }
         }
 
         /// <summary>

@@ -37,7 +37,8 @@ namespace agents
 			AddOwnMessage(Mc.ServePassenger);
 			AddOwnMessage(Mc.Init);
 			AddOwnMessage(Mc.Move);
-			AddOwnMessage(Mc.ProcessPassenger);
+            AddOwnMessage(Mc.Stop);
+            AddOwnMessage(Mc.ProcessPassenger);
 		}
 		//meta! tag="end"
 	}

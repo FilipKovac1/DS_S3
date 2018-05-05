@@ -2,6 +2,7 @@ using OSPABA;
 using simulation;
 using agents;
 using Actors;
+using System;
 
 namespace managers
 {
@@ -21,37 +22,63 @@ namespace managers
             }
         }
 
-        //meta! sender="ASim", id="18", type="Notice"
-        public void ProcessInit(MessageForm message)
+        private void ProcessInit(MessageForm message)
         {
-            MyAgent.ActualDay++;
-
-            if (MyAgent.ActualDay <= ((MySimulation)MySim).Repl_Days_C)
+            if (MyAgent.ActualDay != 0)
             {
-                ((MySimulation)MySim).AEnv.Generate = true;
-                MySim.CurrentTime = (MyAgent.ActualDay - 1) * Const.DayToSecond + MyAgent.DayStart - MyAgent.HeatUp.HeatUp;
-                if (MyAgent.HeatUp.HeatUp > 0)
-                { // end heat up
-                    message.Addressee = MyAgent.FindAssistant(SimId.EndHeatUp);
-                    StartContinualAssistant(message);
-                }
-
                 foreach (Minibus m in ((AMinibus)MySim.FindAgent(SimId.AMinibus)).Minis)
                 {
                     MessageForm mess = message.CreateCopy();
-                    mess.Code = Mc.Move;
+                    mess.Code = Mc.Stop;
                     mess.Addressee = MySim.FindAgent(SimId.AMinibus);
                     ((MyMessage)mess).Minibus = m;
                     Request(mess);
                 }
-
-                MessageForm mess2 = message.CreateCopy();
-                mess2.Code = Mc.Init;
-                mess2.Addressee = MySim.FindAgent(SimId.ASim);
-                Response(mess2);
+            } else
+            {
+                ProcessStopBusses(message);
             }
-            else // end of replication after all of days happened
-                MySim.StopReplication();
+        }
+
+        /// <summary>
+        /// Next day or and of the replication
+        /// </summary>
+        /// <param name="message"></param>
+        //meta! sender="ASim", id="18", type="Notice"
+        public void ProcessStopBusses(MessageForm message)
+        {
+            if (message.MsgResult <= 0)
+            {
+                MyAgent.ActualDay++;
+                if (MyAgent.ActualDay <= ((MySimulation)MySim).Repl_Days_C)
+                {
+                    ((MySimulation)MySim).AEnv.Generate = true;
+                    MySim.CurrentTime = (MyAgent.ActualDay - 1) * Const.DayToSecond + MyAgent.DayStart - MyAgent.HeatUp.HeatUp;
+                    if (MyAgent.HeatUp.HeatUp > 0)
+                    { // end heat up
+                        message.Addressee = MyAgent.FindAssistant(SimId.EndHeatUp);
+                        StartContinualAssistant(message);
+                    }
+
+                    Random r = new Random(Generator.Seed.GetSeed());
+                    foreach (Minibus m in ((AMinibus)MySim.FindAgent(SimId.AMinibus)).Minis)
+                    {
+                        MessageForm mess = message.CreateCopy();
+                        mess.Code = Mc.Move;
+                        mess.Addressee = MySim.FindAgent(SimId.AMinibus);
+                        m.State = r.Next(4) + 1;
+                        ((MyMessage)mess).Minibus = m;
+                        Request(mess);
+                    }
+
+                    MessageForm mess2 = message.CreateCopy();
+                    mess2.Code = Mc.Init;
+                    mess2.Addressee = MySim.FindAgent(SimId.ASim);
+                    Response(mess2);
+                }
+                else // end of replication after all of days happened
+                    MySim.StopReplication();
+            }
         }
 
         //meta! sender="AEmployee", id="23", type="Response"
@@ -136,6 +163,9 @@ namespace managers
         //meta! sender="EndHeatUp", id="102", type="Finish"
         public void ProcessFinishEndHeatUp(MessageForm message)
         { // end of the heat so reset stats
+            if (((MySimulation)MySim).Slow)
+                MySim.SetSimSpeed(((MySimulation)MySim).Slow_interval, ((MySimulation)MySim).Slow_duration);
+
             message.Code = Mc.ResetStat;
             message.Addressee = MySim.FindAgent(SimId.ASim);
             MessageForm m1 = message.CreateCopy();
@@ -156,6 +186,9 @@ namespace managers
             {
                 case Mc.Move:
                     ProcessMove(message);
+                    break;
+                case Mc.Stop:
+                    ProcessStopBusses(message);
                     break;
 
                 case Mc.ServePassenger:

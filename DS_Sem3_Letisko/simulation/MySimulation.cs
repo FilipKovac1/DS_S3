@@ -1,6 +1,7 @@
 using OSPABA;
 using agents;
 using Statistics;
+using System;
 
 namespace simulation
 {
@@ -8,6 +9,9 @@ namespace simulation
 	{
         private int Repl_C;
         public int Repl_Days_C;
+        public bool Slow;
+        public double Slow_interval;
+        public double Slow_duration;
 
         private StatTime STimeFromTerminal { get; set; }
         private StatTime STimeFromAirRental { get; set; }
@@ -33,6 +37,12 @@ namespace simulation
 
             this.Repl_C = Repl_C;
             this.Repl_Days_C = Days_C;
+
+            Slow = true;
+            Slow_interval = 500;
+            Slow_duration = 0.0001;
+            if (Slow)
+                SetSimSpeed(Slow_interval, Slow_duration);
         }
 
         public void Start() => SimulateAsync(Repl_C);
@@ -56,8 +66,11 @@ namespace simulation
 			// Collect local statistics into global, update UI, etc...
 			base.ReplicationFinished();
 
+            Console.WriteLine(AEnv.temp);
 
-		}
+            STimeFromTerminal.AddStat(AEnv.GetReplStats(1));
+            STimeFromAirRental.AddStat(AEnv.GetReplStats(2));
+        }
 
         protected override void SimulationFinished()
 		{

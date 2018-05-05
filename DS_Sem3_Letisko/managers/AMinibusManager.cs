@@ -3,13 +3,14 @@ using simulation;
 using agents;
 using Actors;
 using System;
+using System.Linq;
 
 namespace managers
 {
     //meta! id="4"
     public class AMinibusManager : Manager
     {
-
+        private bool Stop = false;
         public AMinibusManager(int id, Simulation mySim, Agent myAgent) : base(id, mySim, myAgent) => Init();
 
         public override void PrepareReplication()
@@ -21,6 +22,8 @@ namespace managers
             {
                 PetriNet.Clear();
             }
+
+            Stop = false;
         }
 
         //meta! sender="AAirport", id="25", type="Notice"
@@ -38,6 +41,7 @@ namespace managers
         //meta! sender="AAirport", id="21", type="Request"
         public void ProcessMove(MessageForm message)
         {
+            Stop = false;
             message.Addressee = MyAgent.FindAssistant(SimId.Transport);
             StartContinualAssistant(message);
         }
@@ -58,27 +62,36 @@ namespace managers
         {
             // minibus arrived
             ((MyMessage)message).Minibus.OnWay = false;
-            switch (((MyMessage)message).Minibus.State)
+            if (!Stop)
             {
-                case 1: // get in
-                case 2:
-                    if (MyAgent.IsEmpty(((MyMessage)message).Minibus.State) || ((MyMessage)message).Minibus.IsFull())
-                        ProcessFinishGetIn(message);
-                    else
-                        StartProcessGetIn(message);
-                    break;
-                case 3: // here is stil someone
-                    StartProcessGetOut(message);
-                    break;
-                case 4:
-                    if (((MyMessage)message).Minibus.IsEmpty())
-                        if (MyAgent.IsEmpty(4))
+                switch (((MyMessage)message).Minibus.State)
+                {
+                    case 1: // get in
+                    case 2:
+                        if (MyAgent.IsEmpty(((MyMessage)message).Minibus.State) || ((MyMessage)message).Minibus.IsFull())
                             ProcessFinishGetIn(message);
                         else
                             StartProcessGetIn(message);
-                    else
+                        break;
+                    case 3: // here is stil someone
                         StartProcessGetOut(message);
-                    break;
+                        break;
+                    case 4:
+                        if (((MyMessage)message).Minibus.IsEmpty())
+                            if (MyAgent.IsEmpty(4))
+                                ProcessFinishGetIn(message);
+                            else
+                                StartProcessGetIn(message);
+                        else
+                            StartProcessGetOut(message);
+                        break;
+                }
+            } else
+            {
+                message.Code = Mc.Stop;
+                message.Addressee = MySim.FindAgent(SimId.AAirport);
+                message.MsgResult = MyAgent.Minis.Where(b => b.OnWay).Count(); // send the number of busses in move to indicate that all of them stopped
+                Response(message);
             }
         }
 
@@ -150,6 +163,8 @@ namespace managers
             }
         }
 
+        private void ProcessStop(MessageForm message) => Stop = true;
+
         //meta! userInfo="Generated code: do not modify", tag="begin"
         public void Init()
         {
@@ -161,6 +176,9 @@ namespace managers
             {
                 case Mc.Move:
                     ProcessMove(message);
+                    break;
+                case Mc.Stop:
+                    ProcessStop(message);
                     break;
 
                 case Mc.Finish:

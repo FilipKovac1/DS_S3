@@ -158,7 +158,8 @@ namespace agents
 			new GetOut(SimId.GetOut, MySim, this);
 			AddOwnMessage(Mc.ResetStat);
 			AddOwnMessage(Mc.Move);
-			AddOwnMessage(Mc.ProcessPassenger);
+            AddOwnMessage(Mc.Stop); // stop the busses
+            AddOwnMessage(Mc.ProcessPassenger);
 		}
 		//meta! tag="end"
 	}

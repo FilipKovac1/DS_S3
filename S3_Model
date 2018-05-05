@@ -2,6 +2,96 @@
 <ABAsim>
   <Agents>
     <Agent>
+      <SimId>3</SimId>
+      <InternalId>3</InternalId>
+      <Name>AAirport</Name>
+      <Bounds>982,398,180,180</Bounds>
+      <Reasoner>AAirportManager</Reasoner>
+      <ReasonerBounds>74,25,32,25</ReasonerBounds>
+      <UsePetriNet>false</UsePetriNet>
+      <Components>
+        <Scheduler>
+          <SimId>1023</SimId>
+          <InternalId>101</InternalId>
+          <Name>EndHeatUp</Name>
+          <Bounds>20,99,35,13</Bounds>
+        </Scheduler>
+      </Components>
+    </Agent>
+    <Agent>
+      <SimId>2</SimId>
+      <InternalId>2</InternalId>
+      <Name>AEnv</Name>
+      <Bounds>78,408,180,180</Bounds>
+      <Reasoner>AEnvManager</Reasoner>
+      <ReasonerBounds>74,25,32,25</ReasonerBounds>
+      <UsePetriNet>false</UsePetriNet>
+      <Components>
+        <Scheduler>
+          <SimId>1017</SimId>
+          <InternalId>78</InternalId>
+          <Name>EnterT1</Name>
+          <Bounds>25,83,35,13</Bounds>
+        </Scheduler>
+        <Scheduler>
+          <SimId>1019</SimId>
+          <InternalId>82</InternalId>
+          <Name>EnterCR</Name>
+          <Bounds>118,85,35,13</Bounds>
+        </Scheduler>
+        <Scheduler>
+          <SimId>1018</SimId>
+          <InternalId>80</InternalId>
+          <Name>EnterT2</Name>
+          <Bounds>66,120,35,13</Bounds>
+        </Scheduler>
+      </Components>
+    </Agent>
+    <Agent>
+      <SimId>4</SimId>
+      <InternalId>4</InternalId>
+      <Name>AMinibus</Name>
+      <Bounds>1323,784,180,180</Bounds>
+      <Reasoner>AMinibusManager</Reasoner>
+      <ReasonerBounds>74,27,32,25</ReasonerBounds>
+      <UsePetriNet>false</UsePetriNet>
+      <Components>
+        <Action>
+          <SimId>1007</SimId>
+          <InternalId>45</InternalId>
+          <Name>AddToFront</Name>
+          <Bounds>136,72,35,18</Bounds>
+        </Action>
+        <Scheduler>
+          <SimId>1024</SimId>
+          <InternalId>108</InternalId>
+          <Name>Transport</Name>
+          <Bounds>10,71,35,13</Bounds>
+        </Scheduler>
+        <Process>
+          <SimId>1004</SimId>
+          <InternalId>38</InternalId>
+          <Name>GetIn</Name>
+          <Bounds>77,140,35,18</Bounds>
+        </Process>
+        <Process>
+          <SimId>1005</SimId>
+          <InternalId>40</InternalId>
+          <Name>GetOut</Name>
+          <Bounds>115,104,35,18</Bounds>
+        </Process>
+      </Components>
+    </Agent>
+    <Agent>
+      <SimId>1</SimId>
+      <InternalId>1</InternalId>
+      <Name>ASim</Name>
+      <Bounds>516,36,180,180</Bounds>
+      <Reasoner>ASimManager</Reasoner>
+      <ReasonerBounds>74,25,32,25</ReasonerBounds>
+      <UsePetriNet>false</UsePetriNet>
+    </Agent>
+    <Agent>
       <SimId>5</SimId>
       <InternalId>5</InternalId>
       <Name>AEmployee</Name>
@@ -23,96 +113,6 @@
           <Bounds>7,69,35,18</Bounds>
         </Process>
       </Components>
-    </Agent>
-    <Agent>
-      <SimId>2</SimId>
-      <InternalId>2</InternalId>
-      <Name>AEnv</Name>
-      <Bounds>78,408,180,180</Bounds>
-      <Reasoner>AEnvManager</Reasoner>
-      <ReasonerBounds>74,25,32,25</ReasonerBounds>
-      <UsePetriNet>false</UsePetriNet>
-      <Components>
-        <Scheduler>
-          <SimId>1019</SimId>
-          <InternalId>82</InternalId>
-          <Name>EnterCR</Name>
-          <Bounds>118,85,35,13</Bounds>
-        </Scheduler>
-        <Scheduler>
-          <SimId>1017</SimId>
-          <InternalId>78</InternalId>
-          <Name>EnterT1</Name>
-          <Bounds>25,83,35,13</Bounds>
-        </Scheduler>
-        <Scheduler>
-          <SimId>1018</SimId>
-          <InternalId>80</InternalId>
-          <Name>EnterT2</Name>
-          <Bounds>66,120,35,13</Bounds>
-        </Scheduler>
-      </Components>
-    </Agent>
-    <Agent>
-      <SimId>3</SimId>
-      <InternalId>3</InternalId>
-      <Name>AAirport</Name>
-      <Bounds>982,398,180,180</Bounds>
-      <Reasoner>AAirportManager</Reasoner>
-      <ReasonerBounds>74,25,32,25</ReasonerBounds>
-      <UsePetriNet>false</UsePetriNet>
-      <Components>
-        <Scheduler>
-          <SimId>1023</SimId>
-          <InternalId>101</InternalId>
-          <Name>EndHeatUp</Name>
-          <Bounds>20,99,35,13</Bounds>
-        </Scheduler>
-      </Components>
-    </Agent>
-    <Agent>
-      <SimId>4</SimId>
-      <InternalId>4</InternalId>
-      <Name>AMinibus</Name>
-      <Bounds>1323,784,180,180</Bounds>
-      <Reasoner>AMinibusManager</Reasoner>
-      <ReasonerBounds>74,27,32,25</ReasonerBounds>
-      <UsePetriNet>false</UsePetriNet>
-      <Components>
-        <Scheduler>
-          <SimId>1024</SimId>
-          <InternalId>108</InternalId>
-          <Name>Transport</Name>
-          <Bounds>10,71,35,13</Bounds>
-        </Scheduler>
-        <Process>
-          <SimId>1004</SimId>
-          <InternalId>38</InternalId>
-          <Name>GetIn</Name>
-          <Bounds>77,140,35,18</Bounds>
-        </Process>
-        <Action>
-          <SimId>1007</SimId>
-          <InternalId>45</InternalId>
-          <Name>AddToFront</Name>
-          <Bounds>136,72,35,18</Bounds>
-        </Action>
-        <Process>
-          <SimId>1005</SimId>
-          <InternalId>40</InternalId>
-          <Name>GetOut</Name>
-          <Bounds>115,104,35,18</Bounds>
-        </Process>
-      </Components>
-    </Agent>
-    <Agent>
-      <SimId>1</SimId>
-      <InternalId>1</InternalId>
-      <Name>ASim</Name>
-      <Bounds>516,36,180,180</Bounds>
-      <Reasoner>ASimManager</Reasoner>
-      <ReasonerBounds>74,25,32,25</ReasonerBounds>
-      <UsePetriNet>false</UsePetriNet>
     </Agent>
   </Agents>
   <Messages>
@@ -322,6 +322,14 @@
       <Destination>51</Destination>
     </Message>
     <Message>
+      <SimId>1027</SimId>
+      <InternalId>119</InternalId>
+      <Name>Stop</Name>
+      <Type>RequestResponse</Type>
+      <Source>3</Source>
+      <Destination>4</Destination>
+    </Message>
+    <Message>
       <SimId>1025</SimId>
       <InternalId>58</InternalId>
       <Name>ProcessPassenger</Name>
@@ -332,5 +340,5 @@ Response - leave a bus</Comment>
       <Destination>4</Destination>
     </Message>
   </Messages>
-  <IID>118</IID>
+  <IID>122</IID>
 </ABAsim>

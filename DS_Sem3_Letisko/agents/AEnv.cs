@@ -17,16 +17,33 @@ namespace agents
         private int NumberOfEntersCR { get; set; }
         private int NumberOfLeavesCR { get; set; }
 
-        public bool Generate { get; set; }
+        private bool generate;
+        public bool Generate
+        {
+            get { return generate; }
+            set
+            {
+                generate = value;
+                if (!value)
+                    MySim.SetMaxSimSpeed();
+            }
+        }
 
         private StatTime TimeInSystemRental { get; set; }
+        private StatTime TimeInSystemRentalRepl { get; set; }
         private StatTime TimeInSystemReturn { get; set; }
+        private StatTime TimeInSystemReturnRepl { get; set; }
+
+
+        private double[] ThinningPreviousInterval; 
 
         public AEnv(int id, Simulation mySim, Agent parent) :
             base(id, mySim, parent)
         {
             TimeInSystemRental = new StatTime();
             TimeInSystemReturn = new StatTime();
+            TimeInSystemRentalRepl = new StatTime();
+            TimeInSystemReturnRepl = new StatTime();
 
             Init();
         }
@@ -91,13 +108,42 @@ namespace agents
 
             this.InitStats();
             this.ResetStats();
+            this.ResetReplStats();
             // Setup component for the next replication
+
+            ThinningPreviousInterval = new double[Const.EnterIntervalCount];
+            for (int i = 0; i < ThinningPreviousInterval.Length; i++)
+                ThinningPreviousInterval[i] = 0;
         }
 
         public void ResetStats()
         {
             this.TimeInSystemReturn.Reset();
             this.TimeInSystemRental.Reset();
+        }
+
+        private void ResetReplStats()
+        {
+            this.TimeInSystemReturnRepl.Reset();
+            this.TimeInSystemRentalRepl.Reset();
+        }
+
+        public void InsertToReplStats() // after day
+        {
+            this.TimeInSystemReturnRepl.AddStat(TimeInSystemReturn.GetStat());
+            this.TimeInSystemRentalRepl.AddStat(TimeInSystemRental.GetStat());
+        }
+        public double GetReplStats(int which)
+        {
+            switch (which)
+            {
+                case 1:
+                    return TimeInSystemRentalRepl.GetStat();
+                case 2:
+                    return TimeInSystemReturnRepl.GetStat();
+            }
+
+            return 0;
         }
 
         private void InitStats()
@@ -109,7 +155,7 @@ namespace agents
             this.NumberOfLeavesTerminals = 0;
         }
 
-        public bool EqualsEnterLeave () => NumberOfEntersCR == NumberOfLeavesCR && NumberOfEntersTerminal1 + NumberOfEntersTerminal2 == NumberOfLeavesTerminals;
+        public bool EqualsEnterLeave() => NumberOfEntersCR == NumberOfLeavesCR && NumberOfEntersTerminal1 + NumberOfEntersTerminal2 == NumberOfLeavesTerminals;
 
         public void AddToStat(int type, MyMessage message)
         {
@@ -117,11 +163,14 @@ namespace agents
             {
                 case 1:
                     NumberOfLeavesTerminals++;
-                    TimeInSystemRental.AddStat(MySim.CurrentTime - message.Passenger.ArrivalTime);
+                    for (int i = 1; i <= message.Passenger.SizeOfGroup; i++)
+                        TimeInSystemRental.AddStat(MySim.CurrentTime - message.Passenger.ArrivalTime);
+
                     break;
                 case 2:
                     NumberOfLeavesCR++;
-                    TimeInSystemReturn.AddStat(MySim.CurrentTime - message.Passenger.ArrivalTime);
+                    for (int i = 1; i <= message.Passenger.SizeOfGroup; i++)
+                        TimeInSystemRental.AddStat(MySim.CurrentTime - message.Passenger.ArrivalTime);
                     break;
             }
         }
