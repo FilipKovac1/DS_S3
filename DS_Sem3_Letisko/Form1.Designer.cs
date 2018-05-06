@@ -28,19 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this._l_Simulation_Time = new System.Windows.Forms.Label();
             this.simulationSpeed = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.simSpeedLabel = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.inputs = new System.Windows.Forms.TabPage();
+            this._tb_HeatUp = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
             this._tb_Empl_Salary = new System.Windows.Forms.TextBox();
             this._tb_Mini_Salary = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
@@ -60,16 +62,42 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tables = new System.Windows.Forms.TabPage();
-            this.stats = new System.Windows.Forms.TabPage();
-            this.t2_wait_time = new System.Windows.Forms.Label();
-            this.t1_wait_time = new System.Windows.Forms.Label();
+            this.tables_b = new System.Windows.Forms.TabPage();
+            this.tables_e = new System.Windows.Forms.TabPage();
+            this.stats_actual = new System.Windows.Forms.TabPage();
+            this.cr_count_out = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.cr_count_in = new System.Windows.Forms.Label();
+            this.t2_count = new System.Windows.Forms.Label();
+            this.t1_count = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.stats_repl = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
+            this.repl_cr_wait_time = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.repl_sim_avg_time_out = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.repl_cr_avg_count_in = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.repl_t2_wait_time = new System.Windows.Forms.Label();
+            this.repl_t1_wait_time = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.t2_in_bus = new System.Windows.Forms.Label();
-            this.t1_in_bus = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.repl_sim_avg_time_in = new System.Windows.Forms.Label();
+            this.repl_cr_avg_wait = new System.Windows.Forms.Label();
+            this.repl_cr_avg_count_out = new System.Windows.Forms.Label();
+            this.repl_t2_avg_count = new System.Windows.Forms.Label();
+            this.repl_t1_avg_count = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.stats_global = new System.Windows.Forms.TabPage();
             this.sim_avg_time_ic = new System.Windows.Forms.Label();
             this.cr_avg_wait_ic = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -84,24 +112,6 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.sim_avg_time = new System.Windows.Forms.Label();
-            this.cr_avg_wait = new System.Windows.Forms.Label();
-            this.cr_avg_count = new System.Windows.Forms.Label();
-            this.t2_avg_count = new System.Windows.Forms.Label();
-            this.t1_avg_count = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cr_count = new System.Windows.Forms.Label();
-            this.t2_count = new System.Windows.Forms.Label();
-            this.t1_count = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.simModeSlow = new System.Windows.Forms.RadioButton();
             this.simModeTurbo = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
@@ -122,12 +132,12 @@
             this.chartReplMini = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label19 = new System.Windows.Forms.Label();
             this.replNumberEmpl = new System.Windows.Forms.TextBox();
-            this._tb_HeatUp = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.simulationSpeed)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.inputs.SuspendLayout();
-            this.stats.SuspendLayout();
+            this.stats_actual.SuspendLayout();
+            this.stats_repl.SuspendLayout();
+            this.stats_global.SuspendLayout();
             this.tabSimGraph.SuspendLayout();
             this.tabSim.SuspendLayout();
             this.tabGraphs.SuspendLayout();
@@ -151,17 +161,18 @@
             // simulationSpeed
             // 
             this.simulationSpeed.Cursor = System.Windows.Forms.Cursors.SizeWE;
-            this.simulationSpeed.LargeChange = 50;
+            this.simulationSpeed.LargeChange = 10;
             this.simulationSpeed.Location = new System.Drawing.Point(67, 6);
-            this.simulationSpeed.Maximum = 500;
+            this.simulationSpeed.Maximum = 20;
             this.simulationSpeed.Minimum = 1;
             this.simulationSpeed.Name = "simulationSpeed";
+            this.simulationSpeed.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.simulationSpeed.RightToLeftLayout = true;
             this.simulationSpeed.Size = new System.Drawing.Size(415, 45);
-            this.simulationSpeed.SmallChange = 50;
             this.simulationSpeed.TabIndex = 1;
-            this.simulationSpeed.TickFrequency = 50;
             this.simulationSpeed.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.simulationSpeed.Value = 500;
+            this.simulationSpeed.Value = 20;
+            this.simulationSpeed.ValueChanged += new System.EventHandler(this.tb_valueChanged);
             // 
             // label1
             // 
@@ -179,15 +190,18 @@
             this.simSpeedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.simSpeedLabel.Location = new System.Drawing.Point(488, 17);
             this.simSpeedLabel.Name = "simSpeedLabel";
-            this.simSpeedLabel.Size = new System.Drawing.Size(57, 20);
+            this.simSpeedLabel.Size = new System.Drawing.Size(49, 20);
             this.simSpeedLabel.TabIndex = 3;
-            this.simSpeedLabel.Text = "1 : 500";
+            this.simSpeedLabel.Text = "500:1";
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.inputs);
-            this.tabControl1.Controls.Add(this.tables);
-            this.tabControl1.Controls.Add(this.stats);
+            this.tabControl1.Controls.Add(this.tables_b);
+            this.tabControl1.Controls.Add(this.tables_e);
+            this.tabControl1.Controls.Add(this.stats_actual);
+            this.tabControl1.Controls.Add(this.stats_repl);
+            this.tabControl1.Controls.Add(this.stats_global);
             this.tabControl1.Location = new System.Drawing.Point(4, 58);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -224,6 +238,24 @@
             this.inputs.TabIndex = 2;
             this.inputs.Text = "Input data";
             this.inputs.UseVisualStyleBackColor = true;
+            // 
+            // _tb_HeatUp
+            // 
+            this._tb_HeatUp.Location = new System.Drawing.Point(252, 161);
+            this._tb_HeatUp.Name = "_tb_HeatUp";
+            this._tb_HeatUp.Size = new System.Drawing.Size(145, 20);
+            this._tb_HeatUp.TabIndex = 23;
+            this._tb_HeatUp.Text = "2";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(8, 161);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(200, 20);
+            this.label38.TabIndex = 22;
+            this.label38.Text = "Time of the heat up (hours)";
             // 
             // _tb_Empl_Salary
             // 
@@ -263,6 +295,7 @@
             // 
             // _tb_Day_End
             // 
+            this._tb_Day_End.Enabled = false;
             this._tb_Day_End.Location = new System.Drawing.Point(350, 135);
             this._tb_Day_End.Name = "_tb_Day_End";
             this._tb_Day_End.Size = new System.Drawing.Size(47, 20);
@@ -271,6 +304,7 @@
             // 
             // _tb_Day_Start
             // 
+            this._tb_Day_Start.Enabled = false;
             this._tb_Day_Start.Location = new System.Drawing.Point(252, 135);
             this._tb_Day_Start.Name = "_tb_Day_Start";
             this._tb_Day_Start.Size = new System.Drawing.Size(48, 20);
@@ -399,405 +433,73 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Number of minibuses";
             // 
-            // tables
-            // 
-            this.tables.Location = new System.Drawing.Point(4, 22);
-            this.tables.Name = "tables";
-            this.tables.Padding = new System.Windows.Forms.Padding(3);
-            this.tables.Size = new System.Drawing.Size(752, 428);
-            this.tables.TabIndex = 0;
-            this.tables.Text = "Infotables";
-            this.tables.UseVisualStyleBackColor = true;
-            // 
-            // stats
-            // 
-            this.stats.Controls.Add(this.t2_wait_time);
-            this.stats.Controls.Add(this.t1_wait_time);
-            this.stats.Controls.Add(this.label29);
-            this.stats.Controls.Add(this.label28);
-            this.stats.Controls.Add(this.t2_in_bus);
-            this.stats.Controls.Add(this.t1_in_bus);
-            this.stats.Controls.Add(this.label22);
-            this.stats.Controls.Add(this.label21);
-            this.stats.Controls.Add(this.sim_avg_time_ic);
-            this.stats.Controls.Add(this.cr_avg_wait_ic);
-            this.stats.Controls.Add(this.label20);
-            this.stats.Controls.Add(this.sim_avg_time_global);
-            this.stats.Controls.Add(this.cr_avg_wait_global);
-            this.stats.Controls.Add(this.cr_avg_count_global);
-            this.stats.Controls.Add(this.t2_avg_count_global);
-            this.stats.Controls.Add(this.t1_avg_count_global);
-            this.stats.Controls.Add(this.label23);
-            this.stats.Controls.Add(this.label24);
-            this.stats.Controls.Add(this.label25);
-            this.stats.Controls.Add(this.label26);
-            this.stats.Controls.Add(this.label27);
-            this.stats.Controls.Add(this.label17);
-            this.stats.Controls.Add(this.sim_avg_time);
-            this.stats.Controls.Add(this.cr_avg_wait);
-            this.stats.Controls.Add(this.cr_avg_count);
-            this.stats.Controls.Add(this.t2_avg_count);
-            this.stats.Controls.Add(this.t1_avg_count);
-            this.stats.Controls.Add(this.label16);
-            this.stats.Controls.Add(this.label15);
-            this.stats.Controls.Add(this.label14);
-            this.stats.Controls.Add(this.label13);
-            this.stats.Controls.Add(this.label12);
-            this.stats.Controls.Add(this.label11);
-            this.stats.Controls.Add(this.cr_count);
-            this.stats.Controls.Add(this.t2_count);
-            this.stats.Controls.Add(this.t1_count);
-            this.stats.Controls.Add(this.label10);
-            this.stats.Controls.Add(this.label9);
-            this.stats.Controls.Add(this.label8);
-            this.stats.Controls.Add(this.label7);
-            this.stats.Location = new System.Drawing.Point(4, 22);
-            this.stats.Name = "stats";
-            this.stats.Padding = new System.Windows.Forms.Padding(3);
-            this.stats.Size = new System.Drawing.Size(752, 428);
-            this.stats.TabIndex = 1;
-            this.stats.Text = "Statistics";
-            this.stats.UseVisualStyleBackColor = true;
-            // 
-            // t2_wait_time
-            // 
-            this.t2_wait_time.AutoSize = true;
-            this.t2_wait_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t2_wait_time.Location = new System.Drawing.Point(542, 145);
-            this.t2_wait_time.Name = "t2_wait_time";
-            this.t2_wait_time.Size = new System.Drawing.Size(131, 17);
-            this.t2_wait_time.TabIndex = 43;
-            this.t2_wait_time.Text = "Terminal 2 average";
-            // 
-            // t1_wait_time
-            // 
-            this.t1_wait_time.AutoSize = true;
-            this.t1_wait_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t1_wait_time.Location = new System.Drawing.Point(542, 128);
-            this.t1_wait_time.Name = "t1_wait_time";
-            this.t1_wait_time.Size = new System.Drawing.Size(131, 17);
-            this.t1_wait_time.TabIndex = 42;
-            this.t1_wait_time.Text = "Terminal 1 average";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(404, 145);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(138, 17);
-            this.label29.TabIndex = 41;
-            this.label29.Text = "Waiting time on T2  :";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(404, 128);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(138, 17);
-            this.label28.TabIndex = 40;
-            this.label28.Text = "Waiting time on T1  :";
-            // 
-            // t2_in_bus
-            // 
-            this.t2_in_bus.AutoSize = true;
-            this.t2_in_bus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t2_in_bus.Location = new System.Drawing.Point(542, 111);
-            this.t2_in_bus.Name = "t2_in_bus";
-            this.t2_in_bus.Size = new System.Drawing.Size(131, 17);
-            this.t2_in_bus.TabIndex = 39;
-            this.t2_in_bus.Text = "Terminal 2 average";
-            // 
-            // t1_in_bus
-            // 
-            this.t1_in_bus.AutoSize = true;
-            this.t1_in_bus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t1_in_bus.Location = new System.Drawing.Point(542, 94);
-            this.t1_in_bus.Name = "t1_in_bus";
-            this.t1_in_bus.Size = new System.Drawing.Size(131, 17);
-            this.t1_in_bus.TabIndex = 38;
-            this.t1_in_bus.Text = "Terminal 1 average";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(404, 111);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(138, 17);
-            this.label22.TabIndex = 37;
-            this.label22.Text = "Time in bus from T2:";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(404, 94);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(138, 17);
-            this.label21.TabIndex = 36;
-            this.label21.Text = "Time in bus from T1:";
-            // 
-            // sim_avg_time_ic
-            // 
-            this.sim_avg_time_ic.AutoSize = true;
-            this.sim_avg_time_ic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sim_avg_time_ic.Location = new System.Drawing.Point(404, 267);
-            this.sim_avg_time_ic.Name = "sim_avg_time_ic";
-            this.sim_avg_time_ic.Size = new System.Drawing.Size(44, 17);
-            this.sim_avg_time_ic.TabIndex = 35;
-            this.sim_avg_time_ic.Text = "<0;0>";
-            // 
-            // cr_avg_wait_ic
-            // 
-            this.cr_avg_wait_ic.AutoSize = true;
-            this.cr_avg_wait_ic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cr_avg_wait_ic.Location = new System.Drawing.Point(404, 250);
-            this.cr_avg_wait_ic.Name = "cr_avg_wait_ic";
-            this.cr_avg_wait_ic.Size = new System.Drawing.Size(44, 17);
-            this.cr_avg_wait_ic.TabIndex = 34;
-            this.cr_avg_wait_ic.Text = "<0;0>";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(403, 179);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(164, 20);
-            this.label20.TabIndex = 33;
-            this.label20.Text = "Interval of Confidence";
-            // 
-            // sim_avg_time_global
-            // 
-            this.sim_avg_time_global.AutoSize = true;
-            this.sim_avg_time_global.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sim_avg_time_global.Location = new System.Drawing.Point(217, 267);
-            this.sim_avg_time_global.Name = "sim_avg_time_global";
-            this.sim_avg_time_global.Size = new System.Drawing.Size(121, 17);
-            this.sim_avg_time_global.TabIndex = 32;
-            this.sim_avg_time_global.Text = "Time in simulation";
-            // 
-            // cr_avg_wait_global
-            // 
-            this.cr_avg_wait_global.AutoSize = true;
-            this.cr_avg_wait_global.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cr_avg_wait_global.Location = new System.Drawing.Point(217, 250);
-            this.cr_avg_wait_global.Name = "cr_avg_wait_global";
-            this.cr_avg_wait_global.Size = new System.Drawing.Size(173, 17);
-            this.cr_avg_wait_global.TabIndex = 31;
-            this.cr_avg_wait_global.Text = "Car rent average wait time";
-            // 
-            // cr_avg_count_global
-            // 
-            this.cr_avg_count_global.AutoSize = true;
-            this.cr_avg_count_global.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cr_avg_count_global.Location = new System.Drawing.Point(217, 233);
-            this.cr_avg_count_global.Name = "cr_avg_count_global";
-            this.cr_avg_count_global.Size = new System.Drawing.Size(177, 17);
-            this.cr_avg_count_global.TabIndex = 30;
-            this.cr_avg_count_global.Text = "Car rent average front size";
-            // 
-            // t2_avg_count_global
-            // 
-            this.t2_avg_count_global.AutoSize = true;
-            this.t2_avg_count_global.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t2_avg_count_global.Location = new System.Drawing.Point(217, 216);
-            this.t2_avg_count_global.Name = "t2_avg_count_global";
-            this.t2_avg_count_global.Size = new System.Drawing.Size(131, 17);
-            this.t2_avg_count_global.TabIndex = 29;
-            this.t2_avg_count_global.Text = "Terminal 2 average";
-            // 
-            // t1_avg_count_global
-            // 
-            this.t1_avg_count_global.AutoSize = true;
-            this.t1_avg_count_global.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t1_avg_count_global.Location = new System.Drawing.Point(217, 199);
-            this.t1_avg_count_global.Name = "t1_avg_count_global";
-            this.t1_avg_count_global.Size = new System.Drawing.Size(131, 17);
-            this.t1_avg_count_global.TabIndex = 28;
-            this.t1_avg_count_global.Text = "Terminal 1 average";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(46, 216);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(165, 17);
-            this.label23.TabIndex = 27;
-            this.label23.Text = "Terminal 2 front size      :";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(46, 199);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(165, 17);
-            this.label24.TabIndex = 26;
-            this.label24.Text = "Terminal 1 front size      :";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(46, 233);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(165, 17);
-            this.label25.TabIndex = 25;
-            this.label25.Text = "Car rent front size          :";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(47, 267);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(164, 17);
-            this.label26.TabIndex = 24;
-            this.label26.Text = "Whole time in simulation:";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(47, 250);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(164, 17);
-            this.label27.TabIndex = 23;
-            this.label27.Text = "Waiting time CR             :";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(6, 179);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(124, 20);
-            this.label17.TabIndex = 22;
-            this.label17.Text = "Global averages";
-            // 
-            // sim_avg_time
-            // 
-            this.sim_avg_time.AutoSize = true;
-            this.sim_avg_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sim_avg_time.Location = new System.Drawing.Point(217, 162);
-            this.sim_avg_time.Name = "sim_avg_time";
-            this.sim_avg_time.Size = new System.Drawing.Size(121, 17);
-            this.sim_avg_time.TabIndex = 21;
-            this.sim_avg_time.Text = "Time in simulation";
-            // 
-            // cr_avg_wait
-            // 
-            this.cr_avg_wait.AutoSize = true;
-            this.cr_avg_wait.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cr_avg_wait.Location = new System.Drawing.Point(217, 145);
-            this.cr_avg_wait.Name = "cr_avg_wait";
-            this.cr_avg_wait.Size = new System.Drawing.Size(173, 17);
-            this.cr_avg_wait.TabIndex = 20;
-            this.cr_avg_wait.Text = "Car rent average wait time";
-            // 
-            // cr_avg_count
-            // 
-            this.cr_avg_count.AutoSize = true;
-            this.cr_avg_count.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cr_avg_count.Location = new System.Drawing.Point(217, 128);
-            this.cr_avg_count.Name = "cr_avg_count";
-            this.cr_avg_count.Size = new System.Drawing.Size(177, 17);
-            this.cr_avg_count.TabIndex = 19;
-            this.cr_avg_count.Text = "Car rent average front size";
-            // 
-            // t2_avg_count
-            // 
-            this.t2_avg_count.AutoSize = true;
-            this.t2_avg_count.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t2_avg_count.Location = new System.Drawing.Point(217, 111);
-            this.t2_avg_count.Name = "t2_avg_count";
-            this.t2_avg_count.Size = new System.Drawing.Size(131, 17);
-            this.t2_avg_count.TabIndex = 18;
-            this.t2_avg_count.Text = "Terminal 2 average";
-            // 
-            // t1_avg_count
-            // 
-            this.t1_avg_count.AutoSize = true;
-            this.t1_avg_count.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t1_avg_count.Location = new System.Drawing.Point(217, 94);
-            this.t1_avg_count.Name = "t1_avg_count";
-            this.t1_avg_count.Size = new System.Drawing.Size(131, 17);
-            this.t1_avg_count.TabIndex = 17;
-            this.t1_avg_count.Text = "Terminal 1 average";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(46, 111);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(165, 17);
-            this.label16.TabIndex = 16;
-            this.label16.Text = "Terminal 2 front size      :";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(46, 94);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(165, 17);
-            this.label15.TabIndex = 15;
-            this.label15.Text = "Terminal 1 front size      :";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(46, 128);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(165, 17);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "Car rent front size          :";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(47, 162);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(164, 17);
-            this.label13.TabIndex = 13;
-            this.label13.Text = "Whole time in simulation:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(47, 145);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(164, 17);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "Waiting time CR             :";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(3, 74);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(76, 20);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "Averages";
-            // 
-            // cr_count
-            // 
-            this.cr_count.AutoSize = true;
-            this.cr_count.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cr_count.Location = new System.Drawing.Point(135, 57);
-            this.cr_count.Name = "cr_count";
-            this.cr_count.Size = new System.Drawing.Size(98, 17);
-            this.cr_count.TabIndex = 10;
-            this.cr_count.Text = "Car rent count";
+            // tables_b
+            // 
+            this.tables_b.Location = new System.Drawing.Point(4, 22);
+            this.tables_b.Name = "tables_b";
+            this.tables_b.Padding = new System.Windows.Forms.Padding(3);
+            this.tables_b.Size = new System.Drawing.Size(752, 428);
+            this.tables_b.TabIndex = 0;
+            this.tables_b.Text = "Buses";
+            this.tables_b.UseVisualStyleBackColor = true;
+            // 
+            // tables_e
+            // 
+            this.tables_e.Location = new System.Drawing.Point(4, 22);
+            this.tables_e.Name = "tables_e";
+            this.tables_e.Size = new System.Drawing.Size(752, 428);
+            this.tables_e.TabIndex = 3;
+            this.tables_e.Text = "Employees";
+            this.tables_e.UseVisualStyleBackColor = true;
+            // 
+            // stats_actual
+            // 
+            this.stats_actual.Controls.Add(this.cr_count_out);
+            this.stats_actual.Controls.Add(this.label40);
+            this.stats_actual.Controls.Add(this.cr_count_in);
+            this.stats_actual.Controls.Add(this.t2_count);
+            this.stats_actual.Controls.Add(this.t1_count);
+            this.stats_actual.Controls.Add(this.label10);
+            this.stats_actual.Controls.Add(this.label9);
+            this.stats_actual.Controls.Add(this.label8);
+            this.stats_actual.Controls.Add(this.label7);
+            this.stats_actual.Location = new System.Drawing.Point(4, 22);
+            this.stats_actual.Name = "stats_actual";
+            this.stats_actual.Padding = new System.Windows.Forms.Padding(3);
+            this.stats_actual.Size = new System.Drawing.Size(752, 428);
+            this.stats_actual.TabIndex = 1;
+            this.stats_actual.Text = "Actual values";
+            this.stats_actual.UseVisualStyleBackColor = true;
+            // 
+            // cr_count_out
+            // 
+            this.cr_count_out.AutoSize = true;
+            this.cr_count_out.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cr_count_out.Location = new System.Drawing.Point(135, 74);
+            this.cr_count_out.Name = "cr_count_out";
+            this.cr_count_out.Size = new System.Drawing.Size(98, 17);
+            this.cr_count_out.TabIndex = 12;
+            this.cr_count_out.Text = "Car rent count";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(46, 74);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(83, 17);
+            this.label40.TabIndex = 11;
+            this.label40.Text = "CR out      : ";
+            // 
+            // cr_count_in
+            // 
+            this.cr_count_in.AutoSize = true;
+            this.cr_count_in.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cr_count_in.Location = new System.Drawing.Point(135, 57);
+            this.cr_count_in.Name = "cr_count_in";
+            this.cr_count_in.Size = new System.Drawing.Size(98, 17);
+            this.cr_count_in.TabIndex = 10;
+            this.cr_count_in.Text = "Car rent count";
             // 
             // t2_count
             // 
@@ -825,9 +527,9 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(46, 57);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(83, 17);
+            this.label10.Size = new System.Drawing.Size(78, 17);
             this.label10.TabIndex = 7;
-            this.label10.Text = "Car rent    : ";
+            this.label10.Text = "CR in        :";
             // 
             // label9
             // 
@@ -859,6 +561,420 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "Length of queue";
             // 
+            // stats_repl
+            // 
+            this.stats_repl.Controls.Add(this.label21);
+            this.stats_repl.Controls.Add(this.repl_cr_wait_time);
+            this.stats_repl.Controls.Add(this.label22);
+            this.stats_repl.Controls.Add(this.repl_sim_avg_time_out);
+            this.stats_repl.Controls.Add(this.label42);
+            this.stats_repl.Controls.Add(this.repl_cr_avg_count_in);
+            this.stats_repl.Controls.Add(this.label41);
+            this.stats_repl.Controls.Add(this.repl_t2_wait_time);
+            this.stats_repl.Controls.Add(this.repl_t1_wait_time);
+            this.stats_repl.Controls.Add(this.label29);
+            this.stats_repl.Controls.Add(this.label28);
+            this.stats_repl.Controls.Add(this.repl_sim_avg_time_in);
+            this.stats_repl.Controls.Add(this.repl_cr_avg_wait);
+            this.stats_repl.Controls.Add(this.repl_cr_avg_count_out);
+            this.stats_repl.Controls.Add(this.repl_t2_avg_count);
+            this.stats_repl.Controls.Add(this.repl_t1_avg_count);
+            this.stats_repl.Controls.Add(this.label16);
+            this.stats_repl.Controls.Add(this.label15);
+            this.stats_repl.Controls.Add(this.label14);
+            this.stats_repl.Controls.Add(this.label13);
+            this.stats_repl.Controls.Add(this.label12);
+            this.stats_repl.Controls.Add(this.label11);
+            this.stats_repl.Location = new System.Drawing.Point(4, 22);
+            this.stats_repl.Name = "stats_repl";
+            this.stats_repl.Size = new System.Drawing.Size(752, 428);
+            this.stats_repl.TabIndex = 4;
+            this.stats_repl.Text = "Replication stats";
+            this.stats_repl.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(13, 171);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(205, 20);
+            this.label21.TabIndex = 83;
+            this.label21.Text = "Average time to wait for bus";
+            // 
+            // repl_cr_wait_time
+            // 
+            this.repl_cr_wait_time.AutoSize = true;
+            this.repl_cr_wait_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repl_cr_wait_time.Location = new System.Drawing.Point(227, 225);
+            this.repl_cr_wait_time.Name = "repl_cr_wait_time";
+            this.repl_cr_wait_time.Size = new System.Drawing.Size(83, 17);
+            this.repl_cr_wait_time.TabIndex = 82;
+            this.repl_cr_wait_time.Text = "CR average";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(56, 225);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(160, 17);
+            this.label22.TabIndex = 81;
+            this.label22.Text = "Waiting time on CR       :";
+            // 
+            // repl_sim_avg_time_out
+            // 
+            this.repl_sim_avg_time_out.AutoSize = true;
+            this.repl_sim_avg_time_out.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repl_sim_avg_time_out.Location = new System.Drawing.Point(227, 135);
+            this.repl_sim_avg_time_out.Name = "repl_sim_avg_time_out";
+            this.repl_sim_avg_time_out.Size = new System.Drawing.Size(121, 17);
+            this.repl_sim_avg_time_out.TabIndex = 80;
+            this.repl_sim_avg_time_out.Text = "Time in simulation";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(57, 135);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(163, 17);
+            this.label42.TabIndex = 79;
+            this.label42.Text = "Time in simulation (out) :";
+            // 
+            // repl_cr_avg_count_in
+            // 
+            this.repl_cr_avg_count_in.AutoSize = true;
+            this.repl_cr_avg_count_in.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repl_cr_avg_count_in.Location = new System.Drawing.Point(227, 65);
+            this.repl_cr_avg_count_in.Name = "repl_cr_avg_count_in";
+            this.repl_cr_avg_count_in.Size = new System.Drawing.Size(177, 17);
+            this.repl_cr_avg_count_in.TabIndex = 78;
+            this.repl_cr_avg_count_in.Text = "Car rent average front size";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(56, 65);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(164, 17);
+            this.label41.TabIndex = 77;
+            this.label41.Text = "Car rent front size in      :";
+            // 
+            // repl_t2_wait_time
+            // 
+            this.repl_t2_wait_time.AutoSize = true;
+            this.repl_t2_wait_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repl_t2_wait_time.Location = new System.Drawing.Point(227, 208);
+            this.repl_t2_wait_time.Name = "repl_t2_wait_time";
+            this.repl_t2_wait_time.Size = new System.Drawing.Size(131, 17);
+            this.repl_t2_wait_time.TabIndex = 76;
+            this.repl_t2_wait_time.Text = "Terminal 2 average";
+            // 
+            // repl_t1_wait_time
+            // 
+            this.repl_t1_wait_time.AutoSize = true;
+            this.repl_t1_wait_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repl_t1_wait_time.Location = new System.Drawing.Point(227, 191);
+            this.repl_t1_wait_time.Name = "repl_t1_wait_time";
+            this.repl_t1_wait_time.Size = new System.Drawing.Size(131, 17);
+            this.repl_t1_wait_time.TabIndex = 75;
+            this.repl_t1_wait_time.Text = "Terminal 1 average";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(56, 208);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(162, 17);
+            this.label29.TabIndex = 74;
+            this.label29.Text = "Waiting time on T2        :";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(56, 191);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(162, 17);
+            this.label28.TabIndex = 73;
+            this.label28.Text = "Waiting time on T1        :";
+            // 
+            // repl_sim_avg_time_in
+            // 
+            this.repl_sim_avg_time_in.AutoSize = true;
+            this.repl_sim_avg_time_in.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repl_sim_avg_time_in.Location = new System.Drawing.Point(227, 118);
+            this.repl_sim_avg_time_in.Name = "repl_sim_avg_time_in";
+            this.repl_sim_avg_time_in.Size = new System.Drawing.Size(121, 17);
+            this.repl_sim_avg_time_in.TabIndex = 54;
+            this.repl_sim_avg_time_in.Text = "Time in simulation";
+            // 
+            // repl_cr_avg_wait
+            // 
+            this.repl_cr_avg_wait.AutoSize = true;
+            this.repl_cr_avg_wait.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repl_cr_avg_wait.Location = new System.Drawing.Point(227, 101);
+            this.repl_cr_avg_wait.Name = "repl_cr_avg_wait";
+            this.repl_cr_avg_wait.Size = new System.Drawing.Size(173, 17);
+            this.repl_cr_avg_wait.TabIndex = 53;
+            this.repl_cr_avg_wait.Text = "Car rent average wait time";
+            // 
+            // repl_cr_avg_count_out
+            // 
+            this.repl_cr_avg_count_out.AutoSize = true;
+            this.repl_cr_avg_count_out.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repl_cr_avg_count_out.Location = new System.Drawing.Point(227, 84);
+            this.repl_cr_avg_count_out.Name = "repl_cr_avg_count_out";
+            this.repl_cr_avg_count_out.Size = new System.Drawing.Size(177, 17);
+            this.repl_cr_avg_count_out.TabIndex = 52;
+            this.repl_cr_avg_count_out.Text = "Car rent average front size";
+            // 
+            // repl_t2_avg_count
+            // 
+            this.repl_t2_avg_count.AutoSize = true;
+            this.repl_t2_avg_count.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repl_t2_avg_count.Location = new System.Drawing.Point(227, 48);
+            this.repl_t2_avg_count.Name = "repl_t2_avg_count";
+            this.repl_t2_avg_count.Size = new System.Drawing.Size(131, 17);
+            this.repl_t2_avg_count.TabIndex = 51;
+            this.repl_t2_avg_count.Text = "Terminal 2 average";
+            // 
+            // repl_t1_avg_count
+            // 
+            this.repl_t1_avg_count.AutoSize = true;
+            this.repl_t1_avg_count.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repl_t1_avg_count.Location = new System.Drawing.Point(227, 31);
+            this.repl_t1_avg_count.Name = "repl_t1_avg_count";
+            this.repl_t1_avg_count.Size = new System.Drawing.Size(131, 17);
+            this.repl_t1_avg_count.TabIndex = 50;
+            this.repl_t1_avg_count.Text = "Terminal 1 average";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(56, 48);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(165, 17);
+            this.label16.TabIndex = 49;
+            this.label16.Text = "Terminal 2 front size      :";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(56, 31);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(165, 17);
+            this.label15.TabIndex = 48;
+            this.label15.Text = "Terminal 1 front size      :";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(56, 84);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(165, 17);
+            this.label14.TabIndex = 47;
+            this.label14.Text = "Car rent front size out    :";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(57, 118);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(166, 17);
+            this.label13.TabIndex = 46;
+            this.label13.Text = "Time in simulation (in)    :";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(57, 101);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(164, 17);
+            this.label12.TabIndex = 45;
+            this.label12.Text = "Waiting time CR             :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(13, 11);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(76, 20);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "Averages";
+            // 
+            // stats_global
+            // 
+            this.stats_global.Controls.Add(this.sim_avg_time_ic);
+            this.stats_global.Controls.Add(this.cr_avg_wait_ic);
+            this.stats_global.Controls.Add(this.label20);
+            this.stats_global.Controls.Add(this.sim_avg_time_global);
+            this.stats_global.Controls.Add(this.cr_avg_wait_global);
+            this.stats_global.Controls.Add(this.cr_avg_count_global);
+            this.stats_global.Controls.Add(this.t2_avg_count_global);
+            this.stats_global.Controls.Add(this.t1_avg_count_global);
+            this.stats_global.Controls.Add(this.label23);
+            this.stats_global.Controls.Add(this.label24);
+            this.stats_global.Controls.Add(this.label25);
+            this.stats_global.Controls.Add(this.label26);
+            this.stats_global.Controls.Add(this.label27);
+            this.stats_global.Controls.Add(this.label17);
+            this.stats_global.Location = new System.Drawing.Point(4, 22);
+            this.stats_global.Name = "stats_global";
+            this.stats_global.Size = new System.Drawing.Size(752, 428);
+            this.stats_global.TabIndex = 5;
+            this.stats_global.Text = "Simulation stats";
+            this.stats_global.UseVisualStyleBackColor = true;
+            // 
+            // sim_avg_time_ic
+            // 
+            this.sim_avg_time_ic.AutoSize = true;
+            this.sim_avg_time_ic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sim_avg_time_ic.Location = new System.Drawing.Point(416, 100);
+            this.sim_avg_time_ic.Name = "sim_avg_time_ic";
+            this.sim_avg_time_ic.Size = new System.Drawing.Size(44, 17);
+            this.sim_avg_time_ic.TabIndex = 82;
+            this.sim_avg_time_ic.Text = "<0;0>";
+            // 
+            // cr_avg_wait_ic
+            // 
+            this.cr_avg_wait_ic.AutoSize = true;
+            this.cr_avg_wait_ic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cr_avg_wait_ic.Location = new System.Drawing.Point(416, 83);
+            this.cr_avg_wait_ic.Name = "cr_avg_wait_ic";
+            this.cr_avg_wait_ic.Size = new System.Drawing.Size(44, 17);
+            this.cr_avg_wait_ic.TabIndex = 81;
+            this.cr_avg_wait_ic.Text = "<0;0>";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(415, 12);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(164, 20);
+            this.label20.TabIndex = 80;
+            this.label20.Text = "Interval of Confidence";
+            // 
+            // sim_avg_time_global
+            // 
+            this.sim_avg_time_global.AutoSize = true;
+            this.sim_avg_time_global.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sim_avg_time_global.Location = new System.Drawing.Point(229, 100);
+            this.sim_avg_time_global.Name = "sim_avg_time_global";
+            this.sim_avg_time_global.Size = new System.Drawing.Size(121, 17);
+            this.sim_avg_time_global.TabIndex = 79;
+            this.sim_avg_time_global.Text = "Time in simulation";
+            // 
+            // cr_avg_wait_global
+            // 
+            this.cr_avg_wait_global.AutoSize = true;
+            this.cr_avg_wait_global.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cr_avg_wait_global.Location = new System.Drawing.Point(229, 83);
+            this.cr_avg_wait_global.Name = "cr_avg_wait_global";
+            this.cr_avg_wait_global.Size = new System.Drawing.Size(173, 17);
+            this.cr_avg_wait_global.TabIndex = 78;
+            this.cr_avg_wait_global.Text = "Car rent average wait time";
+            // 
+            // cr_avg_count_global
+            // 
+            this.cr_avg_count_global.AutoSize = true;
+            this.cr_avg_count_global.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cr_avg_count_global.Location = new System.Drawing.Point(229, 66);
+            this.cr_avg_count_global.Name = "cr_avg_count_global";
+            this.cr_avg_count_global.Size = new System.Drawing.Size(177, 17);
+            this.cr_avg_count_global.TabIndex = 77;
+            this.cr_avg_count_global.Text = "Car rent average front size";
+            // 
+            // t2_avg_count_global
+            // 
+            this.t2_avg_count_global.AutoSize = true;
+            this.t2_avg_count_global.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.t2_avg_count_global.Location = new System.Drawing.Point(229, 49);
+            this.t2_avg_count_global.Name = "t2_avg_count_global";
+            this.t2_avg_count_global.Size = new System.Drawing.Size(131, 17);
+            this.t2_avg_count_global.TabIndex = 76;
+            this.t2_avg_count_global.Text = "Terminal 2 average";
+            // 
+            // t1_avg_count_global
+            // 
+            this.t1_avg_count_global.AutoSize = true;
+            this.t1_avg_count_global.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.t1_avg_count_global.Location = new System.Drawing.Point(229, 32);
+            this.t1_avg_count_global.Name = "t1_avg_count_global";
+            this.t1_avg_count_global.Size = new System.Drawing.Size(131, 17);
+            this.t1_avg_count_global.TabIndex = 75;
+            this.t1_avg_count_global.Text = "Terminal 1 average";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(58, 49);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(165, 17);
+            this.label23.TabIndex = 74;
+            this.label23.Text = "Terminal 2 front size      :";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(58, 32);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(165, 17);
+            this.label24.TabIndex = 73;
+            this.label24.Text = "Terminal 1 front size      :";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(58, 66);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(165, 17);
+            this.label25.TabIndex = 72;
+            this.label25.Text = "Car rent front size          :";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(59, 100);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(164, 17);
+            this.label26.TabIndex = 71;
+            this.label26.Text = "Whole time in simulation:";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(59, 83);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(164, 17);
+            this.label27.TabIndex = 70;
+            this.label27.Text = "Waiting time CR             :";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(18, 12);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(124, 20);
+            this.label17.TabIndex = 69;
+            this.label17.Text = "Global averages";
+            // 
             // simModeSlow
             // 
             this.simModeSlow.AutoSize = true;
@@ -871,6 +987,7 @@
             this.simModeSlow.TabStop = true;
             this.simModeSlow.Text = "Show results";
             this.simModeSlow.UseVisualStyleBackColor = true;
+            this.simModeSlow.CheckedChanged += new System.EventHandler(this.simModeChanged);
             // 
             // simModeTurbo
             // 
@@ -884,6 +1001,7 @@
             this.simModeTurbo.Text = "Turbo";
             this.simModeTurbo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.simModeTurbo.UseVisualStyleBackColor = true;
+            this.simModeTurbo.CheckedChanged += new System.EventHandler(this.simModeChanged);
             // 
             // label2
             // 
@@ -1000,25 +1118,25 @@
             // 
             // chartReplEmpl
             // 
-            chartArea3.AxisX.LineColor = System.Drawing.Color.Gray;
-            chartArea3.AxisX.Title = "Number of employees";
-            chartArea3.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea3.AxisY.LineColor = System.Drawing.Color.Gray;
-            chartArea3.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea3.AxisY.Title = "t";
-            chartArea3.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea3.Name = "ChartArea1";
-            this.chartReplEmpl.ChartAreas.Add(chartArea3);
-            legend3.Enabled = false;
-            legend3.Name = "Legend1";
-            this.chartReplEmpl.Legends.Add(legend3);
+            chartArea1.AxisX.LineColor = System.Drawing.Color.Gray;
+            chartArea1.AxisX.Title = "Number of employees";
+            chartArea1.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.Gray;
+            chartArea1.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea1.AxisY.Title = "t";
+            chartArea1.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea1.Name = "ChartArea1";
+            this.chartReplEmpl.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chartReplEmpl.Legends.Add(legend1);
             this.chartReplEmpl.Location = new System.Drawing.Point(10, 35);
             this.chartReplEmpl.Name = "chartReplEmpl";
-            series3.ChartArea = "ChartArea1";
-            series3.IsValueShownAsLabel = true;
-            series3.Legend = "Legend1";
-            series3.Name = "Values";
-            this.chartReplEmpl.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.IsValueShownAsLabel = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Values";
+            this.chartReplEmpl.Series.Add(series1);
             this.chartReplEmpl.Size = new System.Drawing.Size(742, 451);
             this.chartReplEmpl.TabIndex = 2;
             // 
@@ -1067,31 +1185,31 @@
             // 
             // chartReplMini
             // 
-            chartArea4.AxisX.LineColor = System.Drawing.Color.Gray;
-            chartArea4.AxisX.Title = "Number of minibuses";
-            chartArea4.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea4.AxisY.IsStartedFromZero = false;
-            chartArea4.AxisY.LineColor = System.Drawing.Color.Gray;
-            chartArea4.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea4.AxisY.Title = "t";
-            chartArea4.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea4.Name = "ChartArea1";
-            this.chartReplMini.ChartAreas.Add(chartArea4);
-            legend4.Enabled = false;
-            legend4.Name = "Legend1";
-            this.chartReplMini.Legends.Add(legend4);
+            chartArea2.AxisX.LineColor = System.Drawing.Color.Gray;
+            chartArea2.AxisX.Title = "Number of minibuses";
+            chartArea2.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea2.AxisY.IsStartedFromZero = false;
+            chartArea2.AxisY.LineColor = System.Drawing.Color.Gray;
+            chartArea2.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea2.AxisY.Title = "t";
+            chartArea2.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea2.Name = "ChartArea1";
+            this.chartReplMini.ChartAreas.Add(chartArea2);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chartReplMini.Legends.Add(legend2);
             this.chartReplMini.Location = new System.Drawing.Point(10, 36);
             this.chartReplMini.Name = "chartReplMini";
-            series4.ChartArea = "ChartArea1";
-            series4.IsValueShownAsLabel = true;
-            series4.Legend = "Legend1";
-            series4.Name = "Values";
-            this.chartReplMini.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.IsValueShownAsLabel = true;
+            series2.Legend = "Legend1";
+            series2.Name = "Values";
+            this.chartReplMini.Series.Add(series2);
             this.chartReplMini.Size = new System.Drawing.Size(742, 451);
             this.chartReplMini.TabIndex = 4;
             this.chartReplMini.Text = "chartReplMini";
-            title2.Name = "Time of passenger in simulation";
-            this.chartReplMini.Titles.Add(title2);
+            title1.Name = "Time of passenger in simulation";
+            this.chartReplMini.Titles.Add(title1);
             // 
             // label19
             // 
@@ -1112,24 +1230,6 @@
             this.replNumberEmpl.TabIndex = 2;
             this.replNumberEmpl.Text = "18";
             // 
-            // _tb_HeatUp
-            // 
-            this._tb_HeatUp.Location = new System.Drawing.Point(252, 161);
-            this._tb_HeatUp.Name = "_tb_HeatUp";
-            this._tb_HeatUp.Size = new System.Drawing.Size(145, 20);
-            this._tb_HeatUp.TabIndex = 23;
-            this._tb_HeatUp.Text = "2";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(8, 161);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(200, 20);
-            this.label38.TabIndex = 22;
-            this.label38.Text = "Time of the heat up (hours)";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1146,8 +1246,12 @@
             this.tabControl1.ResumeLayout(false);
             this.inputs.ResumeLayout(false);
             this.inputs.PerformLayout();
-            this.stats.ResumeLayout(false);
-            this.stats.PerformLayout();
+            this.stats_actual.ResumeLayout(false);
+            this.stats_actual.PerformLayout();
+            this.stats_repl.ResumeLayout(false);
+            this.stats_repl.PerformLayout();
+            this.stats_global.ResumeLayout(false);
+            this.stats_global.PerformLayout();
             this.tabSimGraph.ResumeLayout(false);
             this.tabSim.ResumeLayout(false);
             this.tabSim.PerformLayout();
@@ -1180,14 +1284,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TabPage tables;
-        private System.Windows.Forms.TabPage stats;
+        private System.Windows.Forms.TabPage tables_b;
+        private System.Windows.Forms.TabPage stats_actual;
         private System.Windows.Forms.RadioButton simModeSlow;
         private System.Windows.Forms.RadioButton simModeTurbo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.Label cr_count;
+        private System.Windows.Forms.Label cr_count_in;
         private System.Windows.Forms.Label t2_count;
         private System.Windows.Forms.Label t1_count;
         private System.Windows.Forms.Label label10;
@@ -1195,31 +1299,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnPause;
-        private System.Windows.Forms.Label sim_avg_time;
-        private System.Windows.Forms.Label cr_avg_wait;
-        private System.Windows.Forms.Label cr_avg_count;
-        private System.Windows.Forms.Label t2_avg_count;
-        private System.Windows.Forms.Label t1_avg_count;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TabControl tabSimGraph;
         private System.Windows.Forms.TabPage tabSim;
         private System.Windows.Forms.TabPage tabGraphs;
-        private System.Windows.Forms.Label sim_avg_time_global;
-        private System.Windows.Forms.Label cr_avg_wait_global;
-        private System.Windows.Forms.Label cr_avg_count_global;
-        private System.Windows.Forms.Label t2_avg_count_global;
-        private System.Windows.Forms.Label t1_avg_count_global;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TabControl tabGraphEmplMini;
         private System.Windows.Forms.TabPage tabGraphEmpl;
         private System.Windows.Forms.TabPage tabGraphMinis;
@@ -1229,17 +1311,6 @@
         private System.Windows.Forms.TextBox replNumberEmpl;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartReplEmpl;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartReplMini;
-        private System.Windows.Forms.Label sim_avg_time_ic;
-        private System.Windows.Forms.Label cr_avg_wait_ic;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label t2_in_bus;
-        private System.Windows.Forms.Label t1_in_bus;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label t2_wait_time;
-        private System.Windows.Forms.Label t1_wait_time;
-        private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label32;
@@ -1255,6 +1326,47 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.TextBox _tb_HeatUp;
         private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.TabPage tables_e;
+        private System.Windows.Forms.TabPage stats_repl;
+        private System.Windows.Forms.TabPage stats_global;
+        private System.Windows.Forms.Label cr_count_out;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label repl_t2_wait_time;
+        private System.Windows.Forms.Label repl_t1_wait_time;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label repl_sim_avg_time_in;
+        private System.Windows.Forms.Label repl_cr_avg_wait;
+        private System.Windows.Forms.Label repl_cr_avg_count_out;
+        private System.Windows.Forms.Label repl_t2_avg_count;
+        private System.Windows.Forms.Label repl_t1_avg_count;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label sim_avg_time_ic;
+        private System.Windows.Forms.Label cr_avg_wait_ic;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label sim_avg_time_global;
+        private System.Windows.Forms.Label cr_avg_wait_global;
+        private System.Windows.Forms.Label cr_avg_count_global;
+        private System.Windows.Forms.Label t2_avg_count_global;
+        private System.Windows.Forms.Label t1_avg_count_global;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label repl_cr_avg_count_in;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label repl_sim_avg_time_out;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label repl_cr_wait_time;
+        private System.Windows.Forms.Label label22;
     }
 }
 

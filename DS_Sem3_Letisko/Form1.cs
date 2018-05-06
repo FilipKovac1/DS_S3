@@ -15,20 +15,19 @@ namespace DS_Sem3_Letisko
     {
         MySimulation Simulation = null;
 
+        private static readonly double[] SimSpeed = new double[] {1, 0.75, 0.5, 0.25, 0.1, 0.075, 0.05, 0.025, 0.01, 0.0075, 0.005, 0.0025, 0.001, 0.00075, 0.0005, 0.00025, 0.0001, 0.0005, 0.00001, 0.000001};
+        private static readonly string[] SimSpeedString = new string[] { "1:1", "2:1", "5:1", "10:1", "15:1", "20:1", "25:1", "50:1", "75:1", "100:1", "125:1", "150:1", "175:1", "200:1", "250:1", "300:1", "350:1", "400:1", "450:1", "500:1" };
+
         public Form1()
         {
             InitializeComponent();
             // gui events
 
             for (int i = 0; i < Const.CapacityOptions.Length; i++)
-            {
                 _cb_TypeMinis.Items.Insert(i, Const.CapacityOptions[i]);
-            }
             _cb_TypeMinis.SelectedIndex = 0;
 
             Simulation = new MySimulation();
-
-            //Simulation.SetParams();
         }
 
         /// <summary>
@@ -38,18 +37,19 @@ namespace DS_Sem3_Letisko
         /// <param name="empls"></param>
         private void InitInfoComponents(int minis, int empls)
         {
-            tables.Controls.Clear();
+            tables_b.Controls.Clear();
+            tables_e.Controls.Clear();
             int y = 0, x = 0;
             for (int i = 0; i < minis; i++)
             {
-                tables.Controls.Add(
+                tables_b.Controls.Add(
                     new Label
                     {
                         Location = new Point(x, y),
                         Text = (i + 1) + ". minibus: ",
                         AutoSize = true
                     });
-                tables.Controls.Add(
+                tables_b.Controls.Add(
                     new Label
                     {
                         Location = new Point(x + 80, y),
@@ -60,10 +60,10 @@ namespace DS_Sem3_Letisko
 
                 y += 15;
             }
-            y += 15;
+            y = 0;
             for (int i = 0; i < empls; i++)
             {
-                tables.Controls.Add(
+                tables_e.Controls.Add(
                     new Label
                     {
                         Location = new Point(x, y),
@@ -71,7 +71,7 @@ namespace DS_Sem3_Letisko
                         //Text = "Employees (Working / All): ",
                         AutoSize = true
                     });
-                tables.Controls.Add(
+                tables_e.Controls.Add(
                     new Label
                     {
                         Location = new Point(x + 150, y),
@@ -91,10 +91,10 @@ namespace DS_Sem3_Letisko
         private void ShowActorsInfo(List<Minibus> minis, List<Employee> empls)
         {
             foreach (Minibus m in minis)
-                tables.Controls.Find(m.Index + "_mini", true)[0].Text = m.ToString(Simulation.CurrentTime);
+                tables_b.Controls.Find(m.Index + "_mini", true)[0].Text = m.ToString(Simulation.CurrentTime);
 
             foreach (Employee e in empls)
-                tables.Controls.Find(e.Index + "_empl", true)[0].Text = e.ToString();
+                tables_e.Controls.Find(e.Index + "_empl", true)[0].Text = e.ToString();
 
             //tables.Controls.Find("_empl", true)[0].Text = empls.Where(e => !e.Free).Count() + " / " + empls.Count;
         }
@@ -118,9 +118,15 @@ namespace DS_Sem3_Letisko
 
                     int mini_T = _cb_TypeMinis.SelectedIndex;
 
-                    Simulation.SetParams(mini_C, mini_T, empl_C, days_C, days_S, days_E, heatUp, repl_C);
-                    //Simulation.OnReplicationDidFinish(sim => RefreshUI(sim));
-                    Simulation.OnRefreshUI(new Action<Simulation>((sim) => RefreshUI(sim)));
+                    bool Slow = simModeSlow.Checked;
+                    double interval = simulationSpeed.Value; // <1;20>
+                    double duration = SimSpeed[simulationSpeed.Value - 1];
+
+                    Simulation.SetParams(mini_C, mini_T, empl_C, days_C, days_S, days_E, heatUp, repl_C, Slow, interval, duration);
+                    Simulation.OnReplicationDidFinish(sim => RefreshUIReplication(sim));
+                    Simulation.OnSimulationDidFinish(sim => RefreshUISimulation(sim));
+                    Simulation.OnRefreshUI(sim => RefreshUI(sim));
+                    Simulation.OnPause(sim => { SetLabelText(_l_Simulation_Time, ComputeHours(sim, "", null)); });
 
                     Simulation.Start();
                 }
@@ -130,34 +136,67 @@ namespace DS_Sem3_Letisko
                 }
         }
 
+        private void RefreshUIReplication(Simulation simulation)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new System.Action(() =>
+                {
+                    SetLabelText(_l_Simulation_Time, ComputeHours(simulation, "", null));
+                    RefreshReplicationStats((MySimulation)simulation);
+                }));
+            }
+            else
+            {
+                SetLabelText(_l_Simulation_Time, ComputeHours(simulation, "", null));
+                RefreshReplicationStats((MySimulation)simulation);
+            }
+        }
+
+        private void RefreshUISimulation(Simulation simulation)
+        {
+
+        }
+
         private void RefreshUI(Simulation simulation)
         {
             if (this.InvokeRequired)
             {
                 this.Invoke(new System.Action(() =>
                 {
-                    SetLabelText(_l_Simulation_Time, ComputeHours(simulation, ""));
+                    SetLabelText(_l_Simulation_Time, ComputeHours(simulation, "", null));
                     ShowActorsInfo(((MySimulation)simulation).AMinibus.Minis, ((MySimulation)simulation).AEmployee.Employees);
                 }));
             }
             else
             {
-                SetLabelText(_l_Simulation_Time, ComputeHours(simulation, ""));
+                SetLabelText(_l_Simulation_Time, ComputeHours(simulation, "", null));
                 ShowActorsInfo(((MySimulation)simulation).AMinibus.Minis, ((MySimulation)simulation).AEmployee.Employees);
             }
         }
 
-        private string ComputeHours(Simulation simulation, string format)
+        private void RefreshReplicationStats(MySimulation sim)
         {
-            if (Double.IsNaN(simulation.CurrentTime))
+            //repl_cr_avg_count_in = sim.AEmployee.GetReplStats(); // stat front size to be served 
+            //repl_cr_wait_time = sim.AEmployee.GetReplStats(); // stat waiting time for serve
+            //repl_cr_avg_count_out = sim.AMinibus.GetReplStats(); // stat front size waiting for bus to T3
+            repl_sim_avg_time_in.Text = ComputeHours(sim, "HH:mm:ss", sim.AEnv.GetReplStats(1));
+            repl_sim_avg_time_out.Text = ComputeHours(sim, "HH:mm:ss", sim.AEnv.GetReplStats(2));
+            
+        }
+
+        private string ComputeHours(Simulation simulation, string format, double? time)
+        {
+            double t = time.HasValue ? time.Value : simulation.CurrentTime;
+            if (Double.IsNaN(t))
                 return "0";
-            TimeSpan t = TimeSpan.FromSeconds(simulation.CurrentTime);
+            TimeSpan ts = TimeSpan.FromSeconds(t);
             switch (format)
             {
                 case "HH:mm:ss":
-                    return t.ToString(@"hh\:mm\:ss");
+                    return ts.ToString(@"hh\:mm\:ss");
                 default:
-                    return String.Format("Replication: {0} Day: {1} Time: {2}", simulation.CurrentReplication + 1, ((MySimulation)simulation).AAirport.ActualDay, t.ToString(@"hh\:mm\:ss"));
+                    return String.Format("Replication: {0} Day: {1} Time: {2}", simulation.CurrentReplication + 1, ((MySimulation)simulation).AAirport.ActualDay, ts.ToString(@"hh\:mm\:ss"));
             }
         }
 
@@ -166,6 +205,7 @@ namespace DS_Sem3_Letisko
         {
             SetBtnText(btnPause, "Pause");
             Simulation.StopSimulation();
+            Simulation = new MySimulation();
         }
 
         private void btnPause_Click(object sender, EventArgs e)
@@ -199,6 +239,25 @@ namespace DS_Sem3_Letisko
                 label.Invoke(new System.Action(() => label.Text = text));
             else
                 label.Text = text;
+        }
+
+        private void tb_valueChanged(object sender, EventArgs e)
+        {
+            SetLabelText(simSpeedLabel, SimSpeedString[simulationSpeed.Value - 1]);
+            if (simModeSlow.Checked) {
+                Simulation.SetSpeed(simulationSpeed.Value * 20, SimSpeed[simulationSpeed.Value - 1]);
+            }
+        }
+
+        private void simModeChanged(object sender, EventArgs e)
+        {
+            if (simModeSlow.Checked)
+            {
+                Simulation.SetSpeed(simulationSpeed.Value * 20, SimSpeed[simulationSpeed.Value - 1]);
+            } else
+            {
+                Simulation.SetMaxSpeed();
+            }
         }
     }
 }

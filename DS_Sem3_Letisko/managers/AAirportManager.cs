@@ -53,7 +53,8 @@ namespace managers
                 if (MyAgent.ActualDay <= ((MySimulation)MySim).Repl_Days_C)
                 {
                     ((MySimulation)MySim).AEnv.Generate = true;
-                    MySim.CurrentTime = (MyAgent.ActualDay - 1) * Const.DayToSecond + MyAgent.DayStart - MyAgent.HeatUp.HeatUp;
+                    double new_time = (MyAgent.ActualDay - 1) * Const.DayToSecond + MyAgent.DayStart - MyAgent.HeatUp.HeatUp;
+                    MySim.CurrentTime = MySim.CurrentTime < new_time ? new_time : MySim.CurrentTime;
                     if (MyAgent.HeatUp.HeatUp > 0)
                     { // end heat up
                         message.Addressee = MyAgent.FindAssistant(SimId.EndHeatUp);

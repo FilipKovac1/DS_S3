@@ -26,9 +26,18 @@ namespace simulation
         public MySimulation()
 		{
 			Init();
+
+            STimeFromTerminal = new StatTime();
+            STimeFromAirRental = new StatTime();
+            SWaitCR = new StatTime();
+            SWaitCR_Length = new StatTime();
+            SWaitT1 = new StatTime();
+            SWaitT1_Length = new StatTime();
+            SWaitT2 = new StatTime();
+            SWaitT2_Length = new StatTime();
 		}
 
-        public void SetParams(int Minis_C, int Minis_T, int Empl_C, int Days_C, double Days_S, double Days_E, double HeatUp_L, int Repl_C)
+        public void SetParams(int Minis_C, int Minis_T, int Empl_C, int Days_C, double Days_S, double Days_E, double HeatUp_L, int Repl_C, bool slow, double interval, double duration)
         {
             AMinibus.SetMinis(Minis_C, Minis_T);
             AEmployee.SetEmpl(Empl_C);
@@ -38,20 +47,42 @@ namespace simulation
             this.Repl_C = Repl_C;
             this.Repl_Days_C = Days_C;
 
-            Slow = true;
-            Slow_interval = 500;
-            Slow_duration = 0.0001;
-            if (Slow)
-                SetSimSpeed(Slow_interval, Slow_duration);
+            if (slow)
+                SetSpeed(interval, duration);
+            else
+                SetMaxSpeed();
         }
 
         public void Start() => SimulateAsync(Repl_C);
+
+        public void SetSpeed(double interval, double duration)
+        {
+            Slow = true;
+            Slow_interval = interval;
+            Slow_duration = duration;
+            base.SetSimSpeed(Slow_interval, Slow_duration);
+        }
+
+        public void SetMaxSpeed()
+        {
+            Slow = false;
+            base.SetMaxSimSpeed();
+        }
 
 		protected override void PrepareSimulation()
 		{
 			base.PrepareSimulation();
             // Create global statistcis
-		}
+
+            STimeFromTerminal.Reset();
+            STimeFromAirRental.Reset();
+            SWaitCR.Reset();
+            SWaitCR_Length.Reset();
+            SWaitT1.Reset();
+            SWaitT1_Length.Reset();
+            SWaitT2.Reset();
+            SWaitT2_Length.Reset();
+        }
 
         protected override void PrepareReplication()
 		{
@@ -65,8 +96,6 @@ namespace simulation
 		{
 			// Collect local statistics into global, update UI, etc...
 			base.ReplicationFinished();
-
-            Console.WriteLine(AEnv.temp);
 
             STimeFromTerminal.AddStat(AEnv.GetReplStats(1));
             STimeFromAirRental.AddStat(AEnv.GetReplStats(2));

@@ -61,6 +61,7 @@ namespace managers
         public void ProcessFinishTransport(MessageForm message)
         {
             // minibus arrived
+            ((MyMessage)message).Passenger = null;
             ((MyMessage)message).Minibus.OnWay = false;
             if (!Stop)
             {
@@ -98,6 +99,7 @@ namespace managers
         //meta! sender="GetIn", id="39", type="Finish"
         public void ProcessFinishGetIn(MessageForm message)
         {
+            ((MyMessage)message).Passenger = null;
             message.Code = Mc.Move;
             message.Addressee = MySim.FindAgent(SimId.AAirport);
             Response(message); // response of move
@@ -105,14 +107,16 @@ namespace managers
 
         private void StartProcessGetOut(MessageForm message)
         {
-            MessageForm m = message.CreateCopy();
-            ((MyMessage)m).Passenger = ((MyMessage)m).Minibus.GetFirst();
-            m.Addressee = MyAgent.FindAssistant(SimId.GetOut);
-            StartContinualAssistant(m);
+            ((MyMessage)message).Passenger = null;
+            ((MyMessage)message).Passenger = ((MyMessage)message).Minibus.GetFirst();
+            message.Addressee = MyAgent.FindAssistant(SimId.GetOut);
+            if (((MyMessage)message).Passenger != null)
+                StartContinualAssistant(message);
         }
 
         private void StartProcessGetIn(MessageForm message)
         {
+            ((MyMessage)message).Passenger = null;
             message.Addressee = MyAgent.FindAssistant(SimId.GetIn);
             StartContinualAssistant(message);
         }

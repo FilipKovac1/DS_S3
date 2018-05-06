@@ -24,7 +24,7 @@ namespace agents
             set
             {
                 generate = value;
-                if (!value)
+                if (!value && ((MySimulation)MySim).Slow)
                     MySim.SetMaxSimSpeed();
             }
         }
@@ -170,7 +170,7 @@ namespace agents
                 case 2:
                     NumberOfLeavesCR++;
                     for (int i = 1; i <= message.Passenger.SizeOfGroup; i++)
-                        TimeInSystemRental.AddStat(MySim.CurrentTime - message.Passenger.ArrivalTime);
+                        TimeInSystemReturn.AddStat(MySim.CurrentTime - message.Passenger.ArrivalTime);
                     break;
             }
         }
