@@ -34,10 +34,12 @@ namespace continualAssistants
 			{
                 case Mc.Done:
                     double l = MyAgent.GetEnter(Rand, 3);
-                    if (l >= 0) {
+                    if (l >= 0)
+                    {
                         MessageForm m = message.CreateCopy();
                         Hold(l, m);
-                    } else
+                    }
+                    else
                         MyAgent.Generate = false;
                     AssistantFinished(message);
                     break;

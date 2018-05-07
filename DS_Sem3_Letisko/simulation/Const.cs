@@ -4,6 +4,8 @@ namespace simulation
 {
     public class Const
     {
+        public static Random Seed = new Random();
+
         public static int MinutesToSecond = 60;
         public static int HourToSecond = 60 * MinutesToSecond;
         public static int DayToSecond = 24 * HourToSecond;

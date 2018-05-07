@@ -3,6 +3,7 @@ using simulation;
 using agents;
 using Generator;
 using Actors;
+using System;
 
 namespace continualAssistants
 {
@@ -23,11 +24,10 @@ namespace continualAssistants
         public void ProcessStart(MessageForm message)
         {
             Minibus m = ((MyMessage)message).Minibus;
+            message.Code = Mc.Done;
+            message.MsgResult = -1;
             if (m.IsFull())
-            {
-                message.Code = Mc.Done;
-                Hold(0, message);
-            }
+                DoneGetIn(message);
             else
             {
                 Passenger pass = null;
@@ -42,26 +42,33 @@ namespace continualAssistants
                         break;
                     }
                 }
+
                 if (Go)
-                {
-                    message.Code = Mc.Done;
-                    Hold(0, message);
-                }
+                    DoneGetIn(message);
                 else
-                {
-                    message.Code = Mc.Start;
                     Hold(Distributions.GetNormWithInterval(m.GetInRandom, Const.GetInTime[0], Const.GetInTime[1]) * pass.SizeOfGroup, message);
-                }
             }
 		}
 
-		//meta! userInfo="Process messages defined in code", id="0"
-		public void ProcessDefault(MessageForm message)
+        private void DoneGetIn(MessageForm message)
+        {
+            message.MsgResult = 1;
+            Hold(0, message);
+        }
+
+        //meta! userInfo="Process messages defined in code", id="0"
+        public void ProcessDefault(MessageForm message)
 		{
 			switch (message.Code)
 			{
                 case Mc.Done:
-                    AssistantFinished(message);
+                    if (message.MsgResult < 0)
+                        ProcessStart(message);
+                    else
+                    {
+                        message.MsgResult = -1; // reset value
+                        AssistantFinished(message);
+                    }
                     break;
 			}
 		}

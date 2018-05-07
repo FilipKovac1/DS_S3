@@ -6,20 +6,20 @@ using System;
 
 namespace managers
 {
-	//meta! id="2"
-	public class AEnvManager : Manager
-	{
+    //meta! id="2"
+    public class AEnvManager : Manager
+    {
         private Random random = new Random(Generator.Seed.GetSeed());
 
         public AEnvManager(int id, Simulation mySim, Agent myAgent) : base(id, mySim, myAgent) => Init();
 
         public override void PrepareReplication()
-		{
-			if (PetriNet != null)
-			{
-				PetriNet.Clear();
-			}
-		}
+        {
+            if (PetriNet != null)
+            {
+                PetriNet.Clear();
+            }
+        }
 
         //meta! sender="ASim", id="29", type="Notice"
         public void ProcessResetStat(MessageForm message) => MyAgent.ResetStats();
@@ -68,13 +68,13 @@ namespace managers
 
         //meta! userInfo="Process messages defined in code", id="0"
         public void ProcessDefault(MessageForm message)
-		{
-			switch (message.Code)
-			{
+        {
+            switch (message.Code)
+            {
                 default:
                     break;
-			}
-		}
+            }
+        }
 
         private void ProcessFinishEnter(MessageForm message, int type)
         {
@@ -104,60 +104,60 @@ namespace managers
             return ret;
         }
 
-		//meta! userInfo="Generated code: do not modify", tag="begin"
-		public void Init()
-		{
-		}
+        //meta! userInfo="Generated code: do not modify", tag="begin"
+        public void Init()
+        {
+        }
 
-		public override void ProcessMessage(MessageForm message)
-		{
-			switch (message.Code)
-			{
-			case Mc.Finish:
-				switch (message.Sender.Id)
-				{
-				case SimId.EnterCR:
-					ProcessFinishEnterCR(message);
-				break;
+        public override void ProcessMessage(MessageForm message)
+        {
+            switch (message.Code)
+            {
+                case Mc.Finish:
+                    switch (message.Sender.Id)
+                    {
+                        case SimId.EnterCR:
+                            ProcessFinishEnterCR(message);
+                            break;
 
-				case SimId.EnterT1:
-					ProcessFinishEnterT1(message);
-				break;
+                        case SimId.EnterT1:
+                            ProcessFinishEnterT1(message);
+                            break;
 
-				case SimId.EnterT2:
-					ProcessFinishEnterT2(message);
-				break;
-				}
-			break;
+                        case SimId.EnterT2:
+                            ProcessFinishEnterT2(message);
+                            break;
+                    }
+                    break;
 
-			case Mc.Init:
-				ProcessInit(message);
-			break;
+                case Mc.Init:
+                    ProcessInit(message);
+                    break;
 
-			case Mc.LeaveT3:
-				ProcessLeaveT3(message);
-			break;
+                case Mc.LeaveT3:
+                    ProcessLeaveT3(message);
+                    break;
 
-			case Mc.ResetStat:
-				ProcessResetStat(message);
-			break;
+                case Mc.ResetStat:
+                    ProcessResetStat(message);
+                    break;
 
-			case Mc.LeaveCR:
-				ProcessLeaveCR(message);
-			break;
+                case Mc.LeaveCR:
+                    ProcessLeaveCR(message);
+                    break;
 
-			default:
-				ProcessDefault(message);
-			break;
-			}
-		}
-		//meta! tag="end"
-		public new AEnv MyAgent
-		{
-			get
-			{
-				return (AEnv)base.MyAgent;
-			}
-		}
-	}
+                default:
+                    ProcessDefault(message);
+                    break;
+            }
+        }
+        //meta! tag="end"
+        public new AEnv MyAgent
+        {
+            get
+            {
+                return (AEnv)base.MyAgent;
+            }
+        }
+    }
 }

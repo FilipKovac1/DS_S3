@@ -54,6 +54,15 @@ namespace Actors
         public bool IsFull() => OnBoard_Count == GetCapacity();
         public int GetCapacity() => Const.CapacityOptions[Type];
 
+        public bool GetIn(Passenger p)
+        {
+            if (OnBoard_Count + p.SizeOfGroup > GetCapacity())
+                return false;
+            OnBoard_Count += p.SizeOfGroup;
+            OnBoard.Enqueue(p);
+            return true;
+        }
+
         /// <summary>
         /// Comute how much time takes a way long <paramref name="route"/> in seconds
         /// </summary>
@@ -67,35 +76,23 @@ namespace Actors
             return (State > 3 ? (IsEmpty() ? Const.Distances[0] : Const.Distances[State]) : Const.Distances[State]) - pl;
         }
 
-        public bool GetIn (Passenger p)
-        {
-            if (OnBoard_Count + p.SizeOfGroup > GetCapacity())
-                return false;
-            OnBoard_Count += p.SizeOfGroup;
-            OnBoard.Enqueue(p);
-            return true;
-        }
-
         private string ComputePlace (double time)
         {
             if (OnWay)
-            {
-                return String.Format("{0} -> {2} | {1} km", GetPlaceFromState(), Math.Round(ComputeRoute(time), 2), GetPlaceFromState(State < 3 ? State + 1 : (State == 3 ? 1 : 3)));
-            } else
-            {
-                return String.Format("Staining on {0}", GetPlaceFromState());
-            }
+                return String.Format("{0,-20} -> {2,20} | {1} km", GetPlaceFromState(), Math.Round(ComputeRoute(time), 2), GetPlaceFromState(State == 1 ? 2 : (State == 2 ? 4 : (State == 3 ? 1 : (IsEmpty() ? 1 : 3)))));
+            else
+                return String.Format("Staying on {0, -50}", GetPlaceFromState());
         }
 
         private string GetPlaceFromState(int? state = null)
         {
-            state = state.HasValue ? state : State;
-            switch (state.Value)
+            int s = state ?? State;
+            switch (s)
             {
                 case 1:
                 case 2:
                 case 3:
-                    return "Terminal " + State;
+                    return "Terminal " + s;
                 case 4:
                     return "AirCar Rental";
                 default:
@@ -143,6 +140,6 @@ namespace Actors
             return State > 3 ? (IsEmpty() ? Const.DistancesTime[0] : Const.DistancesTime[State]) : Const.DistancesTime[State];
         }
 
-        public string ToString(double time) => String.Format("{0,2:##}/{2} passengers. {1} | {3}", OnBoard_Count, ComputePlace(time), GetCapacity(), MileAge);
+        public string ToString(double time) => String.Format("{0,2:##0}/{2} passengers. {1, -65} | {3}km", OnBoard_Count, ComputePlace(time), GetCapacity(), MileAge);
     }
 }

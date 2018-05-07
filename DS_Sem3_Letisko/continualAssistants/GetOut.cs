@@ -2,12 +2,17 @@ using OSPABA;
 using simulation;
 using agents;
 using Generator;
+using Actors;
+using System;
 
 namespace continualAssistants
 {
 	//meta! id="40"
 	public class GetOut : Process
 	{
+        private Passenger localP;
+        private Minibus localM;
+
 		public GetOut(int id, Simulation mySim, CommonAgent myAgent) : base(id, mySim, myAgent)
 		{
 		}
@@ -21,8 +26,12 @@ namespace continualAssistants
 		//meta! sender="AMinibus", id="41", type="Start"
 		public void ProcessStart(MessageForm message)
 		{
+            localM = ((MyMessage)message).Minibus;
+            localP = localM.GetFirst();
+
             message.Code = Mc.Done;
-            Hold(Distributions.GetNormWithInterval(((MyMessage)message).Minibus.GetOutRandom, Const.GetOutTime[0], Const.GetOutTime[1]) * ((MyMessage)message).Passenger.SizeOfGroup, message);
+            ((MyMessage)message).Passenger = localP;
+            Hold(Distributions.GetNormWithInterval(localM.GetOutRandom, Const.GetOutTime[0], Const.GetOutTime[1]) * localP.SizeOfGroup, message);
 		}
 
 		//meta! userInfo="Process messages defined in code", id="0"
@@ -31,7 +40,14 @@ namespace continualAssistants
 			switch (message.Code)
 			{
                 case Mc.Done:
-                    AssistantFinished(message);
+                    MessageForm m = message.CreateCopy();
+                    ((MyMessage)m).Passenger = null;
+                    if (((MyMessage)m).Minibus.IsEmpty())
+                        AssistantFinished(m); // minibus is empty
+                    else
+                        ProcessStart(m);
+                    ((MyMessage)message).Minibus = null;
+                    AssistantFinished(message); // passenger get out
                     break;
 			}
 		}

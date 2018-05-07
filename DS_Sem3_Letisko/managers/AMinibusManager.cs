@@ -46,6 +46,13 @@ namespace managers
             StartContinualAssistant(message);
         }
 
+        private void ProcessEndMove(MessageForm message)
+        {
+            message.Code = Mc.Move;
+            message.Addressee = MySim.FindAgent(SimId.AAirport);
+            Response(message); // response of move
+        }
+
         /*!
 		 * Request - Enter to front to wait for a bus
 		 * Response - leave a bus
@@ -61,7 +68,6 @@ namespace managers
         public void ProcessFinishTransport(MessageForm message)
         {
             // minibus arrived
-            ((MyMessage)message).Passenger = null;
             ((MyMessage)message).Minibus.OnWay = false;
             if (!Stop)
             {
@@ -70,7 +76,7 @@ namespace managers
                     case 1: // get in
                     case 2:
                         if (MyAgent.IsEmpty(((MyMessage)message).Minibus.State) || ((MyMessage)message).Minibus.IsFull())
-                            ProcessFinishGetIn(message);
+                            ProcessEndMove(message);
                         else
                             StartProcessGetIn(message);
                         break;
@@ -80,18 +86,19 @@ namespace managers
                     case 4:
                         if (((MyMessage)message).Minibus.IsEmpty())
                             if (MyAgent.IsEmpty(4))
-                                ProcessFinishGetIn(message);
+                                ProcessEndMove(message);
                             else
                                 StartProcessGetIn(message);
                         else
                             StartProcessGetOut(message);
                         break;
                 }
-            } else
+            }
+            else
             {
                 message.Code = Mc.Stop;
                 message.Addressee = MySim.FindAgent(SimId.AAirport);
-                message.MsgResult = MyAgent.Minis.Where(b => b.OnWay).Count(); // send the number of busses in move to indicate that all of them stopped
+                message.MsgResult = MyAgent.Minis.Where(b => b.OnWay && b.IsEmpty()).Count(); // send the number of busses in move to indicate that all of them stopped
                 Response(message);
             }
         }
@@ -99,19 +106,13 @@ namespace managers
         //meta! sender="GetIn", id="39", type="Finish"
         public void ProcessFinishGetIn(MessageForm message)
         {
-            ((MyMessage)message).Passenger = null;
-            message.Code = Mc.Move;
-            message.Addressee = MySim.FindAgent(SimId.AAirport);
-            Response(message); // response of move
+            ProcessEndMove(message);
         }
 
         private void StartProcessGetOut(MessageForm message)
         {
-            ((MyMessage)message).Passenger = null;
-            ((MyMessage)message).Passenger = ((MyMessage)message).Minibus.GetFirst();
             message.Addressee = MyAgent.FindAssistant(SimId.GetOut);
-            if (((MyMessage)message).Passenger != null)
-                StartContinualAssistant(message);
+            StartContinualAssistant(message);
         }
 
         private void StartProcessGetIn(MessageForm message)
@@ -124,36 +125,26 @@ namespace managers
         //meta! sender="GetOut", id="41", type="Finish"
         public void ProcessFinishGetOut(MessageForm message)
         {
-            switch (((MyMessage)message).Minibus.State)
+            if (((MyMessage)message).Passenger != null)
             {
-                case 3: // go to next station
-                    MessageForm m2 = message.CreateCopy();
-                    if (((MyMessage)m2).Passenger != null)
-                    {
-                        m2.Code = Mc.ProcessPassenger;
-                        m2.Addressee = MySim.FindAgent(SimId.AAirport);
-                        Response(m2);
-                    }
-                    if (((MyMessage)message).Minibus.IsEmpty())
-                        ProcessFinishGetIn(message); // go next
-                    else
-                        StartProcessGetOut(message); // next pass go out
-                    break;
-                case 4:
-                    MessageForm m = message.CreateCopy();
-                    if (((MyMessage)message).Passenger != null)
-                    {
-                        message.Code = Mc.ProcessPassenger;
-                        message.Addressee = MySim.FindAgent(SimId.AAirport);
-                        Response(message);
-                    }
-                    if (MyAgent.IsEmpty(4) && ((MyMessage)m).Minibus.IsEmpty())
-                        ProcessFinishGetIn(m); // move to another stop
-                    else if (!((MyMessage)m).Minibus.IsEmpty()) // start process get out
-                        StartProcessGetOut(m);
-                    else // start get in
-                        StartProcessGetIn(m);
-                    break;
+                message.Code = Mc.ProcessPassenger;
+                message.Addressee = MySim.FindAgent(SimId.AAirport);
+                Response(message);
+            }
+            else
+            {
+                switch (((MyMessage)message).Minibus.State)
+                {
+                    case 3: // go to next station
+                        ProcessEndMove(message);
+                        break;
+                    case 4:
+                        if (MyAgent.IsEmpty(4))
+                            ProcessEndMove(message); // move to another stop
+                        else 
+                            StartProcessGetIn(message); // start get in
+                        break;
+                }
             }
         }
 

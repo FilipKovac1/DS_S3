@@ -11,7 +11,7 @@ namespace agents
         public double DayStart { get; set; }
         public int ActualDay { get; set; }
 
-        private int ServedPass { get; set; }
+        public int ServedPass { get; set; }
 
         public AAirport(int id, Simulation mySim, Agent parent) : base(id, mySim, parent) => Init();
 

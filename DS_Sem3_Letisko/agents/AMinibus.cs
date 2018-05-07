@@ -87,6 +87,8 @@ namespace agents
             }
         }
 
+        public bool SomeoneWaiting() => FrontT1.Count > 0 || FrontT2.Count > 0 || FrontCR.Count > 0;
+
         public void RemoveFromQueue (int type, Passenger p)
         {
             switch (type)

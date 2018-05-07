@@ -2,6 +2,7 @@ using OSPABA;
 using simulation;
 using agents;
 using Actors;
+using System;
 
 namespace managers
 {
@@ -28,6 +29,8 @@ namespace managers
 		//meta! sender="AAirport", id="26", type="Notice"
 		public void ProcessResetStat(MessageForm message)
 		{
+            if (message.MsgResult > 0) // after day end
+                MyAgent.SaveReplStats();
             MyAgent.ResetStats();
 		}
 
@@ -58,7 +61,7 @@ namespace managers
 		public void ProcessFinish(MessageForm message)
         {
             ((MyMessage)message).Employee.Free = true;
-
+            
             MessageForm m = message.CreateCopy();
             ((MyMessage)m).Passenger = MyAgent.GetFromQueue();
             if (((MyMessage)m).Passenger != null) // if not added to message get first from queue

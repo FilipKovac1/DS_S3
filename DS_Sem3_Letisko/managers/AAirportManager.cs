@@ -34,10 +34,9 @@ namespace managers
                     ((MyMessage)mess).Minibus = m;
                     Request(mess);
                 }
-            } else
-            {
-                ProcessStopBusses(message);
             }
+            else
+                ProcessStopBusses(message);
         }
 
         /// <summary>
@@ -52,9 +51,20 @@ namespace managers
                 MyAgent.ActualDay++;
                 if (MyAgent.ActualDay <= ((MySimulation)MySim).Repl_Days_C)
                 {
+                    MessageForm messResStatEmpl = message.CreateCopy();
+                    messResStatEmpl.Code = Mc.ResetStat;
+                    messResStatEmpl.MsgResult = 1;
+                    messResStatEmpl.Addressee = MySim.FindAgent(SimId.AEmployee);
+                    MessageForm messResStatMini = messResStatEmpl.CreateCopy();
+                    messResStatMini.Addressee = MySim.FindAgent(SimId.AMinibus);
+                    Notice(messResStatEmpl); Notice(messResStatMini);
+
                     ((MySimulation)MySim).AEnv.Generate = true;
                     double new_time = (MyAgent.ActualDay - 1) * Const.DayToSecond + MyAgent.DayStart - MyAgent.HeatUp.HeatUp;
-                    MySim.CurrentTime = MySim.CurrentTime < new_time ? new_time : MySim.CurrentTime;
+                    if (MySim.CurrentTime < new_time)
+                        MySim.CurrentTime = new_time;
+                    else
+                        MySim.StopSimulation();
                     if (MyAgent.HeatUp.HeatUp > 0)
                     { // end heat up
                         message.Addressee = MyAgent.FindAssistant(SimId.EndHeatUp);
@@ -67,7 +77,7 @@ namespace managers
                         MessageForm mess = message.CreateCopy();
                         mess.Code = Mc.Move;
                         mess.Addressee = MySim.FindAgent(SimId.AMinibus);
-                        m.State = r.Next(4) + 1;
+                        m.Reinit(r.Next(4) + 1);
                         ((MyMessage)mess).Minibus = m;
                         Request(mess);
                     }
@@ -79,24 +89,6 @@ namespace managers
                 }
                 else // end of replication after all of days happened
                     MySim.StopReplication();
-            }
-        }
-
-        //meta! sender="AEmployee", id="23", type="Response"
-        public void ProcessServePassengerAEmployee(MessageForm message)
-        {
-            if (((MyMessage)message).Passenger.ArrivedAt < 3)
-            { // go to hell
-                MyAgent.ServedDec();
-                message.Code = Mc.ServePassenger;
-                message.Addressee = MySim.FindAgent(SimId.ASim);
-                Notice(message);
-            }
-            else
-            { // go to wait bus on CR to go to T3
-                message.Code = Mc.ProcessPassenger;
-                message.Addressee = MySim.FindAgent(SimId.AMinibus);
-                Request(message);
             }
         }
 
@@ -118,15 +110,22 @@ namespace managers
             }
         }
 
-        /*!
-		 * move of bus
-		 */
-        //meta! sender="AMinibus", id="21", type="Response"
-        public void ProcessMove(MessageForm message)
-        { // go to next stop
-            message.Code = Mc.Move;
-            message.Addressee = MySim.FindAgent(SimId.AMinibus);
-            Request(message);
+        //meta! sender="AEmployee", id="23", type="Response"
+        public void ProcessServePassengerAEmployee(MessageForm message)
+        {
+            if (((MyMessage)message).Passenger.ArrivedAt < 3)
+            { // go to hell
+                MyAgent.ServedDec();
+                message.Code = Mc.ServePassenger;
+                message.Addressee = MySim.FindAgent(SimId.ASim);
+                Notice(message);
+            }
+            else
+            { // go to wait bus on CR to go to T3
+                message.Code = Mc.ProcessPassenger;
+                message.Addressee = MySim.FindAgent(SimId.AMinibus);
+                Request(message);
+            }
         }
 
         /*!
@@ -149,6 +148,17 @@ namespace managers
                 message.Addressee = MySim.FindAgent(SimId.ASim);
                 Notice(message);
             }
+        }
+
+        /*!
+		 * move of bus
+		 */
+        //meta! sender="AMinibus", id="21", type="Response"
+        public void ProcessMove(MessageForm message)
+        { // go to next stop
+            message.Code = Mc.Move;
+            message.Addressee = MySim.FindAgent(SimId.AMinibus);
+            Request(message);
         }
 
         //meta! userInfo="Process messages defined in code", id="0"

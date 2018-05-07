@@ -5,6 +5,8 @@ using Statistics;
 using continualAssistants;
 using System;
 using Generator;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace agents
 {

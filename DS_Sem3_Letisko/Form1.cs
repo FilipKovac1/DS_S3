@@ -166,14 +166,25 @@ namespace DS_Sem3_Letisko
                 {
                     SetLabelText(_l_Simulation_Time, ComputeHours(simulation, "", null));
                     ShowActorsInfo(((MySimulation)simulation).AMinibus.Minis, ((MySimulation)simulation).AEmployee.Employees);
+                    RefreshActualStats((MySimulation)simulation);
                 }));
             }
             else
             {
                 SetLabelText(_l_Simulation_Time, ComputeHours(simulation, "", null));
                 ShowActorsInfo(((MySimulation)simulation).AMinibus.Minis, ((MySimulation)simulation).AEmployee.Employees);
+                RefreshActualStats((MySimulation)simulation);
             }
         }
+
+        private void RefreshActualStats(MySimulation sim)
+        {
+            SetLabelText(_l_act_cr_wait_size_avg, DoubleToString(sim.AEmployee.GetStats(false, 2)));
+            SetLabelText(_l_act_cr_wait_size, sim.AEmployee.FrontSize().ToString());
+            SetLabelText(_l_act_cr_wait_time, ComputeHours(sim, "HH:mm:ss", sim.AEmployee.GetStats(false, 1)));
+        }
+
+        private string DoubleToString(double val) => String.Format("{0:#.##}", val);
 
         private void RefreshReplicationStats(MySimulation sim)
         {

@@ -3,6 +3,7 @@ using simulation;
 using agents;
 using System;
 using Generator;
+using Actors;
 
 namespace continualAssistants
 {
@@ -11,6 +12,7 @@ namespace continualAssistants
 	{
         private Random TriangProb;
         private double time_to_hold = 0;
+        private Employee localE;
 
         public ServicePassenger(int id, Simulation mySim, CommonAgent myAgent) : base(id, mySim, myAgent)
 		{
@@ -27,11 +29,12 @@ namespace continualAssistants
 		public void ProcessStart(MessageForm message)
 		{
             message.Code = Mc.Done;
+            localE = ((MyMessage)message).Employee;
             bool passCR = ((MyMessage)message).Passenger.ArrivedAt == 3;
             if (TriangProb.NextDouble() <= (passCR ? Const.TriangularOutRatio : Const.TriangularInRatio))
-                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, !passCR ? Const.TriangularIn1 : Const.TriangularOut1);
+                time_to_hold = passCR ? localE.RandomOut1.Sample() : localE.RandomIn1.Sample();
             else
-                time_to_hold = Distributions.GetTriangular(((MyMessage)message).Employee.Random, !passCR ? Const.TriangularIn2 : Const.TriangularOut2);
+                time_to_hold = passCR ? localE.RandomOut2.Sample() : localE.RandomIn2.Sample();
             Hold(time_to_hold, message);
 		}
 
