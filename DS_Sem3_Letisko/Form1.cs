@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using simulation;
 using OSPABA;
+using System.Linq;
 
 namespace DS_Sem3_Letisko
 {
@@ -94,12 +95,12 @@ namespace DS_Sem3_Letisko
                 tables_b.Controls.Find(m.Index + "_mini", true)[0].Text = m.ToString(Simulation.CurrentTime);
 
             foreach (Employee e in empls)
-                tables_e.Controls.Find(e.Index + "_empl", true)[0].Text = e.ToString();
+                tables_e.Controls.Find(e.Index + "_empl", true)[0].Text = e.ToString(Simulation.CurrentTime);
 
             //tables.Controls.Find("_empl", true)[0].Text = empls.Where(e => !e.Free).Count() + " / " + empls.Count;
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void BtnStart_Click(object sender, EventArgs e)
         {
             SetBtnText(btnPause, "Pause");
             if (tabSimGraph.SelectedTab.Name == "tabGraphs") { }
@@ -139,18 +140,9 @@ namespace DS_Sem3_Letisko
         private void RefreshUIReplication(Simulation simulation)
         {
             if (this.InvokeRequired)
-            {
-                this.Invoke(new System.Action(() =>
-                {
-                    SetLabelText(_l_Simulation_Time, ComputeHours(simulation, "", null));
-                    RefreshReplicationStats((MySimulation)simulation);
-                }));
-            }
+                this.Invoke(new System.Action(() => RefreshReplicationStats((MySimulation)simulation)));
             else
-            {
-                SetLabelText(_l_Simulation_Time, ComputeHours(simulation, "", null));
                 RefreshReplicationStats((MySimulation)simulation);
-            }
         }
 
         private void RefreshUISimulation(Simulation simulation)
@@ -179,26 +171,35 @@ namespace DS_Sem3_Letisko
 
         private void RefreshActualStats(MySimulation sim)
         {
-            SetLabelText(_l_act_cr_wait_size_avg, DoubleToString(sim.AEmployee.GetStats(false, 2)));
+            SetLabelText(t1_count, sim.AMinibus.GetQueueCount(1).ToString());
+            SetLabelText(t2_count, sim.AMinibus.GetQueueCount(2).ToString());
+            SetLabelText(cr_count_in, sim.AMinibus.GetQueueCount(4).ToString());
+            SetLabelText(_l_act_people_in_sim, sim.AAirport.ServedPass.ToString());
+            SetLabelText(_l_act_serv_people, sim.AEmployee.Employees.Where(e => !e.Free).Count().ToString());
+            SetLabelText(_l_act_moving_people, sim.AMinibus.Minis.Sum(e => e.OnBoard.Sum(pass => pass.SizeOfGroup)).ToString());
+            SetLabelText(_l_act_cr_wait_size_avg, DoubleToString(sim.AEmployee.GetStats(2)));
             SetLabelText(_l_act_cr_wait_size, sim.AEmployee.FrontSize().ToString());
-            SetLabelText(_l_act_cr_wait_time, ComputeHours(sim, "HH:mm:ss", sim.AEmployee.GetStats(false, 1)));
-        }
+            SetLabelText(_l_act_cr_wait_time, ComputeHours(sim, "HH:mm:ss", sim.AEmployee.GetStats(1)));
 
-        private string DoubleToString(double val) => String.Format("{0:#.##}", val);
-
-        private void RefreshReplicationStats(MySimulation sim)
-        {
             //repl_cr_avg_count_in = sim.AEmployee.GetReplStats(); // stat front size to be served 
             //repl_cr_wait_time = sim.AEmployee.GetReplStats(); // stat waiting time for serve
             //repl_cr_avg_count_out = sim.AMinibus.GetReplStats(); // stat front size waiting for bus to T3
-            repl_sim_avg_time_in.Text = ComputeHours(sim, "HH:mm:ss", sim.AEnv.GetReplStats(1));
-            repl_sim_avg_time_out.Text = ComputeHours(sim, "HH:mm:ss", sim.AEnv.GetReplStats(2));
-            
+            repl_sim_avg_time_in.Text = ComputeHours(sim, "HH:mm:ss", sim.AEnv.GetStats(1));
+            repl_sim_avg_time_out.Text = ComputeHours(sim, "HH:mm:ss", sim.AEnv.GetStats(2));
+        }
+
+        private string DoubleToString(double val) => Double.IsNaN(val) ? "0.00" : String.Format("{0:0.00}", val);
+
+        private void RefreshReplicationStats(MySimulation sim)
+        {
+            if (!sim.Slow)
+                SetLabelText(_l_Simulation_Time, String.Format("Replication: {0}", sim.CurrentReplication + 1));
+            // here will be global stats
         }
 
         private string ComputeHours(Simulation simulation, string format, double? time)
         {
-            double t = time.HasValue ? time.Value : simulation.CurrentTime;
+            double t = time ?? simulation.CurrentTime;
             if (Double.IsNaN(t))
                 return "0";
             TimeSpan ts = TimeSpan.FromSeconds(t);
@@ -207,19 +208,19 @@ namespace DS_Sem3_Letisko
                 case "HH:mm:ss":
                     return ts.ToString(@"hh\:mm\:ss");
                 default:
-                    return String.Format("Replication: {0} Day: {1} Time: {2}", simulation.CurrentReplication + 1, ((MySimulation)simulation).AAirport.ActualDay, ts.ToString(@"hh\:mm\:ss"));
+                    return String.Format("Replication: {0} Time: {1}", simulation.CurrentReplication + 1, ts.ToString(@"hh\:mm\:ss"));
             }
         }
 
 
-        private void btnStop_Click(object sender, EventArgs e)
+        private void BtnStop_Click(object sender, EventArgs e)
         {
             SetBtnText(btnPause, "Pause");
             Simulation.StopSimulation();
             Simulation = new MySimulation();
         }
 
-        private void btnPause_Click(object sender, EventArgs e)
+        private void BtnPause_Click(object sender, EventArgs e)
         {
             if (btnPause.Text == "Pause")
             {
@@ -252,7 +253,7 @@ namespace DS_Sem3_Letisko
                 label.Text = text;
         }
 
-        private void tb_valueChanged(object sender, EventArgs e)
+        private void Tb_valueChanged(object sender, EventArgs e)
         {
             SetLabelText(simSpeedLabel, SimSpeedString[simulationSpeed.Value - 1]);
             if (simModeSlow.Checked) {
@@ -260,7 +261,7 @@ namespace DS_Sem3_Letisko
             }
         }
 
-        private void simModeChanged(object sender, EventArgs e)
+        private void SimModeChanged(object sender, EventArgs e)
         {
             if (simModeSlow.Checked)
             {

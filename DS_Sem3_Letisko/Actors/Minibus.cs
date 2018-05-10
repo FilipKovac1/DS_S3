@@ -10,6 +10,7 @@ namespace Actors
     {
         public int Type { get; set; }
         public int Index;
+        public bool Stop;
         /// <summary>
         /// 1 - T1
         /// 2 - T2
@@ -35,12 +36,14 @@ namespace Actors
             OnBoard = new Queue<Passenger>(Const.CapacityOptions[Type]);
             OnBoard_Count = 0;
             OnWay = true;
+            Stop = false;
             MileAge = 0;
         }
 
         public void Reinit (int state)
         {
             State = state;
+            Stop = false;
             OnWay = true;
             //GetIn = new Random(Seed.GetSeed());
             //GetOut = new Random(Seed.GetSeed());
@@ -73,7 +76,7 @@ namespace Actors
             // copmute where minibus is now
             double pl = Const.SpeedOfMini * ((time - LastStop) / Const.HourToSecond);
             // compute difference from destination
-            return (State > 3 ? (IsEmpty() ? Const.Distances[0] : Const.Distances[State]) : Const.Distances[State]) - pl;
+            return (State > 3 && IsEmpty() ? Const.Distances[0] : Const.Distances[State]) - pl;
         }
 
         private string ComputePlace (double time)
@@ -140,6 +143,6 @@ namespace Actors
             return State > 3 ? (IsEmpty() ? Const.DistancesTime[0] : Const.DistancesTime[State]) : Const.DistancesTime[State];
         }
 
-        public string ToString(double time) => String.Format("{0,2:##0}/{2} passengers. {1, -65} | {3}km", OnBoard_Count, ComputePlace(time), GetCapacity(), MileAge);
+        public string ToString(double time) => String.Format("{0,2:##0}/{2} passengers. {1, -65} | {3,4:0} km", OnBoard_Count, ComputePlace(time), GetCapacity(), MileAge);
     }
 }

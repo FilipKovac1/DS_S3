@@ -35,6 +35,9 @@ namespace continualAssistants
                 time_to_hold = passCR ? localE.RandomOut1.Sample() : localE.RandomIn1.Sample();
             else
                 time_to_hold = passCR ? localE.RandomOut2.Sample() : localE.RandomIn2.Sample();
+
+            localE.TimeOfWorking += time_to_hold;
+
             Hold(time_to_hold, message);
 		}
 

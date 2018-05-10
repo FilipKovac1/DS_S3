@@ -57,8 +57,22 @@ namespace agents
             // Setup component for the next replication
             Random r = new Random(Seed.GetSeed());
             foreach (Minibus m in Minis)
-                m.Reinit(r.Next(Const.CapacityOptions.Length) + 1);
+                m.Reinit(r.Next(4) + 1);
             ResetStats();
+        }
+
+        public int GetQueueCount(int which)
+        {
+            switch (which)
+            {
+                case 1:
+                    return FrontT1.Sum(pass => pass.SizeOfGroup);
+                case 2:
+                    return FrontT2.Sum(pass => pass.SizeOfGroup);
+                case 4:
+                    return FrontCR.Sum(pass => pass.SizeOfGroup);
+            }
+            return 0;
         }
 
         public void ResetStats()
@@ -143,6 +157,8 @@ namespace agents
                     return FrontT1;
                 case 2:
                     return FrontT2;
+                case 3:
+                    return new Queue<Passenger>();
                 case 4:
                     return FrontCR;
             }

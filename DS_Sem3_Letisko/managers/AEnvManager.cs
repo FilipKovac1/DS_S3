@@ -57,13 +57,7 @@ namespace managers
         private void EndCooling(MessageForm message)
         {
             if (MyAgent.EqualsEnterLeave()) // all arriveals left the system
-            {
-                MyAgent.InsertToReplStats();
-                ((MyMessage)message).Passenger = null;
-                message.Code = Mc.EndCooling;
-                message.Addressee = MySim.FindAgent(SimId.ASim);
-                Notice(message);
-            }
+                MySim.StopReplication();
         }
 
         //meta! userInfo="Process messages defined in code", id="0"

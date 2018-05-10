@@ -97,8 +97,8 @@ namespace simulation
 			// Collect local statistics into global, update UI, etc...
 			base.ReplicationFinished();
 
-            STimeFromTerminal.AddStat(AEnv.GetReplStats(1));
-            STimeFromAirRental.AddStat(AEnv.GetReplStats(2));
+            STimeFromTerminal.AddStat(AEnv.GetStats(1));
+            STimeFromAirRental.AddStat(AEnv.GetStats(2));
         }
 
         protected override void SimulationFinished()

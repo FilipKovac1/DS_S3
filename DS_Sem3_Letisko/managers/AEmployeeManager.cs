@@ -27,12 +27,7 @@ namespace managers
 		}
 
 		//meta! sender="AAirport", id="26", type="Notice"
-		public void ProcessResetStat(MessageForm message)
-		{
-            if (message.MsgResult > 0) // after day end
-                MyAgent.SaveReplStats();
-            MyAgent.ResetStats();
-		}
+		public void ProcessResetStat(MessageForm message) => MyAgent.ResetStats();
 
 		//meta! sender="AAirport", id="23", type="Request"
 		public void ProcessServePassenger(MessageForm message)

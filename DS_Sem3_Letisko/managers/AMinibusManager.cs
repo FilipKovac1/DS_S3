@@ -10,7 +10,6 @@ namespace managers
     //meta! id="4"
     public class AMinibusManager : Manager
     {
-        private bool Stop = false;
         public AMinibusManager(int id, Simulation mySim, Agent myAgent) : base(id, mySim, myAgent) => Init();
 
         public override void PrepareReplication()
@@ -22,8 +21,6 @@ namespace managers
             {
                 PetriNet.Clear();
             }
-
-            Stop = false;
         }
 
         //meta! sender="AAirport", id="25", type="Notice"
@@ -41,7 +38,6 @@ namespace managers
         //meta! sender="AAirport", id="21", type="Request"
         public void ProcessMove(MessageForm message)
         {
-            Stop = false;
             message.Addressee = MyAgent.FindAssistant(SimId.Transport);
             StartContinualAssistant(message);
         }
@@ -69,7 +65,7 @@ namespace managers
         {
             // minibus arrived
             ((MyMessage)message).Minibus.OnWay = false;
-            if (!Stop)
+            if (!((MyMessage)message).Minibus.Stop || !((MyMessage)message).Minibus.IsEmpty() || MyAgent.SomeoneWaiting() || ((MySimulation)MySim).AEmployee.ArePeopleHere())
             {
                 switch (((MyMessage)message).Minibus.State)
                 {
@@ -158,7 +154,7 @@ namespace managers
             }
         }
 
-        private void ProcessStop(MessageForm message) => Stop = true;
+        private void ProcessStop(MessageForm message) => ((MyMessage)message).Minibus.Stop = true;
 
         //meta! userInfo="Generated code: do not modify", tag="begin"
         public void Init()

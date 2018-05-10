@@ -17,9 +17,8 @@ namespace agents
 
         private Queue<Passenger> Front { get; set; }
         private StatLength SFront_Length { get; set; }
-        private StatTime SFront_Length_Repl { get; set; }
         private StatTime SFront_Time { get; set; }
-        private StatTime SFront_Time_Repl { get; set; }
+        private StatTime SEmployee_WorkingTime { get; set; }
 
 		public AEmployee(int id, Simulation mySim, Agent parent) : base(id, mySim, parent)
 		{
@@ -28,8 +27,7 @@ namespace agents
             Front = new Queue<Passenger>();
             SFront_Length = new StatLength();
             SFront_Time = new StatTime();
-            SFront_Length_Repl = new StatTime();
-            SFront_Time_Repl = new StatTime();
+            SEmployee_WorkingTime = new StatTime();
         }
 
 		public override void PrepareReplication()
@@ -37,9 +35,8 @@ namespace agents
 			base.PrepareReplication();
             // Setup component for the next replication
             foreach (Employee e in Employees)
-                e.Free = true;
+                e.ResetEmployee();
             ResetStats();
-            ResetStatsRepl();
 
             Front.Clear(); // to be sure (not necessary)
 		}
@@ -52,22 +49,19 @@ namespace agents
 
         public void ResetStats()
         {
+            foreach (Employee e in Employees)
+                e.TimeOfWorking = 0;
             SFront_Time.Reset();
             SFront_Length.Reset();
         }
-        private void ResetStatsRepl() { SFront_Length_Repl.Reset(); SFront_Time_Repl.Reset(); }
-        public void SaveReplStats()
-        {
-            SFront_Time_Repl.AddStat(SFront_Time.GetStat());
-            SFront_Length_Repl.AddStat(SFront_Length.GetStat());
-        }
-        public double GetStats(bool repl, int which) {
+
+        public double GetStats(int which) {
             switch (which)
             {
                 case 1:
-                    return repl ? SFront_Time_Repl.GetStat() : SFront_Time.GetStat();
+                    return SFront_Time.GetStat();
                 case 2:
-                    return repl ? SFront_Length_Repl.GetStat() : SFront_Length.GetStat();
+                    return SFront_Length.GetStat();
             }
             return 0;
         }

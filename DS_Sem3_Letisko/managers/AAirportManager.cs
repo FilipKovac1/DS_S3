@@ -24,72 +24,28 @@ namespace managers
 
         private void ProcessInit(MessageForm message)
         {
-            if (MyAgent.ActualDay != 0)
-            {
-                foreach (Minibus m in ((AMinibus)MySim.FindAgent(SimId.AMinibus)).Minis)
-                {
-                    MessageForm mess = message.CreateCopy();
-                    mess.Code = Mc.Stop;
-                    mess.Addressee = MySim.FindAgent(SimId.AMinibus);
-                    ((MyMessage)mess).Minibus = m;
-                    Request(mess);
-                }
+            ((MySimulation)MySim).AEnv.Generate = true;
+            MySim.CurrentTime = MyAgent.DayStart - MyAgent.HeatUp.HeatUp;
+            if (MyAgent.HeatUp.HeatUp > 0)
+            { // end heat up
+                message.Addressee = MyAgent.FindAssistant(SimId.EndHeatUp);
+                StartContinualAssistant(message);
             }
-            else
-                ProcessStopBusses(message);
-        }
 
-        /// <summary>
-        /// Next day or and of the replication
-        /// </summary>
-        /// <param name="message"></param>
-        //meta! sender="ASim", id="18", type="Notice"
-        public void ProcessStopBusses(MessageForm message)
-        {
-            if (message.MsgResult <= 0)
+            Random r = new Random(Generator.Seed.GetSeed());
+            foreach (Minibus m in ((AMinibus)MySim.FindAgent(SimId.AMinibus)).Minis)
             {
-                MyAgent.ActualDay++;
-                if (MyAgent.ActualDay <= ((MySimulation)MySim).Repl_Days_C)
-                {
-                    MessageForm messResStatEmpl = message.CreateCopy();
-                    messResStatEmpl.Code = Mc.ResetStat;
-                    messResStatEmpl.MsgResult = 1;
-                    messResStatEmpl.Addressee = MySim.FindAgent(SimId.AEmployee);
-                    MessageForm messResStatMini = messResStatEmpl.CreateCopy();
-                    messResStatMini.Addressee = MySim.FindAgent(SimId.AMinibus);
-                    Notice(messResStatEmpl); Notice(messResStatMini);
-
-                    ((MySimulation)MySim).AEnv.Generate = true;
-                    double new_time = (MyAgent.ActualDay - 1) * Const.DayToSecond + MyAgent.DayStart - MyAgent.HeatUp.HeatUp;
-                    if (MySim.CurrentTime < new_time)
-                        MySim.CurrentTime = new_time;
-                    else
-                        MySim.StopSimulation();
-                    if (MyAgent.HeatUp.HeatUp > 0)
-                    { // end heat up
-                        message.Addressee = MyAgent.FindAssistant(SimId.EndHeatUp);
-                        StartContinualAssistant(message);
-                    }
-
-                    Random r = new Random(Generator.Seed.GetSeed());
-                    foreach (Minibus m in ((AMinibus)MySim.FindAgent(SimId.AMinibus)).Minis)
-                    {
-                        MessageForm mess = message.CreateCopy();
-                        mess.Code = Mc.Move;
-                        mess.Addressee = MySim.FindAgent(SimId.AMinibus);
-                        m.Reinit(r.Next(4) + 1);
-                        ((MyMessage)mess).Minibus = m;
-                        Request(mess);
-                    }
-
-                    MessageForm mess2 = message.CreateCopy();
-                    mess2.Code = Mc.Init;
-                    mess2.Addressee = MySim.FindAgent(SimId.ASim);
-                    Response(mess2);
-                }
-                else // end of replication after all of days happened
-                    MySim.StopReplication();
+                MessageForm mess = message.CreateCopy();
+                mess.Code = Mc.Move;
+                mess.Addressee = MySim.FindAgent(SimId.AMinibus);
+                ((MyMessage)mess).Minibus = m;
+                Request(mess);
             }
+
+            MessageForm mess2 = message.CreateCopy();
+            mess2.Code = Mc.Init;
+            mess2.Addressee = MySim.FindAgent(SimId.ASim);
+            Response(mess2);
         }
 
         //meta! sender="ASim", id="19", type="Request"
@@ -129,9 +85,9 @@ namespace managers
         }
 
         /*!
-		 * Request - Enter to front to wait for a bus
-		 * Response - leave a bus
-		 */
+         * Request - Enter to front to wait for a bus
+         * Response - leave a bus
+         */
         //meta! sender="AMinibus", id="58", type="Response"
         public void ProcessProcessPassenger(MessageForm message)
         {
@@ -151,8 +107,8 @@ namespace managers
         }
 
         /*!
-		 * move of bus
-		 */
+         * move of bus
+         */
         //meta! sender="AMinibus", id="21", type="Response"
         public void ProcessMove(MessageForm message)
         { // go to next stop
@@ -197,9 +153,6 @@ namespace managers
             {
                 case Mc.Move:
                     ProcessMove(message);
-                    break;
-                case Mc.Stop:
-                    ProcessStopBusses(message);
                     break;
 
                 case Mc.ServePassenger:

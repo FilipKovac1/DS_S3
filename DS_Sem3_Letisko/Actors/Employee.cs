@@ -17,12 +17,21 @@ namespace Actors
 
         public bool Free = true;
         public int Index { get; }
+        public double TimeOfWorking = 0;
 
         public Employee(MySimulation sim, int id) : base (sim) => Index = id;
 
-        public override string ToString()
+        public void ResetEmployee()
         {
-            return String.Format("{0}", !Free ? "Working" : "Do nothing");
+            Free = true;
+            TimeOfWorking = 0;
+        }
+
+        public string ToString(double time)
+        {
+            time -= ((MySimulation)MySim).AAirport.DayStart;
+            
+            return String.Format("{0,10} | {1,6:0.00}%", !Free ? "Working" : "Do nothing", (TimeOfWorking / time) * 100);
         }
     }
 }

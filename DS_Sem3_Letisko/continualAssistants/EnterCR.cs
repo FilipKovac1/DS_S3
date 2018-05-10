@@ -24,7 +24,14 @@ namespace continualAssistants
 		public void ProcessStart(MessageForm message)
         {
             message.Code = Mc.Done; // here its still 0 cause its just init
-            Hold(MyAgent.GetEnter(Rand, 3), message);
+            double l = MyAgent.GetEnter(Rand, 3);
+            if (l >= 0)
+                Hold(l, message);
+            else
+            {
+                MyAgent.Generate = false;
+                Hold(0, message);
+            }
         }
 
 		//meta! userInfo="Process messages defined in code", id="0"

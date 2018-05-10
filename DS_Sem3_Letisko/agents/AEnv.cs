@@ -32,20 +32,13 @@ namespace agents
         }
 
         private StatTime TimeInSystemRental { get; set; }
-        private StatTime TimeInSystemRentalRepl { get; set; }
         private StatTime TimeInSystemReturn { get; set; }
-        private StatTime TimeInSystemReturnRepl { get; set; }
-
-
-        private double[] ThinningPreviousInterval; 
 
         public AEnv(int id, Simulation mySim, Agent parent) :
             base(id, mySim, parent)
         {
             TimeInSystemRental = new StatTime();
             TimeInSystemReturn = new StatTime();
-            TimeInSystemRentalRepl = new StatTime();
-            TimeInSystemReturnRepl = new StatTime();
 
             Init();
         }
@@ -53,12 +46,11 @@ namespace agents
         private int GetActualInterval()
         {
             AAirport localA = ((MySimulation)MySim).AAirport;
-            int actDay = (localA.ActualDay == 0 ? 0 : localA.ActualDay - 1) * Const.DayToSecond;
-            if (MySim.CurrentTime < Const.EnterIntervalSize + localA.DayStart + actDay)
+            if (MySim.CurrentTime < Const.EnterIntervalSize + localA.DayStart)
                 return 0; // its heating up or just first interval
             else
             {
-                int interval = (int)Math.Floor((MySim.CurrentTime - actDay - localA.DayStart) / Const.EnterIntervalSize);
+                int interval = (int)Math.Floor((MySim.CurrentTime - localA.DayStart) / Const.EnterIntervalSize);
                 // return -1 if it should end up with gen enters
                 return interval >= Const.EnterIntervalCount ? -1 : interval;
             }
@@ -74,11 +66,9 @@ namespace agents
             {
                 double Lambda = Const.EnterExpLambda[(terminal - 1), interval];
                 double s = Distributions.GetExp(rand, Lambda); /// TODO EnterInterval all 0
-                double actDayInSec = (((MySimulation)MySim).AAirport.ActualDay == 0 ? 0 : ((MySimulation)MySim).AAirport.ActualDay - 1) * Const.DayToSecond;
-                double endOfInterval = Const.EnterIntervalEndTime[interval] + actDayInSec;
-                if (MySim.CurrentTime + s > endOfInterval)
+                if (MySim.CurrentTime + s > Const.EnterIntervalEndTime[interval])
                 { // here check if its in another interval
-                    return PiecewiseThinning(s, interval, actDayInSec, terminal);
+                    return PiecewiseThinning(s, interval, terminal);
                 }
                 else
                     return s;
@@ -89,16 +79,16 @@ namespace agents
             }
         }
 
-        private double PiecewiseThinning(double s, int interval, double actDayInSeconds, int terminal)
+        private double PiecewiseThinning(double s, int interval, int terminal)
         {
             if (interval + 1 >= Const.EnterIntervalCount) // dont check last interval when overflow
                 return -1;
 
-            while (MySim.CurrentTime + s > actDayInSeconds + Const.EnterIntervalEndTime[interval + 1]) // check for overflow more than one interval
+            while (MySim.CurrentTime + s > Const.EnterIntervalEndTime[interval + 1]) // check for overflow more than one interval
                 s -= Const.EnterIntervalSize;
 
             // if the s is less than lambda of the next interval
-            while ((MySim.CurrentTime + s - (actDayInSeconds + Const.EnterIntervalEndTime[interval])) > Const.EnterExpLambda[terminal - 1, interval + 1])
+            while ((MySim.CurrentTime + s - Const.EnterIntervalEndTime[interval]) > Const.EnterExpLambda[terminal - 1, interval + 1])
                 s -= Const.EnterExpLambda[terminal - 1, interval + 1];
 
             return s;
@@ -110,12 +100,8 @@ namespace agents
 
             this.InitStats();
             this.ResetStats();
-            this.ResetReplStats();
             // Setup component for the next replication
 
-            ThinningPreviousInterval = new double[Const.EnterIntervalCount];
-            for (int i = 0; i < ThinningPreviousInterval.Length; i++)
-                ThinningPreviousInterval[i] = 0;
         }
 
         public void ResetStats()
@@ -123,26 +109,15 @@ namespace agents
             this.TimeInSystemReturn.Reset();
             this.TimeInSystemRental.Reset();
         }
-
-        private void ResetReplStats()
-        {
-            this.TimeInSystemReturnRepl.Reset();
-            this.TimeInSystemRentalRepl.Reset();
-        }
-
-        public void InsertToReplStats() // after day
-        {
-            this.TimeInSystemReturnRepl.AddStat(TimeInSystemReturn.GetStat());
-            this.TimeInSystemRentalRepl.AddStat(TimeInSystemRental.GetStat());
-        }
-        public double GetReplStats(int which)
+        
+        public double GetStats(int which)
         {
             switch (which)
             {
                 case 1:
-                    return TimeInSystemRentalRepl.GetStat();
+                    return TimeInSystemRental.GetStat();
                 case 2:
-                    return TimeInSystemReturnRepl.GetStat();
+                    return TimeInSystemReturn.GetStat();
             }
 
             return 0;

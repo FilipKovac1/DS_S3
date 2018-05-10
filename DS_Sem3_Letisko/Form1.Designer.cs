@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this._l_Simulation_Time = new System.Windows.Forms.Label();
             this.simulationSpeed = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,13 +65,13 @@
             this.tables_b = new System.Windows.Forms.TabPage();
             this.tables_e = new System.Windows.Forms.TabPage();
             this.stats_actual = new System.Windows.Forms.TabPage();
+            this._l_act_cr_wait_size_avg = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
             this._l_act_cr_wait_size = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this._l_act_cr_wait_time = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
-            this.cr_count_out = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
             this.cr_count_in = new System.Windows.Forms.Label();
             this.t2_count = new System.Windows.Forms.Label();
             this.t1_count = new System.Windows.Forms.Label();
@@ -137,8 +137,12 @@
             this.chartReplMini = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label19 = new System.Windows.Forms.Label();
             this.replNumberEmpl = new System.Windows.Forms.TextBox();
-            this._l_act_cr_wait_size_avg = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this._l_act_people_in_sim = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this._l_act_serv_people = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this._l_act_moving_people = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.simulationSpeed)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.inputs.SuspendLayout();
@@ -179,7 +183,7 @@
             this.simulationSpeed.TabIndex = 1;
             this.simulationSpeed.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.simulationSpeed.Value = 20;
-            this.simulationSpeed.ValueChanged += new System.EventHandler(this.tb_valueChanged);
+            this.simulationSpeed.ValueChanged += new System.EventHandler(this.Tb_valueChanged);
             // 
             // label1
             // 
@@ -390,7 +394,7 @@
             this._tb_Empl_Count.Name = "_tb_Empl_Count";
             this._tb_Empl_Count.Size = new System.Drawing.Size(145, 20);
             this._tb_Empl_Count.TabIndex = 8;
-            this._tb_Empl_Count.Text = "18";
+            this._tb_Empl_Count.Text = "3";
             // 
             // _tb_Mini_Count
             // 
@@ -398,7 +402,7 @@
             this._tb_Mini_Count.Name = "_tb_Mini_Count";
             this._tb_Mini_Count.Size = new System.Drawing.Size(145, 20);
             this._tb_Mini_Count.TabIndex = 7;
-            this._tb_Mini_Count.Text = "7";
+            this._tb_Mini_Count.Text = "4";
             // 
             // label6
             // 
@@ -461,6 +465,12 @@
             // 
             // stats_actual
             // 
+            this.stats_actual.Controls.Add(this.label47);
+            this.stats_actual.Controls.Add(this._l_act_moving_people);
+            this.stats_actual.Controls.Add(this.label43);
+            this.stats_actual.Controls.Add(this._l_act_serv_people);
+            this.stats_actual.Controls.Add(this.label40);
+            this.stats_actual.Controls.Add(this._l_act_people_in_sim);
             this.stats_actual.Controls.Add(this._l_act_cr_wait_size_avg);
             this.stats_actual.Controls.Add(this.label45);
             this.stats_actual.Controls.Add(this._l_act_cr_wait_size);
@@ -468,8 +478,6 @@
             this.stats_actual.Controls.Add(this._l_act_cr_wait_time);
             this.stats_actual.Controls.Add(this.label46);
             this.stats_actual.Controls.Add(this.label39);
-            this.stats_actual.Controls.Add(this.cr_count_out);
-            this.stats_actual.Controls.Add(this.label40);
             this.stats_actual.Controls.Add(this.cr_count_in);
             this.stats_actual.Controls.Add(this.t2_count);
             this.stats_actual.Controls.Add(this.t1_count);
@@ -484,6 +492,26 @@
             this.stats_actual.TabIndex = 1;
             this.stats_actual.Text = "Actual values";
             this.stats_actual.UseVisualStyleBackColor = true;
+            // 
+            // _l_act_cr_wait_size_avg
+            // 
+            this._l_act_cr_wait_size_avg.AutoSize = true;
+            this._l_act_cr_wait_size_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._l_act_cr_wait_size_avg.Location = new System.Drawing.Point(158, 128);
+            this._l_act_cr_wait_size_avg.Name = "_l_act_cr_wait_size_avg";
+            this._l_act_cr_wait_size_avg.Size = new System.Drawing.Size(98, 17);
+            this._l_act_cr_wait_size_avg.TabIndex = 19;
+            this._l_act_cr_wait_size_avg.Text = "Car rent count";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(46, 145);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(106, 17);
+            this.label45.TabIndex = 18;
+            this.label45.Text = "Front size        :";
             // 
             // _l_act_cr_wait_size
             // 
@@ -535,26 +563,6 @@
             this.label39.TabIndex = 13;
             this.label39.Text = "Length of queue for service";
             // 
-            // cr_count_out
-            // 
-            this.cr_count_out.AutoSize = true;
-            this.cr_count_out.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cr_count_out.Location = new System.Drawing.Point(135, 74);
-            this.cr_count_out.Name = "cr_count_out";
-            this.cr_count_out.Size = new System.Drawing.Size(98, 17);
-            this.cr_count_out.TabIndex = 12;
-            this.cr_count_out.Text = "Car rent count";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(46, 74);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(83, 17);
-            this.label40.TabIndex = 11;
-            this.label40.Text = "CR out      : ";
-            // 
             // cr_count_in
             // 
             this.cr_count_in.AutoSize = true;
@@ -591,9 +599,9 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(46, 57);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(78, 17);
+            this.label10.Size = new System.Drawing.Size(79, 17);
             this.label10.TabIndex = 7;
-            this.label10.Text = "CR in        :";
+            this.label10.Text = "CR            :";
             // 
             // label9
             // 
@@ -1051,7 +1059,7 @@
             this.simModeSlow.TabStop = true;
             this.simModeSlow.Text = "Show results";
             this.simModeSlow.UseVisualStyleBackColor = true;
-            this.simModeSlow.CheckedChanged += new System.EventHandler(this.simModeChanged);
+            this.simModeSlow.CheckedChanged += new System.EventHandler(this.SimModeChanged);
             // 
             // simModeTurbo
             // 
@@ -1065,7 +1073,7 @@
             this.simModeTurbo.Text = "Turbo";
             this.simModeTurbo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.simModeTurbo.UseVisualStyleBackColor = true;
-            this.simModeTurbo.CheckedChanged += new System.EventHandler(this.simModeChanged);
+            this.simModeTurbo.CheckedChanged += new System.EventHandler(this.SimModeChanged);
             // 
             // label2
             // 
@@ -1085,7 +1093,7 @@
             this.btnStart.TabIndex = 8;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
             // 
             // btnStop
             // 
@@ -1095,7 +1103,7 @@
             this.btnStop.TabIndex = 9;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            this.btnStop.Click += new System.EventHandler(this.BtnStop_Click);
             // 
             // btnPause
             // 
@@ -1105,7 +1113,7 @@
             this.btnPause.TabIndex = 10;
             this.btnPause.Text = "Pause";
             this.btnPause.UseVisualStyleBackColor = true;
-            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            this.btnPause.Click += new System.EventHandler(this.BtnPause_Click);
             // 
             // tabSimGraph
             // 
@@ -1182,25 +1190,25 @@
             // 
             // chartReplEmpl
             // 
-            chartArea1.AxisX.LineColor = System.Drawing.Color.Gray;
-            chartArea1.AxisX.Title = "Number of employees";
-            chartArea1.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea1.AxisY.LineColor = System.Drawing.Color.Gray;
-            chartArea1.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea1.AxisY.Title = "t";
-            chartArea1.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea1.Name = "ChartArea1";
-            this.chartReplEmpl.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chartReplEmpl.Legends.Add(legend1);
+            chartArea9.AxisX.LineColor = System.Drawing.Color.Gray;
+            chartArea9.AxisX.Title = "Number of employees";
+            chartArea9.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea9.AxisY.LineColor = System.Drawing.Color.Gray;
+            chartArea9.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea9.AxisY.Title = "t";
+            chartArea9.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea9.Name = "ChartArea1";
+            this.chartReplEmpl.ChartAreas.Add(chartArea9);
+            legend9.Enabled = false;
+            legend9.Name = "Legend1";
+            this.chartReplEmpl.Legends.Add(legend9);
             this.chartReplEmpl.Location = new System.Drawing.Point(10, 35);
             this.chartReplEmpl.Name = "chartReplEmpl";
-            series1.ChartArea = "ChartArea1";
-            series1.IsValueShownAsLabel = true;
-            series1.Legend = "Legend1";
-            series1.Name = "Values";
-            this.chartReplEmpl.Series.Add(series1);
+            series9.ChartArea = "ChartArea1";
+            series9.IsValueShownAsLabel = true;
+            series9.Legend = "Legend1";
+            series9.Name = "Values";
+            this.chartReplEmpl.Series.Add(series9);
             this.chartReplEmpl.Size = new System.Drawing.Size(742, 451);
             this.chartReplEmpl.TabIndex = 2;
             // 
@@ -1249,31 +1257,31 @@
             // 
             // chartReplMini
             // 
-            chartArea2.AxisX.LineColor = System.Drawing.Color.Gray;
-            chartArea2.AxisX.Title = "Number of minibuses";
-            chartArea2.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea2.AxisY.IsStartedFromZero = false;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.Gray;
-            chartArea2.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea2.AxisY.Title = "t";
-            chartArea2.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea2.Name = "ChartArea1";
-            this.chartReplMini.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartReplMini.Legends.Add(legend2);
+            chartArea10.AxisX.LineColor = System.Drawing.Color.Gray;
+            chartArea10.AxisX.Title = "Number of minibuses";
+            chartArea10.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea10.AxisY.IsStartedFromZero = false;
+            chartArea10.AxisY.LineColor = System.Drawing.Color.Gray;
+            chartArea10.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea10.AxisY.Title = "t";
+            chartArea10.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea10.Name = "ChartArea1";
+            this.chartReplMini.ChartAreas.Add(chartArea10);
+            legend10.Enabled = false;
+            legend10.Name = "Legend1";
+            this.chartReplMini.Legends.Add(legend10);
             this.chartReplMini.Location = new System.Drawing.Point(10, 36);
             this.chartReplMini.Name = "chartReplMini";
-            series2.ChartArea = "ChartArea1";
-            series2.IsValueShownAsLabel = true;
-            series2.Legend = "Legend1";
-            series2.Name = "Values";
-            this.chartReplMini.Series.Add(series2);
+            series10.ChartArea = "ChartArea1";
+            series10.IsValueShownAsLabel = true;
+            series10.Legend = "Legend1";
+            series10.Name = "Values";
+            this.chartReplMini.Series.Add(series10);
             this.chartReplMini.Size = new System.Drawing.Size(742, 451);
             this.chartReplMini.TabIndex = 4;
             this.chartReplMini.Text = "chartReplMini";
-            title1.Name = "Time of passenger in simulation";
-            this.chartReplMini.Titles.Add(title1);
+            title5.Name = "Time of passenger in simulation";
+            this.chartReplMini.Titles.Add(title5);
             // 
             // label19
             // 
@@ -1294,25 +1302,65 @@
             this.replNumberEmpl.TabIndex = 2;
             this.replNumberEmpl.Text = "18";
             // 
-            // _l_act_cr_wait_size_avg
+            // label40
             // 
-            this._l_act_cr_wait_size_avg.AutoSize = true;
-            this._l_act_cr_wait_size_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._l_act_cr_wait_size_avg.Location = new System.Drawing.Point(158, 128);
-            this._l_act_cr_wait_size_avg.Name = "_l_act_cr_wait_size_avg";
-            this._l_act_cr_wait_size_avg.Size = new System.Drawing.Size(98, 17);
-            this._l_act_cr_wait_size_avg.TabIndex = 19;
-            this._l_act_cr_wait_size_avg.Text = "Car rent count";
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(7, 196);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(161, 17);
+            this.label40.TabIndex = 21;
+            this.label40.Text = "Groups in simulation     :";
             // 
-            // label45
+            // _l_act_people_in_sim
             // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(46, 145);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(106, 17);
-            this.label45.TabIndex = 18;
-            this.label45.Text = "Front size        :";
+            this._l_act_people_in_sim.AutoSize = true;
+            this._l_act_people_in_sim.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._l_act_people_in_sim.Location = new System.Drawing.Point(179, 196);
+            this._l_act_people_in_sim.Name = "_l_act_people_in_sim";
+            this._l_act_people_in_sim.Size = new System.Drawing.Size(134, 17);
+            this._l_act_people_in_sim.TabIndex = 20;
+            this._l_act_people_in_sim.Text = "People in simulation";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(7, 213);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(161, 17);
+            this.label43.TabIndex = 23;
+            this.label43.Text = "Serving group               :";
+            // 
+            // _l_act_serv_people
+            // 
+            this._l_act_serv_people.AutoSize = true;
+            this._l_act_serv_people.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._l_act_serv_people.Location = new System.Drawing.Point(179, 213);
+            this._l_act_serv_people.Name = "_l_act_serv_people";
+            this._l_act_serv_people.Size = new System.Drawing.Size(102, 17);
+            this._l_act_serv_people.TabIndex = 22;
+            this._l_act_serv_people.Text = "People serving";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(10, 230);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(160, 17);
+            this.label47.TabIndex = 25;
+            this.label47.Text = "Moving people              :";
+            // 
+            // _l_act_moving_people
+            // 
+            this._l_act_moving_people.AutoSize = true;
+            this._l_act_moving_people.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._l_act_moving_people.Location = new System.Drawing.Point(179, 230);
+            this._l_act_moving_people.Name = "_l_act_moving_people";
+            this._l_act_moving_people.Size = new System.Drawing.Size(102, 17);
+            this._l_act_moving_people.TabIndex = 24;
+            this._l_act_moving_people.Text = "People mobing";
             // 
             // Form1
             // 
@@ -1413,8 +1461,6 @@
         private System.Windows.Forms.TabPage tables_e;
         private System.Windows.Forms.TabPage stats_repl;
         private System.Windows.Forms.TabPage stats_global;
-        private System.Windows.Forms.Label cr_count_out;
-        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label repl_t2_wait_time;
         private System.Windows.Forms.Label repl_t1_wait_time;
         private System.Windows.Forms.Label label29;
@@ -1458,6 +1504,12 @@
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label _l_act_cr_wait_size_avg;
         private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label _l_act_people_in_sim;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label _l_act_serv_people;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label _l_act_moving_people;
     }
 }
 

@@ -9,7 +9,6 @@ namespace agents
 	{
         public EndHeatUp HeatUp { get; set; }
         public double DayStart { get; set; }
-        public int ActualDay { get; set; }
 
         public int ServedPass { get; set; }
 
@@ -20,7 +19,6 @@ namespace agents
         public override void PrepareReplication()
         {
             base.PrepareReplication();// Setup component for the next replication
-            ActualDay = 0;
 
             ServedPass = 0;
         }

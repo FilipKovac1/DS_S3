@@ -24,7 +24,14 @@ namespace continualAssistants
 		public void ProcessStart(MessageForm message)
         {
             message.Code = Mc.Done;
-            Hold(MyAgent.GetEnter(Rand, 2), message);
+            double l = MyAgent.GetEnter(Rand, 2);
+            if (l >= 0)
+                Hold(l, message);
+            else
+            {
+                MyAgent.Generate = false;
+                Hold(0, message);
+            }
         }
 
 		//meta! userInfo="Process messages defined in code", id="0"
