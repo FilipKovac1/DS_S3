@@ -36,10 +36,10 @@ namespace simulation
         public StatTime SWaitT2_Length { get; set; }
         public SIntervalOfConfidence SWaitT2_Length_I { get; set; }
 
-        private double Driver_Salary;
+        public double Driver_Salary;
         public StatTime SMinibus_Cost { get; set; }
         public SIntervalOfConfidence SMinibus_Cost_I { get; set; }
-        private double Employee_Salary;
+        public double Employee_Salary;
         public StatTime SEmployee_Cost { get; set; }
         public SIntervalOfConfidence SEmployee_Cost_I { get; set; }
 

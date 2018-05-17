@@ -6,6 +6,7 @@ using System.Drawing;
 using simulation;
 using OSPABA;
 using System.Linq;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DS_Sem3_Letisko
 {
@@ -16,8 +17,11 @@ namespace DS_Sem3_Letisko
     {
         MySimulation Simulation = null;
 
-        private static readonly double[] SimSpeed = new double[] {1, 0.75, 0.5, 0.25, 0.1, 0.075, 0.05, 0.025, 0.01, 0.0075, 0.005, 0.0025, 0.001, 0.00075, 0.0005, 0.00025, 0.0001, 0.0005, 0.00001, 0.000001};
+        private static readonly double[] SimSpeed = new double[] { 1, 0.75, 0.5, 0.25, 0.1, 0.075, 0.05, 0.025, 0.01, 0.0075, 0.005, 0.0025, 0.001, 0.00075, 0.0005, 0.00025, 0.0001, 0.0005, 0.00001, 0.000001 };
         private static readonly string[] SimSpeedString = new string[] { "1:1", "2:1", "5:1", "10:1", "15:1", "20:1", "25:1", "50:1", "75:1", "100:1", "125:1", "150:1", "175:1", "200:1", "250:1", "300:1", "350:1", "400:1", "450:1", "500:1" };
+
+        private bool graphEmpl = false;
+        private bool stopSim = false;
 
         public Form1()
         {
@@ -25,8 +29,12 @@ namespace DS_Sem3_Letisko
             // gui events
 
             for (int i = 0; i < Const.CapacityOptions.Length; i++)
+            {
                 _cb_TypeMinis.Items.Insert(i, Const.CapacityOptions[i]);
-            _cb_TypeMinis.SelectedIndex = 0;
+                _graph_mini_type.Items.Insert(i, Const.CapacityOptions[i]);
+            }
+            _cb_TypeMinis.SelectedIndex = 1;
+            _graph_mini_type.SelectedIndex = 1;
 
             Simulation = new MySimulation();
         }
@@ -103,7 +111,41 @@ namespace DS_Sem3_Letisko
         private void BtnStart_Click(object sender, EventArgs e)
         {
             SetBtnText(btnPause, "Pause");
-            if (tabSimGraph.SelectedTab.Name == "tabGraphs") { }
+            if (tabSimGraph.SelectedTab.Name == "tabGraphs")
+                try
+                {
+                    stopSim = false;
+                    chartReplEmpl.Series["TimeIn"].Points.Clear();
+                    chartReplEmpl.Series["TimeOut"].Points.Clear();
+                    chartReplEmpl2.Series["Workload"].Points.Clear();
+                    chartReplEmpl2.Series["Costs"].Points.Clear();
+                    chartReplMini.Series["TimeIn"].Points.Clear();
+                    chartReplMini.Series["TimeOut"].Points.Clear();
+                    chartReplMini2.Series["Workload"].Points.Clear();
+                    chartReplMini2.Series["Costs"].Points.Clear();
+                    graphEmpl = tabGraphEmplMini.SelectedTab.Name == "tabGraphEmpl";
+                    int repl_C = Int32.Parse(_graph_repl_count.Text);
+                    int mini_C = graphEmpl ? Int32.Parse(_graph_mini_count.Text) : 1; // start from 3 minis
+                    int empl_C = graphEmpl ? 1 : Int32.Parse(_graph_empl_count.Text); // start from 10 empl
+                    double days_S = 16.0 * Const.HourToSecond;
+                    double days_E = 20.5 * Const.HourToSecond;
+                    double heatUp = 2 * Const.HourToSecond;
+                    int mini_T = _graph_mini_type.SelectedIndex;
+
+                    bool Slow = false;
+
+                    double Driver_Salary = Double.Parse(_graph_mini_salary.Text);
+                    double Employee_Salary = Double.Parse(_graph_empl_salary.Text);
+
+                    Simulation.SetParams(mini_C, mini_T, empl_C, days_S, days_E, heatUp, repl_C, Slow, 0, 0, Driver_Salary, Employee_Salary);
+                    Simulation.OnSimulationDidFinish(sim => RefreshUISimulation((MySimulation)sim));
+                    Simulation.OnReplicationDidFinish(sim => { SetLabelText(_l_Simulation_Time, ComputeHours(sim, "Replication", null)); });
+                    Simulation.Start(); // start simulation
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show("Inputs were of wrong type. All inputs have to be of type integer. \n" + err.ToString());
+                }
             else
                 try
                 {
@@ -127,7 +169,6 @@ namespace DS_Sem3_Letisko
 
                     Simulation.SetParams(mini_C, mini_T, empl_C, days_S, days_E, heatUp, repl_C, Slow, interval, duration, Driver_Salary, Employee_Salary);
                     Simulation.OnReplicationDidFinish(sim => RefreshUIReplication(sim));
-                    Simulation.OnSimulationDidFinish(sim => RefreshUISimulation(sim));
                     Simulation.OnRefreshUI(sim => RefreshUI(sim));
                     Simulation.OnPause(sim => { SetLabelText(_l_Simulation_Time, ComputeHours(sim, "", null)); });
 
@@ -135,7 +176,7 @@ namespace DS_Sem3_Letisko
                 }
                 catch (Exception err)
                 {
-                    MessageBox.Show("Inputs were of wrong type. All inputs have to be of type integer.");
+                    MessageBox.Show("Inputs were of wrong type. All inputs have to be of type integer. \n" + err.ToString());
                 }
         }
 
@@ -147,9 +188,64 @@ namespace DS_Sem3_Letisko
                 RefreshReplicationStats((MySimulation)simulation);
         }
 
-        private void RefreshUISimulation(Simulation simulation)
+        private void RefreshUISimulation(MySimulation simulation)
         {
+            if (this.InvokeRequired) this.Invoke(new System.Action(() => FillGraph(simulation)));
+            else FillGraph(simulation);
+            if (graphEmpl)
+            {
+                if (simulation.AEmployee.Employees.Count < 6)
+                    ReinitSim(simulation.AEmployee.Employees.Count + 1, simulation.AMinibus.Minis.Count); // reinit simulation with new value of number of employees +1
+            }
+            else if (simulation.AMinibus.Minis.Count < 5)
+                ReinitSim(simulation.AEmployee.Employees.Count, simulation.AMinibus.Minis.Count + 1); // reinit simulation with new value of number of minis +1
+        }
 
+        /// <summary>
+        /// Reset simulation and add new params (number of employees, number of minibuses)
+        /// </summary>
+        /// <param name="empl"></param>
+        /// <param name="minis"></param>
+        private void ReinitSim(int empl, int minis)
+        {
+            if (!stopSim)
+            {
+                double days_S = 16.0 * Const.HourToSecond;
+                double days_E = 20.5 * Const.HourToSecond;
+                double heatUp = 2 * Const.HourToSecond;
+                Simulation.SetParams(minis, Simulation.AMinibus.Minis.First().Type, empl, days_S, days_E, heatUp, Simulation.ReplicationCount, false, 0, 0, Simulation.Driver_Salary, Simulation.Employee_Salary);
+                Simulation.Start(); // start simulation
+            }
+        }
+        
+        private void FillGraph(MySimulation sim)
+        {
+            Chart chart, chart2 = null;
+            int x = 0;
+            double v_in = 0, v_out = 0, v_w = 0, v_c = 0;
+            v_in = sim.STimeFromTerminal.GetStat();
+            v_out = sim.STimeFromAirRental.GetStat();
+            if (graphEmpl)
+            {
+                chart = chartReplEmpl;
+                chart2 = chartReplEmpl2;
+                x = sim.AEmployee.Employees.Count;
+                v_w = sim.SEmployee_Working.GetStat();
+                v_c = sim.SEmployee_Cost.GetStat();
+            }
+            else
+            {
+                chart = chartReplMini;
+                chart2 = chartReplMini2;
+                x = sim.AMinibus.Minis.Count;
+                v_w = sim.SMinibus_Working.GetStat();
+                v_c = sim.SMinibus_Cost.GetStat();
+            }
+
+            chart.Series["TimeIn"].Points.AddXY(x, v_in / Const.MinutesToSecond); // set value
+            chart.Series["TimeOut"].Points.AddXY(x, v_out / Const.MinutesToSecond); // set value
+            chart2.Series["Workload"].Points.AddXY(x, v_w); // set value
+            chart2.Series["Costs"].Points.AddXY(x, v_c); // set value
         }
 
         private void RefreshUI(Simulation simulation)
@@ -262,6 +358,8 @@ namespace DS_Sem3_Letisko
             TimeSpan ts = TimeSpan.FromSeconds(t);
             switch (format)
             {
+                case "Replication":
+                    return String.Format("Replication: {0}", simulation.CurrentReplication + 1);
                 case "HH:mm:ss":
                     return ts.ToString(@"hh\:mm\:ss");
                 default:
@@ -271,6 +369,7 @@ namespace DS_Sem3_Letisko
 
         private void BtnStop_Click(object sender, EventArgs e)
         {
+            stopSim = true;
             SetBtnText(btnPause, "Pause");
             Simulation.StopSimulation();
             Simulation = new MySimulation();
@@ -282,7 +381,8 @@ namespace DS_Sem3_Letisko
             {
                 Simulation.PauseSimulation();
                 SetBtnText(btnPause, "Continue");
-            } else
+            }
+            else
             {
                 Simulation.ResumeSimulation();
                 SetBtnText(btnPause, "Pause");
@@ -312,7 +412,8 @@ namespace DS_Sem3_Letisko
         private void Tb_valueChanged(object sender, EventArgs e)
         {
             SetLabelText(simSpeedLabel, SimSpeedString[simulationSpeed.Value - 1]);
-            if (simModeSlow.Checked) {
+            if (simModeSlow.Checked)
+            {
                 Simulation.SetSpeed(simulationSpeed.Value * 20, SimSpeed[simulationSpeed.Value - 1]);
             }
         }
@@ -322,7 +423,8 @@ namespace DS_Sem3_Letisko
             if (simModeSlow.Checked)
             {
                 Simulation.SetSpeed(simulationSpeed.Value * 20, SimSpeed[simulationSpeed.Value - 1]);
-            } else
+            }
+            else
             {
                 Simulation.SetMaxSpeed();
             }

@@ -31,9 +31,20 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this._l_Simulation_Time = new System.Windows.Forms.Label();
             this.simulationSpeed = new System.Windows.Forms.TrackBar();
@@ -71,6 +82,14 @@
             this.tables_b = new System.Windows.Forms.TabPage();
             this.tables_e = new System.Windows.Forms.TabPage();
             this.stats_actual = new System.Windows.Forms.TabPage();
+            this.label53 = new System.Windows.Forms.Label();
+            this.cr_time_in_avg = new System.Windows.Forms.Label();
+            this.t2_time_avg = new System.Windows.Forms.Label();
+            this.t1_time_avg = new System.Windows.Forms.Label();
+            this._l_act_cr_wait_size_avg = new System.Windows.Forms.Label();
+            this.cr_count_in_avg = new System.Windows.Forms.Label();
+            this.t2_count_avg = new System.Windows.Forms.Label();
+            this.t1_count_avg = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this._l_act_moving_people = new System.Windows.Forms.Label();
@@ -91,6 +110,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.stats_repl = new System.Windows.Forms.TabPage();
+            this.mini_workload_ic = new System.Windows.Forms.Label();
+            this.mini_workload = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
             this.empl_workload_ic = new System.Windows.Forms.Label();
             this.empl_workload = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -135,28 +157,29 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tabGraphs = new System.Windows.Forms.TabPage();
+            this._graph_empl_salary = new System.Windows.Forms.TextBox();
+            this._graph_mini_salary = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this._graph_mini_type = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this._graph_repl_count = new System.Windows.Forms.TextBox();
             this.tabGraphEmplMini = new System.Windows.Forms.TabControl();
             this.tabGraphEmpl = new System.Windows.Forms.TabPage();
+            this.label50 = new System.Windows.Forms.Label();
+            this._graph_mini_count = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.chartReplEmpl = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label18 = new System.Windows.Forms.Label();
-            this.replNumberMinis = new System.Windows.Forms.TextBox();
+            this.chartReplEmpl2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabGraphMinis = new System.Windows.Forms.TabPage();
             this.label30 = new System.Windows.Forms.Label();
-            this.chartReplMini = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label19 = new System.Windows.Forms.Label();
-            this.replNumberEmpl = new System.Windows.Forms.TextBox();
-            this.t1_count_avg = new System.Windows.Forms.Label();
-            this.t2_count_avg = new System.Windows.Forms.Label();
-            this.cr_count_in_avg = new System.Windows.Forms.Label();
-            this._l_act_cr_wait_size_avg = new System.Windows.Forms.Label();
-            this.cr_time_in_avg = new System.Windows.Forms.Label();
-            this.t2_time_avg = new System.Windows.Forms.Label();
-            this.t1_time_avg = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.mini_workload_ic = new System.Windows.Forms.Label();
-            this.mini_workload = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
+            this._graph_empl_count = new System.Windows.Forms.TextBox();
+            this.chartReplMini = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartReplMini2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label51 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.simulationSpeed)).BeginInit();
             this.tabSimGraph.SuspendLayout();
             this.tabSim.SuspendLayout();
@@ -168,8 +191,10 @@
             this.tabGraphEmplMini.SuspendLayout();
             this.tabGraphEmpl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartReplEmpl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartReplEmpl2)).BeginInit();
             this.tabGraphMinis.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartReplMini)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartReplMini2)).BeginInit();
             this.SuspendLayout();
             // 
             // _l_Simulation_Time
@@ -588,6 +613,86 @@
             this.stats_actual.Text = "Actual values";
             this.stats_actual.UseVisualStyleBackColor = true;
             // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(513, 3);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(204, 20);
+            this.label53.TabIndex = 35;
+            this.label53.Text = "Average of 1 day (wait time)";
+            // 
+            // cr_time_in_avg
+            // 
+            this.cr_time_in_avg.AutoSize = true;
+            this.cr_time_in_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cr_time_in_avg.Location = new System.Drawing.Point(543, 57);
+            this.cr_time_in_avg.Name = "cr_time_in_avg";
+            this.cr_time_in_avg.Size = new System.Drawing.Size(89, 17);
+            this.cr_time_in_avg.TabIndex = 34;
+            this.cr_time_in_avg.Text = "Car rent time";
+            // 
+            // t2_time_avg
+            // 
+            this.t2_time_avg.AutoSize = true;
+            this.t2_time_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.t2_time_avg.Location = new System.Drawing.Point(543, 40);
+            this.t2_time_avg.Name = "t2_time_avg";
+            this.t2_time_avg.Size = new System.Drawing.Size(105, 17);
+            this.t2_time_avg.TabIndex = 33;
+            this.t2_time_avg.Text = "Terminal 2 time";
+            // 
+            // t1_time_avg
+            // 
+            this.t1_time_avg.AutoSize = true;
+            this.t1_time_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.t1_time_avg.Location = new System.Drawing.Point(543, 23);
+            this.t1_time_avg.Name = "t1_time_avg";
+            this.t1_time_avg.Size = new System.Drawing.Size(105, 17);
+            this.t1_time_avg.TabIndex = 32;
+            this.t1_time_avg.Text = "Terminal 1 time";
+            // 
+            // _l_act_cr_wait_size_avg
+            // 
+            this._l_act_cr_wait_size_avg.AutoSize = true;
+            this._l_act_cr_wait_size_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._l_act_cr_wait_size_avg.Location = new System.Drawing.Point(373, 128);
+            this._l_act_cr_wait_size_avg.Name = "_l_act_cr_wait_size_avg";
+            this._l_act_cr_wait_size_avg.Size = new System.Drawing.Size(98, 17);
+            this._l_act_cr_wait_size_avg.TabIndex = 31;
+            this._l_act_cr_wait_size_avg.Text = "Car rent count";
+            // 
+            // cr_count_in_avg
+            // 
+            this.cr_count_in_avg.AutoSize = true;
+            this.cr_count_in_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cr_count_in_avg.Location = new System.Drawing.Point(373, 57);
+            this.cr_count_in_avg.Name = "cr_count_in_avg";
+            this.cr_count_in_avg.Size = new System.Drawing.Size(98, 17);
+            this.cr_count_in_avg.TabIndex = 29;
+            this.cr_count_in_avg.Text = "Car rent count";
+            // 
+            // t2_count_avg
+            // 
+            this.t2_count_avg.AutoSize = true;
+            this.t2_count_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.t2_count_avg.Location = new System.Drawing.Point(373, 40);
+            this.t2_count_avg.Name = "t2_count_avg";
+            this.t2_count_avg.Size = new System.Drawing.Size(114, 17);
+            this.t2_count_avg.TabIndex = 28;
+            this.t2_count_avg.Text = "Terminal 2 count";
+            // 
+            // t1_count_avg
+            // 
+            this.t1_count_avg.AutoSize = true;
+            this.t1_count_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.t1_count_avg.Location = new System.Drawing.Point(373, 23);
+            this.t1_count_avg.Name = "t1_count_avg";
+            this.t1_count_avg.Size = new System.Drawing.Size(114, 17);
+            this.t1_count_avg.TabIndex = 27;
+            this.t1_count_avg.Text = "Terminal 1 count";
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -832,6 +937,36 @@
             this.stats_repl.TabIndex = 4;
             this.stats_repl.Text = "Replication stats";
             this.stats_repl.UseVisualStyleBackColor = true;
+            // 
+            // mini_workload_ic
+            // 
+            this.mini_workload_ic.AutoSize = true;
+            this.mini_workload_ic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mini_workload_ic.Location = new System.Drawing.Point(462, 308);
+            this.mini_workload_ic.Name = "mini_workload_ic";
+            this.mini_workload_ic.Size = new System.Drawing.Size(116, 17);
+            this.mini_workload_ic.TabIndex = 110;
+            this.mini_workload_ic.Text = "Minibus workload";
+            // 
+            // mini_workload
+            // 
+            this.mini_workload.AutoSize = true;
+            this.mini_workload.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mini_workload.Location = new System.Drawing.Point(228, 308);
+            this.mini_workload.Name = "mini_workload";
+            this.mini_workload.Size = new System.Drawing.Size(116, 17);
+            this.mini_workload.TabIndex = 109;
+            this.mini_workload.Text = "Minibus workload";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(57, 308);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(160, 17);
+            this.label44.TabIndex = 108;
+            this.label44.Text = "Minibus workload          :";
             // 
             // empl_workload_ic
             // 
@@ -1265,6 +1400,14 @@
             // 
             // tabGraphs
             // 
+            this.tabGraphs.Controls.Add(this._graph_empl_salary);
+            this.tabGraphs.Controls.Add(this._graph_mini_salary);
+            this.tabGraphs.Controls.Add(this.label48);
+            this.tabGraphs.Controls.Add(this.label49);
+            this.tabGraphs.Controls.Add(this._graph_mini_type);
+            this.tabGraphs.Controls.Add(this.label24);
+            this.tabGraphs.Controls.Add(this.label23);
+            this.tabGraphs.Controls.Add(this._graph_repl_count);
             this.tabGraphs.Controls.Add(this.tabGraphEmplMini);
             this.tabGraphs.Location = new System.Drawing.Point(4, 22);
             this.tabGraphs.Name = "tabGraphs";
@@ -1274,35 +1417,131 @@
             this.tabGraphs.Text = "Graphs";
             this.tabGraphs.UseVisualStyleBackColor = true;
             // 
+            // _graph_empl_salary
+            // 
+            this._graph_empl_salary.Location = new System.Drawing.Point(700, 13);
+            this._graph_empl_salary.Name = "_graph_empl_salary";
+            this._graph_empl_salary.Size = new System.Drawing.Size(51, 20);
+            this._graph_empl_salary.TabIndex = 25;
+            this._graph_empl_salary.Text = "11.50";
+            // 
+            // _graph_mini_salary
+            // 
+            this._graph_mini_salary.Location = new System.Drawing.Point(517, 12);
+            this._graph_mini_salary.Name = "_graph_mini_salary";
+            this._graph_mini_salary.Size = new System.Drawing.Size(53, 20);
+            this._graph_mini_salary.TabIndex = 24;
+            this._graph_mini_salary.Text = "12.50";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(422, 13);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(89, 20);
+            this.label48.TabIndex = 23;
+            this.label48.Text = "Driver (€/H)";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(576, 13);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(118, 20);
+            this.label49.TabIndex = 22;
+            this.label49.Text = "Employee (€/H)";
+            // 
+            // _graph_mini_type
+            // 
+            this._graph_mini_type.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuItem;
+            this._graph_mini_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._graph_mini_type.DropDownWidth = 50;
+            this._graph_mini_type.Location = new System.Drawing.Point(366, 11);
+            this._graph_mini_type.Name = "_graph_mini_type";
+            this._graph_mini_type.Size = new System.Drawing.Size(50, 21);
+            this._graph_mini_type.TabIndex = 14;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.label24.Location = new System.Drawing.Point(8, 13);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(147, 19);
+            this.label24.TabIndex = 16;
+            this.label24.Text = "Number of replications";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(232, 12);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(128, 20);
+            this.label23.TabIndex = 13;
+            this.label23.Text = "Minibus Capacity";
+            // 
+            // _graph_repl_count
+            // 
+            this._graph_repl_count.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._graph_repl_count.Location = new System.Drawing.Point(161, 9);
+            this._graph_repl_count.Name = "_graph_repl_count";
+            this._graph_repl_count.Size = new System.Drawing.Size(65, 26);
+            this._graph_repl_count.TabIndex = 15;
+            this._graph_repl_count.Text = "500";
+            // 
             // tabGraphEmplMini
             // 
             this.tabGraphEmplMini.Controls.Add(this.tabGraphEmpl);
             this.tabGraphEmplMini.Controls.Add(this.tabGraphMinis);
-            this.tabGraphEmplMini.Location = new System.Drawing.Point(6, 3);
+            this.tabGraphEmplMini.Location = new System.Drawing.Point(6, 41);
             this.tabGraphEmplMini.Name = "tabGraphEmplMini";
             this.tabGraphEmplMini.SelectedIndex = 0;
-            this.tabGraphEmplMini.Size = new System.Drawing.Size(775, 516);
+            this.tabGraphEmplMini.Size = new System.Drawing.Size(775, 478);
             this.tabGraphEmplMini.TabIndex = 0;
             // 
             // tabGraphEmpl
             // 
+            this.tabGraphEmpl.Controls.Add(this.label50);
+            this.tabGraphEmpl.Controls.Add(this._graph_mini_count);
             this.tabGraphEmpl.Controls.Add(this.label31);
             this.tabGraphEmpl.Controls.Add(this.chartReplEmpl);
             this.tabGraphEmpl.Controls.Add(this.label18);
-            this.tabGraphEmpl.Controls.Add(this.replNumberMinis);
+            this.tabGraphEmpl.Controls.Add(this.chartReplEmpl2);
             this.tabGraphEmpl.Location = new System.Drawing.Point(4, 22);
             this.tabGraphEmpl.Name = "tabGraphEmpl";
             this.tabGraphEmpl.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraphEmpl.Size = new System.Drawing.Size(767, 490);
+            this.tabGraphEmpl.Size = new System.Drawing.Size(767, 452);
             this.tabGraphEmpl.TabIndex = 0;
             this.tabGraphEmpl.Text = "Employees";
             this.tabGraphEmpl.UseVisualStyleBackColor = true;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(511, 26);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(175, 24);
+            this.label50.TabIndex = 5;
+            this.label50.Text = "Workload and costs";
+            // 
+            // _graph_mini_count
+            // 
+            this._graph_mini_count.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._graph_mini_count.Location = new System.Drawing.Point(149, 3);
+            this._graph_mini_count.Name = "_graph_mini_count";
+            this._graph_mini_count.Size = new System.Drawing.Size(100, 26);
+            this._graph_mini_count.TabIndex = 0;
+            this._graph_mini_count.Text = "3";
             // 
             // label31
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(276, 24);
+            this.label31.Location = new System.Drawing.Point(74, 26);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(276, 24);
             this.label31.TabIndex = 3;
@@ -1315,7 +1554,7 @@
             chartArea1.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
             chartArea1.AxisY.LineColor = System.Drawing.Color.Gray;
             chartArea1.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea1.AxisY.Title = "t";
+            chartArea1.AxisY.Title = "t m";
             chartArea1.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
             chartArea1.Name = "ChartArea1";
             this.chartReplEmpl.ChartAreas.Add(chartArea1);
@@ -1327,40 +1566,63 @@
             series1.ChartArea = "ChartArea1";
             series1.IsValueShownAsLabel = true;
             series1.Legend = "Legend1";
-            series1.Name = "Values";
+            series1.Name = "TimeIn";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "TimeOut";
             this.chartReplEmpl.Series.Add(series1);
-            this.chartReplEmpl.Size = new System.Drawing.Size(742, 451);
+            this.chartReplEmpl.Series.Add(series2);
+            this.chartReplEmpl.Size = new System.Drawing.Size(368, 417);
             this.chartReplEmpl.TabIndex = 2;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.label18.Location = new System.Drawing.Point(6, 7);
+            this.label18.Location = new System.Drawing.Point(8, 7);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(137, 19);
             this.label18.TabIndex = 1;
             this.label18.Text = "Number of minibuses";
             // 
-            // replNumberMinis
+            // chartReplEmpl2
             // 
-            this.replNumberMinis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.replNumberMinis.Location = new System.Drawing.Point(149, 3);
-            this.replNumberMinis.Name = "replNumberMinis";
-            this.replNumberMinis.Size = new System.Drawing.Size(100, 26);
-            this.replNumberMinis.TabIndex = 0;
-            this.replNumberMinis.Text = "7";
+            chartArea2.AxisX.LineColor = System.Drawing.Color.Gray;
+            chartArea2.AxisX.Title = "Number of employees";
+            chartArea2.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea2.AxisY.LineColor = System.Drawing.Color.Gray;
+            chartArea2.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea2.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea2.Name = "ChartArea1";
+            this.chartReplEmpl2.ChartAreas.Add(chartArea2);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chartReplEmpl2.Legends.Add(legend2);
+            this.chartReplEmpl2.Location = new System.Drawing.Point(384, 35);
+            this.chartReplEmpl2.Name = "chartReplEmpl2";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Workload";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Costs";
+            this.chartReplEmpl2.Series.Add(series3);
+            this.chartReplEmpl2.Series.Add(series4);
+            this.chartReplEmpl2.Size = new System.Drawing.Size(377, 417);
+            this.chartReplEmpl2.TabIndex = 4;
             // 
             // tabGraphMinis
             // 
+            this.tabGraphMinis.Controls.Add(this.label51);
+            this.tabGraphMinis.Controls.Add(this.chartReplMini2);
             this.tabGraphMinis.Controls.Add(this.label30);
-            this.tabGraphMinis.Controls.Add(this.chartReplMini);
             this.tabGraphMinis.Controls.Add(this.label19);
-            this.tabGraphMinis.Controls.Add(this.replNumberEmpl);
+            this.tabGraphMinis.Controls.Add(this._graph_empl_count);
+            this.tabGraphMinis.Controls.Add(this.chartReplMini);
             this.tabGraphMinis.Location = new System.Drawing.Point(4, 22);
             this.tabGraphMinis.Name = "tabGraphMinis";
             this.tabGraphMinis.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGraphMinis.Size = new System.Drawing.Size(767, 490);
+            this.tabGraphMinis.Size = new System.Drawing.Size(767, 452);
             this.tabGraphMinis.TabIndex = 1;
             this.tabGraphMinis.Text = "Minibuses";
             this.tabGraphMinis.UseVisualStyleBackColor = true;
@@ -1369,39 +1631,11 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(256, 36);
+            this.label30.Location = new System.Drawing.Point(83, 32);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(276, 24);
             this.label30.TabIndex = 5;
             this.label30.Text = "Time of passenger in simulation";
-            // 
-            // chartReplMini
-            // 
-            chartArea2.AxisX.LineColor = System.Drawing.Color.Gray;
-            chartArea2.AxisX.Title = "Number of minibuses";
-            chartArea2.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea2.AxisY.IsStartedFromZero = false;
-            chartArea2.AxisY.LineColor = System.Drawing.Color.Gray;
-            chartArea2.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
-            chartArea2.AxisY.Title = "t";
-            chartArea2.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
-            chartArea2.Name = "ChartArea1";
-            this.chartReplMini.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chartReplMini.Legends.Add(legend2);
-            this.chartReplMini.Location = new System.Drawing.Point(10, 36);
-            this.chartReplMini.Name = "chartReplMini";
-            series2.ChartArea = "ChartArea1";
-            series2.IsValueShownAsLabel = true;
-            series2.Legend = "Legend1";
-            series2.Name = "Values";
-            this.chartReplMini.Series.Add(series2);
-            this.chartReplMini.Size = new System.Drawing.Size(742, 451);
-            this.chartReplMini.TabIndex = 4;
-            this.chartReplMini.Text = "chartReplMini";
-            title1.Name = "Time of passenger in simulation";
-            this.chartReplMini.Titles.Add(title1);
             // 
             // label19
             // 
@@ -1413,124 +1647,87 @@
             this.label19.TabIndex = 3;
             this.label19.Text = "Number of employees";
             // 
-            // replNumberEmpl
+            // _graph_empl_count
             // 
-            this.replNumberEmpl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.replNumberEmpl.Location = new System.Drawing.Point(149, 3);
-            this.replNumberEmpl.Name = "replNumberEmpl";
-            this.replNumberEmpl.Size = new System.Drawing.Size(100, 26);
-            this.replNumberEmpl.TabIndex = 2;
-            this.replNumberEmpl.Text = "18";
+            this._graph_empl_count.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._graph_empl_count.Location = new System.Drawing.Point(149, 3);
+            this._graph_empl_count.Name = "_graph_empl_count";
+            this._graph_empl_count.Size = new System.Drawing.Size(100, 26);
+            this._graph_empl_count.TabIndex = 2;
+            this._graph_empl_count.Text = "3";
             // 
-            // t1_count_avg
+            // chartReplMini
             // 
-            this.t1_count_avg.AutoSize = true;
-            this.t1_count_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t1_count_avg.Location = new System.Drawing.Point(373, 23);
-            this.t1_count_avg.Name = "t1_count_avg";
-            this.t1_count_avg.Size = new System.Drawing.Size(114, 17);
-            this.t1_count_avg.TabIndex = 27;
-            this.t1_count_avg.Text = "Terminal 1 count";
+            chartArea4.AxisX.LineColor = System.Drawing.Color.Gray;
+            chartArea4.AxisX.Title = "Number of minibuses";
+            chartArea4.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea4.AxisY.IsStartedFromZero = false;
+            chartArea4.AxisY.LineColor = System.Drawing.Color.Gray;
+            chartArea4.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea4.AxisY.Title = "t";
+            chartArea4.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea4.Name = "ChartArea1";
+            this.chartReplMini.ChartAreas.Add(chartArea4);
+            legend4.Enabled = false;
+            legend4.Name = "Legend1";
+            this.chartReplMini.Legends.Add(legend4);
+            this.chartReplMini.Location = new System.Drawing.Point(10, 19);
+            this.chartReplMini.Name = "chartReplMini";
+            series7.ChartArea = "ChartArea1";
+            series7.IsValueShownAsLabel = true;
+            series7.Legend = "Legend1";
+            series7.Name = "TimeIn";
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "TimeOut";
+            this.chartReplMini.Series.Add(series7);
+            this.chartReplMini.Series.Add(series8);
+            this.chartReplMini.Size = new System.Drawing.Size(386, 441);
+            this.chartReplMini.TabIndex = 4;
+            this.chartReplMini.Text = "chartReplMini";
+            title2.Name = "Time of passenger in simulation";
+            this.chartReplMini.Titles.Add(title2);
             // 
-            // t2_count_avg
+            // chartReplMini2
             // 
-            this.t2_count_avg.AutoSize = true;
-            this.t2_count_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t2_count_avg.Location = new System.Drawing.Point(373, 40);
-            this.t2_count_avg.Name = "t2_count_avg";
-            this.t2_count_avg.Size = new System.Drawing.Size(114, 17);
-            this.t2_count_avg.TabIndex = 28;
-            this.t2_count_avg.Text = "Terminal 2 count";
+            chartArea3.AxisX.LineColor = System.Drawing.Color.Gray;
+            chartArea3.AxisX.Title = "Number of minibuses";
+            chartArea3.AxisX.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea3.AxisY.IsStartedFromZero = false;
+            chartArea3.AxisY.LineColor = System.Drawing.Color.Gray;
+            chartArea3.AxisY.TextOrientation = System.Windows.Forms.DataVisualization.Charting.TextOrientation.Horizontal;
+            chartArea3.AxisY.Title = "t";
+            chartArea3.AxisY.TitleAlignment = System.Drawing.StringAlignment.Far;
+            chartArea3.Name = "ChartArea1";
+            this.chartReplMini2.ChartAreas.Add(chartArea3);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.chartReplMini2.Legends.Add(legend3);
+            this.chartReplMini2.Location = new System.Drawing.Point(385, 19);
+            this.chartReplMini2.Name = "chartReplMini2";
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Workload";
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Costs";
+            this.chartReplMini2.Series.Add(series5);
+            this.chartReplMini2.Series.Add(series6);
+            this.chartReplMini2.Size = new System.Drawing.Size(386, 441);
+            this.chartReplMini2.TabIndex = 6;
+            this.chartReplMini2.Text = "chart1";
+            title1.Name = "Time of passenger in simulation";
+            this.chartReplMini2.Titles.Add(title1);
             // 
-            // cr_count_in_avg
+            // label51
             // 
-            this.cr_count_in_avg.AutoSize = true;
-            this.cr_count_in_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cr_count_in_avg.Location = new System.Drawing.Point(373, 57);
-            this.cr_count_in_avg.Name = "cr_count_in_avg";
-            this.cr_count_in_avg.Size = new System.Drawing.Size(98, 17);
-            this.cr_count_in_avg.TabIndex = 29;
-            this.cr_count_in_avg.Text = "Car rent count";
-            // 
-            // _l_act_cr_wait_size_avg
-            // 
-            this._l_act_cr_wait_size_avg.AutoSize = true;
-            this._l_act_cr_wait_size_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._l_act_cr_wait_size_avg.Location = new System.Drawing.Point(373, 128);
-            this._l_act_cr_wait_size_avg.Name = "_l_act_cr_wait_size_avg";
-            this._l_act_cr_wait_size_avg.Size = new System.Drawing.Size(98, 17);
-            this._l_act_cr_wait_size_avg.TabIndex = 31;
-            this._l_act_cr_wait_size_avg.Text = "Car rent count";
-            // 
-            // cr_time_in_avg
-            // 
-            this.cr_time_in_avg.AutoSize = true;
-            this.cr_time_in_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cr_time_in_avg.Location = new System.Drawing.Point(543, 57);
-            this.cr_time_in_avg.Name = "cr_time_in_avg";
-            this.cr_time_in_avg.Size = new System.Drawing.Size(89, 17);
-            this.cr_time_in_avg.TabIndex = 34;
-            this.cr_time_in_avg.Text = "Car rent time";
-            // 
-            // t2_time_avg
-            // 
-            this.t2_time_avg.AutoSize = true;
-            this.t2_time_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t2_time_avg.Location = new System.Drawing.Point(543, 40);
-            this.t2_time_avg.Name = "t2_time_avg";
-            this.t2_time_avg.Size = new System.Drawing.Size(105, 17);
-            this.t2_time_avg.TabIndex = 33;
-            this.t2_time_avg.Text = "Terminal 2 time";
-            // 
-            // t1_time_avg
-            // 
-            this.t1_time_avg.AutoSize = true;
-            this.t1_time_avg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.t1_time_avg.Location = new System.Drawing.Point(543, 23);
-            this.t1_time_avg.Name = "t1_time_avg";
-            this.t1_time_avg.Size = new System.Drawing.Size(105, 17);
-            this.t1_time_avg.TabIndex = 32;
-            this.t1_time_avg.Text = "Terminal 1 time";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(513, 3);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(204, 20);
-            this.label53.TabIndex = 35;
-            this.label53.Text = "Average of 1 day (wait time)";
-            // 
-            // mini_workload_ic
-            // 
-            this.mini_workload_ic.AutoSize = true;
-            this.mini_workload_ic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mini_workload_ic.Location = new System.Drawing.Point(462, 308);
-            this.mini_workload_ic.Name = "mini_workload_ic";
-            this.mini_workload_ic.Size = new System.Drawing.Size(116, 17);
-            this.mini_workload_ic.TabIndex = 110;
-            this.mini_workload_ic.Text = "Minibus workload";
-            // 
-            // mini_workload
-            // 
-            this.mini_workload.AutoSize = true;
-            this.mini_workload.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mini_workload.Location = new System.Drawing.Point(228, 308);
-            this.mini_workload.Name = "mini_workload";
-            this.mini_workload.Size = new System.Drawing.Size(116, 17);
-            this.mini_workload.TabIndex = 109;
-            this.mini_workload.Text = "Minibus workload";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(57, 308);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(160, 17);
-            this.label44.TabIndex = 108;
-            this.label44.Text = "Minibus workload          :";
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(511, 32);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(175, 24);
+            this.label51.TabIndex = 7;
+            this.label51.Text = "Workload and costs";
             // 
             // Form1
             // 
@@ -1556,13 +1753,16 @@
             this.stats_repl.ResumeLayout(false);
             this.stats_repl.PerformLayout();
             this.tabGraphs.ResumeLayout(false);
+            this.tabGraphs.PerformLayout();
             this.tabGraphEmplMini.ResumeLayout(false);
             this.tabGraphEmpl.ResumeLayout(false);
             this.tabGraphEmpl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartReplEmpl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartReplEmpl2)).EndInit();
             this.tabGraphMinis.ResumeLayout(false);
             this.tabGraphMinis.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartReplMini)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartReplMini2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1587,9 +1787,9 @@
         private System.Windows.Forms.TabPage tabGraphEmpl;
         private System.Windows.Forms.TabPage tabGraphMinis;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox replNumberMinis;
+        private System.Windows.Forms.TextBox _graph_mini_count;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox replNumberEmpl;
+        private System.Windows.Forms.TextBox _graph_empl_count;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartReplEmpl;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartReplMini;
         private System.Windows.Forms.Label label31;
@@ -1692,6 +1892,18 @@
         private System.Windows.Forms.Label mini_workload_ic;
         private System.Windows.Forms.Label mini_workload;
         private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox _graph_repl_count;
+        private System.Windows.Forms.ComboBox _graph_mini_type;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox _graph_empl_salary;
+        private System.Windows.Forms.TextBox _graph_mini_salary;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartReplEmpl2;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartReplMini2;
     }
 }
 
