@@ -44,6 +44,7 @@ namespace managers
 
         private void ProcessEndMove(MessageForm message)
         {
+            ((MyMessage)message).Minibus.AddStatOnBoard();
             message.Code = Mc.Move;
             message.Addressee = MySim.FindAgent(SimId.AAirport);
             Response(message); // response of move
@@ -89,13 +90,6 @@ namespace managers
                             StartProcessGetOut(message);
                         break;
                 }
-            }
-            else
-            {
-                message.Code = Mc.Stop;
-                message.Addressee = MySim.FindAgent(SimId.AAirport);
-                message.MsgResult = MyAgent.Minis.Where(b => b.OnWay && b.IsEmpty()).Count(); // send the number of busses in move to indicate that all of them stopped
-                Response(message);
             }
         }
 

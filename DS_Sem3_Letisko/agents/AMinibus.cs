@@ -18,12 +18,17 @@ namespace agents
         public List<Minibus> Minis { get; set; }
 
         private Queue<Passenger> FrontT1 { get; set; }
+
         private StatTime SFrontT1_Time { get; set; }
         private StatLength SFrontT1_Length { get; set; }
+
         private Queue<Passenger> FrontT2 { get; set; }
+
         private StatTime SFrontT2_Time { get; set; }
         private StatLength SFrontT2_Length { get; set; }
+
         private Queue<Passenger> FrontCR { get; set; }
+
         private StatTime SFrontCR_Time { get; set; }
         private StatLength SFrontCR_Length { get; set; }
 
@@ -61,6 +66,28 @@ namespace agents
             ResetStats();
         }
 
+        public double GetStats(int which)
+        {
+            switch (which)
+            {
+                case 1:
+                    return SFrontT1_Time.GetStat();
+                case 2:
+                    return SFrontT2_Time.GetStat();
+                case 3:
+                    return SFrontCR_Time.GetStat();
+
+                case 11:
+                    return SFrontT1_Length.GetStat(((MySimulation)MySim).StartOfSimulation);
+                case 12:
+                    return SFrontT2_Length.GetStat(((MySimulation)MySim).StartOfSimulation);
+                case 13:
+                    return SFrontCR_Length.GetStat(((MySimulation)MySim).StartOfSimulation);
+            }
+
+            return 0;
+        }
+
         public int GetQueueCount(int which)
         {
             switch (which)
@@ -90,12 +117,16 @@ namespace agents
             switch (p.ArrivedAt)
             {
                 case 1:
+                    SFrontT1_Length.AddStat(MySim.CurrentTime, GetQueueCount(1));
                     FrontT1.Enqueue(p);
                     break;
                 case 2:
+                    SFrontT2_Length.AddStat(MySim.CurrentTime, GetQueueCount(2));
                     FrontT2.Enqueue(p);
                     break;
                 case 3:
+                    SFrontCR_Length.AddStat(MySim.CurrentTime, GetQueueCount(4));
+                    p.ArrivalTimeCR = MySim.CurrentTime;
                     FrontCR.Enqueue(p);
                     break;
             }
@@ -108,12 +139,18 @@ namespace agents
             switch (type)
             {
                 case 1:
+                    SFrontT1_Length.AddStat(MySim.CurrentTime, GetQueueCount(1));
+                    SFrontT1_Time.AddStat(MySim.CurrentTime - p.ArrivalTime);
                     FrontT1 = new Queue<Passenger>(FrontT1.Where(pass => pass != p));
                     break;
                 case 2:
+                    SFrontT2_Length.AddStat(MySim.CurrentTime, GetQueueCount(2));
+                    SFrontT2_Time.AddStat(MySim.CurrentTime - p.ArrivalTime);
                     FrontT2 = new Queue<Passenger>(FrontT2.Where(pass => pass != p));
                     break;
                 case 4:
+                    SFrontCR_Length.AddStat(MySim.CurrentTime, GetQueueCount(4));
+                    SFrontCR_Time.AddStat(MySim.CurrentTime - p.ArrivalTimeCR);
                     FrontCR = new Queue<Passenger>(FrontCR.Where(pass => pass != p));
                     break;
             }
@@ -132,21 +169,6 @@ namespace agents
             }
 
             return false;
-        }
-
-        public Passenger GetFromQueue (int type)
-        {
-            switch (type)
-            {
-                case 1:
-                    return FrontT1.Dequeue();
-                case 2:
-                    return FrontT2.Dequeue();
-                case 4:
-                    return FrontCR.Dequeue();
-            }
-
-            return null;
         }
 
         public Queue<Passenger> GetQueue (int type)

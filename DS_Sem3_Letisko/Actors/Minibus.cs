@@ -1,6 +1,7 @@
 ﻿using Generator;
 using OSPABA;
 using simulation;
+using Statistics;
 using System;
 using System.Collections.Generic;
 
@@ -27,6 +28,9 @@ namespace Actors
         public Random GetInRandom = new Random(Seed.GetSeed());
         public Random GetOutRandom = new Random(Seed.GetSeed());
 
+        public StatTime OnBoardStat { get; set; }
+        public StatTime OnBoardStat_Global { get; set; }
+
         public Minibus (MySimulation sim, int state, int type, int index) : base (sim)
         {
             Type = type;
@@ -38,6 +42,8 @@ namespace Actors
             OnWay = true;
             Stop = false;
             MileAge = 0;
+            OnBoardStat = new StatTime();
+            OnBoardStat_Global = new StatTime();
         }
 
         public void Reinit (int state)
@@ -51,6 +57,18 @@ namespace Actors
             OnBoard_Count = 0;
             LastStop = 0;
             MileAge = 0;
+            OnBoardStat.Reset();
+        }
+
+        public void AddStatOnBoard()
+        {
+            if (State == 4)
+            {
+                if (!IsEmpty())
+                    OnBoardStat.AddStat(OnBoard_Count);
+            }
+            else
+                OnBoardStat.AddStat(OnBoard_Count);
         }
 
         public bool IsEmpty() => OnBoard_Count == 0;
@@ -103,7 +121,7 @@ namespace Actors
             }
         }
 
-        private double GetCosts() => Const.MiniCostPerKM[Type] * MileAge;
+        public double GetCosts() => Const.MiniCostPerKM[Type] * MileAge;
 
         public Passenger GetFirst()
         {

@@ -6,7 +6,7 @@ namespace Statistics
     /// Class represents interval of confidance and 
     /// has implemented method to count it
     /// </summary>
-    class SIntervalOfConfidence
+    public class SIntervalOfConfidence
     {
         private double sum;
         private double powSum;

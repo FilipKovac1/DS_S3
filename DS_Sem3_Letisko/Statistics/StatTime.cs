@@ -4,7 +4,7 @@
     /// Class for counting statistics of times
     /// like whole time in simulation, waiting time in front as so on
     /// </summary>
-    class StatTime
+    public class StatTime
     {
         private int count;
         private double sum;

@@ -18,7 +18,6 @@ namespace agents
         private Queue<Passenger> Front { get; set; }
         private StatLength SFront_Length { get; set; }
         private StatTime SFront_Time { get; set; }
-        private StatTime SEmployee_WorkingTime { get; set; }
 
 		public AEmployee(int id, Simulation mySim, Agent parent) : base(id, mySim, parent)
 		{
@@ -27,7 +26,6 @@ namespace agents
             Front = new Queue<Passenger>();
             SFront_Length = new StatLength();
             SFront_Time = new StatTime();
-            SEmployee_WorkingTime = new StatTime();
         }
 
 		public override void PrepareReplication()
@@ -61,7 +59,7 @@ namespace agents
                 case 1:
                     return SFront_Time.GetStat();
                 case 2:
-                    return SFront_Length.GetStat();
+                    return SFront_Length.GetStat(((MySimulation)MySim).StartOfSimulation);
             }
             return 0;
         }

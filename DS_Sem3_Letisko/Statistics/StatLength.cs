@@ -4,7 +4,7 @@
     /// This class represents statistics for length of fronts
     /// Add this before removing from front and before adding into
     /// </summary>
-    class StatLength
+    public class StatLength
     {
         private double sum;
         private double lastTimeUpd;
@@ -26,7 +26,7 @@
             lastTimeUpd = time;
         }
 
-        public double GetStat (double time) => sum / time;
+        public double GetStat (double time) => sum / (lastTimeUpd - time);
         public double GetStat() => sum / lastTimeUpd;
     }
 }

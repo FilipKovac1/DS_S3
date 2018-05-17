@@ -2,6 +2,35 @@
 <ABAsim>
   <Agents>
     <Agent>
+      <SimId>2</SimId>
+      <InternalId>2</InternalId>
+      <Name>AEnv</Name>
+      <Bounds>78,408,180,180</Bounds>
+      <Reasoner>AEnvManager</Reasoner>
+      <ReasonerBounds>74,25,32,25</ReasonerBounds>
+      <UsePetriNet>false</UsePetriNet>
+      <Components>
+        <Scheduler>
+          <SimId>1019</SimId>
+          <InternalId>82</InternalId>
+          <Name>EnterCR</Name>
+          <Bounds>118,85,35,13</Bounds>
+        </Scheduler>
+        <Scheduler>
+          <SimId>1017</SimId>
+          <InternalId>78</InternalId>
+          <Name>EnterT1</Name>
+          <Bounds>25,83,35,13</Bounds>
+        </Scheduler>
+        <Scheduler>
+          <SimId>1018</SimId>
+          <InternalId>80</InternalId>
+          <Name>EnterT2</Name>
+          <Bounds>66,120,35,13</Bounds>
+        </Scheduler>
+      </Components>
+    </Agent>
+    <Agent>
       <SimId>5</SimId>
       <InternalId>5</InternalId>
       <Name>AEmployee</Name>
@@ -10,18 +39,18 @@
       <ReasonerBounds>74,25,32,25</ReasonerBounds>
       <UsePetriNet>false</UsePetriNet>
       <Components>
-        <Process>
-          <SimId>1009</SimId>
-          <InternalId>51</InternalId>
-          <Name>ServicePassenger</Name>
-          <Bounds>7,69,35,18</Bounds>
-        </Process>
         <Action>
           <SimId>1014</SimId>
           <InternalId>68</InternalId>
           <Name>AddToQ</Name>
           <Bounds>70,117,35,18</Bounds>
         </Action>
+        <Process>
+          <SimId>1009</SimId>
+          <InternalId>51</InternalId>
+          <Name>ServicePassenger</Name>
+          <Bounds>7,69,35,18</Bounds>
+        </Process>
       </Components>
     </Agent>
     <Agent>
@@ -42,35 +71,6 @@
       </Components>
     </Agent>
     <Agent>
-      <SimId>2</SimId>
-      <InternalId>2</InternalId>
-      <Name>AEnv</Name>
-      <Bounds>78,408,180,180</Bounds>
-      <Reasoner>AEnvManager</Reasoner>
-      <ReasonerBounds>74,25,32,25</ReasonerBounds>
-      <UsePetriNet>false</UsePetriNet>
-      <Components>
-        <Scheduler>
-          <SimId>1017</SimId>
-          <InternalId>78</InternalId>
-          <Name>EnterT1</Name>
-          <Bounds>25,83,35,13</Bounds>
-        </Scheduler>
-        <Scheduler>
-          <SimId>1018</SimId>
-          <InternalId>80</InternalId>
-          <Name>EnterT2</Name>
-          <Bounds>66,120,35,13</Bounds>
-        </Scheduler>
-        <Scheduler>
-          <SimId>1019</SimId>
-          <InternalId>82</InternalId>
-          <Name>EnterCR</Name>
-          <Bounds>118,85,35,13</Bounds>
-        </Scheduler>
-      </Components>
-    </Agent>
-    <Agent>
       <SimId>4</SimId>
       <InternalId>4</InternalId>
       <Name>AMinibus</Name>
@@ -79,24 +79,24 @@
       <ReasonerBounds>74,27,32,25</ReasonerBounds>
       <UsePetriNet>false</UsePetriNet>
       <Components>
-        <Action>
-          <SimId>1007</SimId>
-          <InternalId>45</InternalId>
-          <Name>AddToFront</Name>
-          <Bounds>136,72,35,18</Bounds>
-        </Action>
-        <Process>
-          <SimId>1004</SimId>
-          <InternalId>38</InternalId>
-          <Name>GetIn</Name>
-          <Bounds>77,140,35,18</Bounds>
-        </Process>
         <Process>
           <SimId>1005</SimId>
           <InternalId>40</InternalId>
           <Name>GetOut</Name>
           <Bounds>115,104,35,18</Bounds>
         </Process>
+        <Process>
+          <SimId>1004</SimId>
+          <InternalId>38</InternalId>
+          <Name>GetIn</Name>
+          <Bounds>77,140,35,18</Bounds>
+        </Process>
+        <Action>
+          <SimId>1007</SimId>
+          <InternalId>45</InternalId>
+          <Name>AddToFront</Name>
+          <Bounds>136,72,35,18</Bounds>
+        </Action>
         <Scheduler>
           <SimId>1024</SimId>
           <InternalId>108</InternalId>
@@ -218,7 +218,7 @@
       <SimId>1008</SimId>
       <InternalId>18</InternalId>
       <Name>Init</Name>
-      <Type>RequestResponse</Type>
+      <Type>Notice</Type>
       <Source>1</Source>
       <Destination>3</Destination>
     </Message>
@@ -322,14 +322,6 @@
       <Destination>51</Destination>
     </Message>
     <Message>
-      <SimId>1027</SimId>
-      <InternalId>119</InternalId>
-      <Name>Stop</Name>
-      <Type>RequestResponse</Type>
-      <Source>3</Source>
-      <Destination>4</Destination>
-    </Message>
-    <Message>
       <SimId>1025</SimId>
       <InternalId>58</InternalId>
       <Name>ProcessPassenger</Name>
@@ -340,5 +332,5 @@ Response - leave a bus</Comment>
       <Destination>4</Destination>
     </Message>
   </Messages>
-  <IID>123</IID>
+  <IID>125</IID>
 </ABAsim>
