@@ -32,7 +32,7 @@ namespace simulation
         public static double TriangularInRatio = 0.768028846; // =COUNT(<= 3.1)/COUNT(ALL)
         // for taht ones who go to return car 
         public static readonly double[] TriangularOut1 = new double[] { 1 * MinutesToSecond, 2.1 * MinutesToSecond, 1.3 * MinutesToSecond }; // min, max, modus
-        public static readonly double[] TriangularOut2 = new double[] { 2.9 * MinutesToSecond, 4.8 * MinutesToSecond, 4.3 * MinutesToSecond }; // min, max, modus
+        public static readonly double[] TriangularOut2 = new double[] { 2.9 * MinutesToSecond, 4.8 * MinutesToSecond, 4.4 * MinutesToSecond }; // min, max, modus
         public static double TriangularOutRatio = 0.86605317; // =COUNT(<= 2.1)/COUNT(ALL)
 
         public static readonly int EnterIntervalCount = 18;

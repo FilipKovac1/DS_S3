@@ -23,19 +23,26 @@ namespace Actors
             this.SizeOfGroup = SizeOfGroup;
         }
 
+        /// <summary>
+        /// Comparing this objects by arrival time to simulation
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
         public int CompareTo (object o)
         {
             Passenger c = (Passenger)o;
             if (this.ArrivalTime > c.ArrivalTime)
-            {
                 return -1;
-            } else if (this.ArrivalTime < c.ArrivalTime)
-            {
+            else if (this.ArrivalTime < c.ArrivalTime)
                 return 1;
-            }
             return 0;
         }
 
+        /// <summary>
+        /// To string method of passenger
+        /// Showing his id, where he arrived and size of his group
+        /// </summary>
+        /// <returns></returns>
         public override string ToString() => String.Format("{0} -> T{1}, C({2})", this.Id, this.ArrivedAt, this.SizeOfGroup);
     }
 }

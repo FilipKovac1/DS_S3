@@ -253,7 +253,7 @@ namespace simulation
         public double GetEmployeeCosts()
         {
             double worked_hours = CurrentTime - AAirport.DayStart;
-            double costs = AEmployee.Employees.Count * (worked_hours / Const.HourToSecond) * Driver_Salary;
+            double costs = AEmployee.Employees.Count * (worked_hours / Const.HourToSecond) * Employee_Salary;
 
             return costs;
         }

@@ -48,6 +48,11 @@ namespace agents
             SFrontT2_Time = new StatTime();
         }
 
+        /// <summary>
+        /// Create minibus for replication
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="type"></param>
         public void SetMinis(int number, int type)
         {
             Minis = new List<Minibus>(number);
@@ -56,6 +61,9 @@ namespace agents
                 Minis.Add(new Minibus((MySimulation) MySim, r.Next(Const.CapacityOptions.Length), type, i));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
 		public override void PrepareReplication()
 		{
 			base.PrepareReplication();
@@ -66,6 +74,18 @@ namespace agents
             ResetStats();
         }
 
+        /// <summary>
+        /// Get statistics from this agent
+        /// </summary>
+        /// <param name="which">
+        /// 1 -> T1 time 
+        /// 2 -> T2 time
+        /// 3 -> CR time
+        /// 11 -> T1 length
+        /// 12 -> T2 length
+        /// 13 -> CR length
+        /// </param>
+        /// <returns></returns>
         public double GetStats(int which)
         {
             switch (which)
@@ -88,6 +108,15 @@ namespace agents
             return 0;
         }
 
+        /// <summary>
+        /// Get sum of people and their groups
+        /// </summary>
+        /// <param name="which">
+        /// 1 -> T1
+        /// 2 -> T2
+        /// 4 -> CR
+        /// </param>
+        /// <returns></returns>
         public int GetQueueCount(int which)
         {
             switch (which)
@@ -112,6 +141,10 @@ namespace agents
             SFrontT2_Time.Reset();
         }
 
+        /// <summary>
+        /// Add passenger into queue
+        /// </summary>
+        /// <param name="p"></param>
         public void AddToQueue (Passenger p)
         {
             switch (p.ArrivedAt)
@@ -132,8 +165,17 @@ namespace agents
             }
         }
 
+        /// <summary>
+        /// Check if fronts are not empty
+        /// </summary>
+        /// <returns></returns>
         public bool SomeoneWaiting() => FrontT1.Count > 0 || FrontT2.Count > 0 || FrontCR.Count > 0;
 
+        /// <summary>
+        /// Remove from queue
+        /// </summary>
+        /// <param name="type">1, 2, 4</param>
+        /// <param name="p"></param>
         public void RemoveFromQueue (int type, Passenger p)
         {
             switch (type)
@@ -156,6 +198,13 @@ namespace agents
             }
         }
 
+        /// <summary>
+        /// Check if front is empty depends on parameter
+        /// </summary>
+        /// <param name="type">
+        /// 1, 2, 4 
+        /// </param>
+        /// <returns></returns>
         public bool IsEmpty(int type)
         {
             switch (type)
@@ -171,6 +220,11 @@ namespace agents
             return false;
         }
 
+        /// <summary>
+        /// Get queue 
+        /// </summary>
+        /// <param name="type">1, 2, 4</param>
+        /// <returns></returns>
         public Queue<Passenger> GetQueue (int type)
         {
             switch (type)

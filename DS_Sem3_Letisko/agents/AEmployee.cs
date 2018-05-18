@@ -39,6 +39,10 @@ namespace agents
             Front.Clear(); // to be sure (not necessary)
 		}
 
+        /// <summary>
+        /// Init employees
+        /// </summary>
+        /// <param name="Count">how many employees to create</param>
         public void SetEmpl(int Count) {
             Employees = new List<Employee>(Count);
             for (int i = 0; i < Count; i++)
@@ -53,6 +57,14 @@ namespace agents
             SFront_Length.Reset();
         }
 
+        /// <summary>
+        /// Get statistics of agent employee
+        /// </summary>
+        /// <param name="which">
+        /// 1 -> Time
+        /// 2 -> Length
+        /// </param>
+        /// <returns></returns>
         public double GetStats(int which) {
             switch (which)
             {
@@ -64,8 +76,17 @@ namespace agents
             return 0;
         }
 
+        /// <summary>
+        /// Return the size of front in front of CR
+        /// </summary>
+        /// <returns></returns>
         public int FrontSize() => Front.Count;
 
+        /// <summary>
+        /// Return the first arrived passenger (in system) in front and remove him from it
+        /// Save data into statistics
+        /// </summary>
+        /// <returns></returns>
         public Passenger GetFromQueue ()
         {
             if (Front.Count == 0)
@@ -79,12 +100,20 @@ namespace agents
             return p;
         }
 
+        /// <summary>
+        /// Add passenger into queue
+        /// </summary>
+        /// <param name="p"></param>
         public void AddToQueue(Passenger p)
         {
             SFront_Length.AddStat(MySim.CurrentTime, Front.Count);
             Front.Enqueue(p);
         }
 
+        /// <summary>
+        /// Get first free employee
+        /// </summary>
+        /// <returns></returns>
         public Employee GetFirstFree()
         {
             Employee e = Employees.Where(em => em.Free).FirstOrDefault();
@@ -94,6 +123,10 @@ namespace agents
             return e;
         }
 
+        /// <summary>
+        /// Indicates if there is any passenger on CR
+        /// </summary>
+        /// <returns></returns>
         public bool ArePeopleHere() => Front.Count > 0 || Employees.Where(e => !e.Free).Count() > 0;
 
 		//meta! userInfo="Generated code: do not modify", tag="begin"

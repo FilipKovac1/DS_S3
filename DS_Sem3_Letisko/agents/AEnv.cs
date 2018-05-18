@@ -43,6 +43,11 @@ namespace agents
             Init();
         }
 
+        /// <summary>
+        /// Return actual interval depends on current time of simulation
+        /// if interval is bigger than count of intervals return -1
+        /// </summary>
+        /// <returns>int <0;Count of interval)</returns>
         private int GetActualInterval()
         {
             AAirport localA = ((MySimulation)MySim).AAirport;
@@ -56,6 +61,12 @@ namespace agents
             }
         }
 
+        /// <summary>
+        /// Get generated value of arrival of passenger
+        /// </summary>
+        /// <param name="rand"></param>
+        /// <param name="terminal"></param>
+        /// <returns></returns>
         public double GetEnter(Random rand, int terminal)
         {
             int interval = GetActualInterval();
@@ -79,6 +90,13 @@ namespace agents
             }
         }
 
+        /// <summary>
+        /// Reduce the value of generated value to be in <start of next interval;lambda of next interval>
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="interval"></param>
+        /// <param name="terminal"></param>
+        /// <returns></returns>
         private double PiecewiseThinning(double s, int interval, int terminal)
         {
             if (interval + 1 >= Const.EnterIntervalCount) // dont check last interval when overflow
@@ -110,6 +128,14 @@ namespace agents
             this.TimeInSystemRental.Reset();
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="which">
+        /// 1 -> arrived at T1 / T2
+        /// 2 -> arrived at CR
+        /// </param>
+        /// <returns></returns>
         public double GetStats(int which)
         {
             switch (which)
@@ -132,8 +158,22 @@ namespace agents
             this.NumberOfLeavesTerminals = 0;
         }
 
+        /// <summary>
+        /// Check if all passengers that arrived into simulation left 
+        /// </summary>
+        /// <returns></returns>
         public bool EqualsEnterLeave() => NumberOfEntersCR == NumberOfLeavesCR && NumberOfEntersTerminal1 + NumberOfEntersTerminal2 == NumberOfLeavesTerminals;
 
+        /// <summary>
+        /// Add data to stats after passenger left system
+        /// </summary>
+        /// <param name="type">
+        /// 1 -> from terminals
+        /// 2 -> from CR
+        /// </param>
+        /// <param name="message">
+        /// has to have passenger in it
+        /// </param>
         public void AddToStat(int type, MyMessage message)
         {
             switch (type)

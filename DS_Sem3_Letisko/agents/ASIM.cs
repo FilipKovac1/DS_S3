@@ -15,6 +15,9 @@ namespace agents
             // Setup component for the next replication
         }
 
+        /// <summary>
+        /// Send first message to start replication
+        /// </summary>
         public void InitReplication()
         {
             // create message to notify simulation about start generating arrivals and moving of minis
@@ -34,7 +37,6 @@ namespace agents
 			AddOwnMessage(Mc.EnterCR);
 			AddOwnMessage(Mc.EnterT2);
             AddOwnMessage(Mc.Init);
-            AddOwnMessage(Mc.EndCooling);
         }
 		//meta! tag="end"
 	}

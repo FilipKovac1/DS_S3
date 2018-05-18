@@ -13,7 +13,6 @@ namespace simulation
 		public const int ResetStat = 1007;
 		public const int ServePassenger = 1009;
 		public const int ProcessPassenger = 1025;
-		public const int EndCooling = 1026;
         public const int Move = 1011;
         public const int Stop = 1027;
         //meta! tag="end"

@@ -46,6 +46,10 @@ namespace Actors
             OnBoardStat_Global = new StatTime();
         }
 
+        /// <summary>
+        /// Reset minibus data
+        /// </summary>
+        /// <param name="state"></param>
         public void Reinit (int state)
         {
             State = state;
@@ -60,6 +64,9 @@ namespace Actors
             OnBoardStat.Reset();
         }
 
+        /// <summary>
+        /// Add into stats how many people minibus had on board before their leaving
+        /// </summary>
         public void AddStatOnBoard()
         {
             if (State == 4)
@@ -71,10 +78,27 @@ namespace Actors
                 OnBoardStat.AddStat(OnBoard_Count);
         }
 
+        /// <summary>
+        /// Indicates if is minibus empty or not
+        /// </summary>
+        /// <returns></returns>
         public bool IsEmpty() => OnBoard_Count == 0;
+        /// <summary>
+        /// Indicates if the number of passengers on board equals to capacity of minibus
+        /// </summary>
+        /// <returns></returns>
         public bool IsFull() => OnBoard_Count == GetCapacity();
+        /// <summary>
+        /// Returns minibus's capacity
+        /// </summary>
+        /// <returns></returns>
         public int GetCapacity() => Const.CapacityOptions[Type];
 
+        /// <summary>
+        /// Add passenger on board
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns>true if passenger was added, otherwise return false</returns>
         public bool GetIn(Passenger p)
         {
             if (OnBoard_Count + p.SizeOfGroup > GetCapacity())
@@ -97,6 +121,11 @@ namespace Actors
             return (State > 3 && IsEmpty() ? Const.Distances[0] : Const.Distances[State]) - pl;
         }
 
+        /// <summary>
+        /// Compute the place of minibus
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
         private string ComputePlace (double time)
         {
             if (OnWay)
@@ -105,6 +134,11 @@ namespace Actors
                 return String.Format("Staying on {0, -50}", GetPlaceFromState());
         }
 
+        /// <summary>
+        /// Get string text of place by parameter, default minibus's state
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns></returns>
         private string GetPlaceFromState(int? state = null)
         {
             int s = state ?? State;
@@ -121,8 +155,16 @@ namespace Actors
             }
         }
 
+        /// <summary>
+        /// Return actual costs of minibus (just mileage * cost per mile/km)
+        /// </summary>
+        /// <returns></returns>
         public double GetCosts() => Const.MiniCostPerKM[Type] * MileAge;
 
+        /// <summary>
+        /// Get first passenger to go out from a bus
+        /// </summary>
+        /// <returns>null if bus is empty</returns>
         public Passenger GetFirst()
         {
             if (IsEmpty()) return null;
@@ -131,6 +173,9 @@ namespace Actors
             return p;
         }
 
+        /// <summary>
+        /// Go to next stop defined by the actual position of minibus
+        /// </summary>
         public void GoToNextStop()
         {
             LastStop = MySim.CurrentTime;
@@ -156,11 +201,21 @@ namespace Actors
             }
         }
 
+        /// <summary>
+        /// Return time in seconds, how much it takes to next stop
+        /// </summary>
+        /// <returns></returns>
         public double GetTime()
         {
             return State > 3 ? (IsEmpty() ? Const.DistancesTime[0] : Const.DistancesTime[State]) : Const.DistancesTime[State];
         }
 
+        /// <summary>
+        /// To string method of minibus object 
+        /// Showing number of passengers on board, capacity, where is now, where he is going, how much he already gone
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
         public string ToString(double time) => String.Format("{0,2:##0}/{2} passengers. {1, -65} | {3,4:0} km", OnBoard_Count, ComputePlace(time), GetCapacity(), MileAge);
     }
 }
